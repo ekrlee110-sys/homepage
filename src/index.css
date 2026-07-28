@@ -1,0 +1,147 @@
+/* Custom Premium Design System for 산내돌짜장 */
+:root {
+  --font-base: 'Noto Sans KR', sans-serif;
+  --font-title: 'Playfair Display', 'Noto Sans KR', serif;
+
+  /* Theme Color Palette: Warm & Premium */
+  --bg-primary: #fdfbf7;      /* Warm Cream */
+  --bg-secondary: #f6efe2;    /* Soft Ochre Cream */
+  --bg-dark: #2c221e;         /* Deep Roasted Chocolate (Dark) */
+  --text-dark: #3a2e2b;       /* Roasted Cocoa Text */
+  --text-light: #fdfbf7;      /* Warm white text */
+  --text-muted: #82756e;      /* Muted Warm Gray */
+  
+  --accent-gold: #c5a880;     /* Premium Soft Gold */
+  --accent-gold-dark: #a68453;/* Roasted Gold */
+  --accent-spicy: #b94a38;     /* Sizzling Red (Spicy) */
+  --accent-spicy-hover: #983827;
+  
+  --shadow-sm: 0 2px 8px rgba(44, 34, 30, 0.04);
+  --shadow-md: 0 8px 24px rgba(44, 34, 30, 0.08);
+  --shadow-lg: 0 16px 40px rgba(44, 34, 30, 0.12);
+  --border-radius: 12px;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--bg-primary);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-base);
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold-dark);
+}
+
+/* Common Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-padding {
+  padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.gold-text {
+  color: var(--accent-gold-dark);
+}
+
+.spicy-text {
+  color: var(--accent-spicy);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(253, 251, 247, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-panel-dark {
+  background: rgba(44, 34, 30, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Micro-animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
