@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="hero-text animate-fade-in-up">
           <div className="tagline">
             <Flame size={16} className="spicy-text" />
-            <span>대한민국 최초 192시간 저온숙성</span>
+            <span>대한민국 최초 한식 짜장면</span>
           </div>
           <h1>
             지글지글 끓는 돌판 위,<br />
@@ -23,7 +23,8 @@ export default function Hero() {
           </h1>
           <p className="hero-description">
             산내돌짜장은 마지막 한 젓가락까지 식지 않는 뜨거운 감동을 드립니다.<br />
-            <strong>저희 매장은 짬뽕을 판매하지 않습니다.</strong> 오직 돌짜장과 매운 갈비찜의 완벽한 조화에만 집중합니다.
+            <strong>9시간 달인 상황버섯을 192시간 숙성합니다.</strong><br />
+            자극은 줄이고 감칠맛은 더한 속 편한 한식 짜장면 한 그릇에 집중합니다.
           </p>
           <div className="hero-actions">
             <button onClick={scrollToReservation} className="btn-primary">
@@ -37,14 +38,10 @@ export default function Hero() {
         <div className="hero-image-wrapper animate-fade-in">
           <div className="hero-image-border">
             <img 
-              src="/dol_zzajang_main.png" 
-              alt="산내돌짜장 대표메뉴 돌짜장" 
+              src="/mugeunji_dol_zzajang.png" 
+              alt="산내돌짜장 대표메뉴 묵은지 돌짜장" 
               className="hero-image"
             />
-            <div className="hero-image-badge">
-              <span className="badge-title">192 Hours</span>
-              <span className="badge-desc">저온 숙성 특제소스</span>
-            </div>
           </div>
         </div>
       </div>
@@ -157,11 +154,12 @@ export default function Hero() {
         .hero-image-border {
           position: relative;
           border: 1.5px solid var(--accent-gold);
-          padding: 15px;
+          padding: 12px;
           border-radius: 30px;
-          background: var(--bg-primary);
+          background: #f5ede1;
           box-shadow: var(--shadow-lg);
           transition: transform 0.5s ease;
+          overflow: hidden;
         }
 
         .hero-image-border:hover {
@@ -172,7 +170,7 @@ export default function Hero() {
           width: 100%;
           max-width: 450px;
           height: auto;
-          aspect-ratio: 4/5;
+          aspect-ratio: 4/3;
           object-fit: cover;
           border-radius: 20px;
         }

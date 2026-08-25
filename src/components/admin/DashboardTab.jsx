@@ -1,37 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, DollarSign, ShoppingBag, PlusCircle, Award } from 'lucide-react';
+import { supabase } from '../../lib/supabaseClient';
 
 export default function DashboardTab() {
+  const [totalCount, setTotalCount] = useState(0);
+  const [recentProfiles, setRecentProfiles] = useState([]);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        // Query 1: Fetch total count of profiles (Optimized query with count count: 'exact', head: true)
+        const { count, error: countError } = await supabase
+          .from('profiles')
+          .select('*', { count: 'exact', head: true });
+
+        if (countError) throw countError;
+        setTotalCount(count || 0);
+
+        // Query 2: Fetch only recent 5 profiles (Optimized with limit(5))
+        const { data, error: dataError } = await supabase
+          .from('profiles')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(5);
+
+        if (dataError) throw dataError;
+        setRecentProfiles(data || []);
+      } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
   const stats = [
-    { title: '전체 고객 수', value: '1,248명', change: '+12% 이번달', icon: <Users size={20} />, color: '#c5a880' },
-    { title: '누적 매출액', value: '45,820,000원', change: '+8.5% 이번달', icon: <DollarSign size={20} />, color: '#b94a38' },
-    { title: '총 거래 건수', value: '1,532건', change: '+15.2% 이번달', icon: <ShoppingBag size={20} />, color: '#2c221e' }
+    { title: '전체 고객 수', value: `${totalCount.toLocaleString()}명`, change: '실시간 연동', icon: <Users size={20} />, color: '#c5a880' },
+    { title: '누적 매출액', value: '0원', change: '거래 데이터 없음', icon: <DollarSign size={20} />, color: '#b94a38' },
+    { title: '총 거래 건수', value: '0건', change: '거래 데이터 없음', icon: <ShoppingBag size={20} />, color: '#2c221e' }
   ];
 
-  const recentRegistrations = [
-    { name: '김민준', grade: 'VVIP', time: '5분 전', action: '신규 회원가입' },
-    { name: '이서연', grade: 'Gold', time: '18분 전', action: '매운갈비찜 구매' },
-    { name: '박우진', grade: 'VIP', time: '1시간 전', action: '돌짜장 구매' },
-    { name: '최지우', grade: 'Family', time: '2시간 전', action: '신규 회원가입' },
-    { name: '정현우', grade: 'Gold', time: '3시간 전', action: '돌짜장 구매' }
-  ];
+  // Map database users to recent registrations
+  const recentRegistrations = recentProfiles.map((item) => {
+    let timeLabel = '방금 전';
+    if (item.created_at) {
+      const diffMs = new Date() - new Date(item.created_at);
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMins / 60);
+      if (diffMins < 1) timeLabel = '방금 전';
+      else if (diffMins < 60) timeLabel = `${diffMins}분 전`;
+      else if (diffHours < 24) timeLabel = `${diffHours}시간 전`;
+      else timeLabel = new Date(item.created_at).toISOString().split('T')[0];
+    }
+    return {
+      name: item.name || '이름 없음',
+      grade: 'Family',
+      time: timeLabel,
+      action: '신규 회원가입'
+    };
+  });
 
-  // SVG Chart: Grade Distribution (VVIP, VIP, Gold, Family)
-  // Percentages: VVIP: 10%, VIP: 20%, Gold: 40%, Family: 30%
+  // SVG Chart: Grade Distribution (all registered users fall into Family for now)
   const gradeData = [
-    { label: 'VVIP (10%)', count: 125, percentage: 10, color: '#b94a38' },
-    { label: 'VIP (20%)', count: 250, percentage: 20, color: '#c5a880' },
-    { label: 'Gold (40%)', count: 499, percentage: 40, color: '#a68453' },
-    { label: 'Family (30%)', count: 374, percentage: 30, color: '#82756e' }
+    { label: 'VVIP (0%)', count: 0, percentage: 0, color: '#b94a38' },
+    { label: 'VIP (0%)', count: 0, percentage: 0, color: '#c5a880' },
+    { label: 'Gold (0%)', count: 0, percentage: 0, color: '#a68453' },
+    { label: 'Family (100%)', count: totalCount, percentage: totalCount ? 100 : 0, color: '#82756e' }
   ];
 
-  const newCustomers = [
-    { id: 1, name: '이경래', grade: 'Gold', spend: '150,000원', visits: 4, date: '2026-07-14' },
-    { id: 2, name: '윤아름', grade: 'Family', spend: '29,000원', visits: 1, date: '2026-07-14' },
-    { id: 3, name: '장민호', grade: 'VIP', spend: '345,000원', visits: 8, date: '2026-07-13' },
-    { id: 4, name: '송지은', grade: 'VVIP', spend: '820,000원', visits: 18, date: '2026-07-12' },
-    { id: 5, name: '한재상', grade: 'Family', spend: '62,000원', visits: 2, date: '2026-07-12' }
-  ];
+  // Map database users to new customers preview list
+  const newCustomers = recentProfiles.map((item, idx) => ({
+    id: idx + 1,
+    name: item.name || '이름 없음',
+    grade: 'Family',
+    spend: '0원',
+    visits: 0,
+    date: item.created_at ? new Date(item.created_at).toISOString().split('T')[0] : '미지정'
+  }));
 
   return (
     <div className="tab-content animate-fade-in">

@@ -7,30 +7,28 @@ export default function Story() {
       <div className="container">
         <div className="section-header text-center">
           <span className="subtitle">OUR PHILOSOPHY</span>
-          <h2>짬뽕은 팔지 않는 짜장면집,<br /><span className="gold-text">산내돌짜장의 세 가지 고집</span></h2>
+          <h2>입은 즐겁게, 속은 편하게<br /><span className="gold-text">산내돌짜장의 세 가지 고집</span></h2>
           <div className="header-line"></div>
         </div>
 
         <div className="story-grid">
           <div className="story-card">
             <div className="icon-wrapper">
-              <Award size={32} />
+              <Thermometer size={32} />
             </div>
-            <h3>192시간 저온숙성의 맛</h3>
+            <h3>속이 편해야 한다는 고집</h3>
             <p>
-              셰프의 깊은 노하우가 깃든 특제 짜장 소스는 192시간 동안의 엄격한 저온 숙성을 거칩니다. 
-              인위적인 단맛을 배제하고 깊고 은은한 감칠맛과 풍부한 육즙을 이끌어내는 산내만의 핵심 비결입니다.
+              짜장면을 좋아해도 많이 드시지 못했던 어머니를 보며, 부담을 덜고 속이 편한 짜장면을 만드는 것을 첫 번째 기준으로 삼았습니다.
             </p>
           </div>
 
           <div className="story-card">
             <div className="icon-wrapper">
-              <Thermometer size={32} />
+              <Award size={32} />
             </div>
-            <h3>마지막 한 입까지, 300℃ 돌판</h3>
+            <h3>192시간 숙성의 고집</h3>
             <p>
-              뜨거운 돌판 위에 서빙되어 첫 젓가락부터 마지막 식사를 마칠 때까지 짜장면이 식지 않습니다. 
-              온도가 유지되므로 면발의 쫄깃함이 오랫동안 살아가고, 돌판 바닥에 눋는 누룽지의 고소함까지 만끽할 수 있습니다.
+              한식대가의 오랜 경험과 노하우를 담은 한식 짜장 소스를 192시간 숙성해, 깊은 감칠맛과 깔끔한 맛을 완성합니다.
             </p>
           </div>
 
@@ -38,10 +36,9 @@ export default function Story() {
             <div className="icon-wrapper">
               <ShieldCheck size={32} />
             </div>
-            <h3>짜장과 매운 갈비찜의 단일 페어링</h3>
+            <h3>두 메뉴에 집중하는 고집</h3>
             <p>
-              우리는 짬뽕을 만들지 않습니다. 오직 제대로 만든 '돌짜장'과 특유의 매콤달콤한 소스로 푹 쪄낸 '매운 갈비찜'의 페어링에만 집중합니다. 
-              단 두 가지 대표 메뉴로 승부하는 명가의 맛을 느껴보세요.
+              메뉴를 늘리기보다 돌짜장과 만인산 둥지갈비찜, 두 메뉴의 맛과 완성도를 높이는 데 집중합니다.
             </p>
           </div>
         </div>

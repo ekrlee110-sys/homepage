@@ -1,15 +1,15 @@
 import React from 'react';
-import { TrendingUp, BarChart2, PieChart, Activity } from 'lucide-react';
+import { TrendingUp, PieChart, Activity } from 'lucide-react';
 
 export default function StatsTab() {
-  // Mock Data: Monthly Sales
+  // Monthly Sales cleared (0)
   const monthlySales = [
-    { month: '2월', amount: 28 },
-    { month: '3월', amount: 32 },
-    { month: '4월', amount: 35 },
-    { month: '5월', amount: 48 },
-    { month: '6월', amount: 42 },
-    { month: '7월', amount: 56 } // In Millions KRW
+    { month: '2월', amount: 0 },
+    { month: '3월', amount: 0 },
+    { month: '4월', amount: 0 },
+    { month: '5월', amount: 0 },
+    { month: '6월', amount: 0 },
+    { month: '7월', amount: 0 }
   ];
 
   // SVG dimensions for Line Chart
@@ -33,20 +33,20 @@ export default function StatsTab() {
     return i === 0 ? `M ${p.x} ${p.y}` : `${acc} L ${p.x} ${p.y}`;
   }, '');
 
-  // Menu sales shares
+  // Menu sales shares cleared (0)
   const menuSales = [
-    { name: '192시간 숙성 돌짜장', share: 55, amount: '2,519만원', color: '#c5a880' },
-    { name: '매콤달콤 매운 갈비찜', share: 30, amount: '1,374만원', color: '#b94a38' },
-    { name: '묵은지 돌짜장', share: 15, amount: '687만원', color: '#2c221e' }
+    { name: '192시간 숙성 돌짜장', share: 0, amount: '0원', color: '#c5a880' },
+    { name: '매콤달콤 매운 갈비찜', share: 0, amount: '0원', color: '#b94a38' },
+    { name: '묵은지 돌짜장', share: 0, amount: '0원', color: '#2c221e' }
   ];
 
-  // Peak hour data (Customers per hour range)
+  // Peak hour data cleared (0)
   const peakHours = [
-    { hour: '11시~13시', count: 480, percentage: 95 },
-    { hour: '13시~15시', count: 320, percentage: 65 },
-    { hour: '15시~17시', count: 120, percentage: 24 }, // break time / low hour
-    { hour: '17시~19시', count: 520, percentage: 100 }, // Peak dinner
-    { hour: '19시~21시', count: 280, percentage: 55 }
+    { hour: '11시~13시', count: 0, percentage: 0 },
+    { hour: '13시~15시', count: 0, percentage: 0 },
+    { hour: '15시~17시', count: 0, percentage: 0 },
+    { hour: '17시~19시', count: 0, percentage: 0 },
+    { hour: '19시~21시', count: 0, percentage: 0 }
   ];
 
   return (

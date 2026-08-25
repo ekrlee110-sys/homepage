@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 import { 
   LayoutDashboard, 
   Users, 
@@ -38,8 +39,7 @@ export default function Admin() {
       <aside className={`admin-sidebar glass-panel-dark ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <Link to="/" className="logo-text">
-            <span className="logo-hanja">山內</span>
-            <span className="logo-korean text-light">돌짜장</span>
+            <img src={logoImg} alt="산내돌짜장 로고" className="logo-img-admin" />
           </Link>
           <span className="admin-badge">ADMIN</span>
         </div>
@@ -140,13 +140,10 @@ export default function Admin() {
           font-weight: 800;
         }
 
-        .logo-hanja {
-          color: var(--accent-gold);
-          border-color: var(--accent-gold);
-        }
-
-        .text-light {
-          color: #fdfbf7;
+        .logo-img-admin {
+          height: 44px;
+          width: auto;
+          object-fit: contain;
         }
 
         .admin-badge {
