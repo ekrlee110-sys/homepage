@@ -39,10 +39,7 @@ export default function Navbar({ onOpenAuth }) {
             <span>로그인 / 가입</span>
           </button>
           
-          <Link to="/admin" className="nav-admin-btn">
-            <Shield size={16} />
-            <span>관리자</span>
-          </Link>
+         
         </div>
       </div>
 
