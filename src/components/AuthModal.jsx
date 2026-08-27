@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, Mail, Lock, AlertCircle } from 'lucide-react';
+import { X, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 
 export default function AuthModal({ isOpen, onClose }) {
@@ -11,6 +11,7 @@ export default function AuthModal({ isOpen, onClose }) {
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+const [showPassword, setShowPassword] = useState(false);
   if (!isOpen) return null;
 
   const handleChange = (e) => {
@@ -80,16 +81,34 @@ export default function AuthModal({ isOpen, onClose }) {
             />
           </div>
 
-          <div className="input-group">
+          <div className="input-group" style={{ position: 'relative' }}>
             <label><Lock size={16} />비밀번호</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               required
-              placeholder="••••••••"
+             placeholder="비밀번호 입력"
               value={formData.password}
               onChange={handleChange}
             />
+           <button
+  type="button"
+  onClick={() => setShowPassword(!showPassword)}
+  tabIndex="-1"
+  style={{
+    position: 'absolute',
+    right: '14px',
+    bottom: '14px',
+    background: 'transparent',
+    border: 'none',
+    padding: 0,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center'
+  }}
+>
+  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+</button>
           </div>
 
           <button type="submit" className="auth-submit-btn" disabled={submitting}>
