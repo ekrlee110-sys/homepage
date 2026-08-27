@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, Sparkles, Send } from 'lucide-react';
+import { supabase } from '../../lib/supabaseClient';
 
 export default function CustomersTab() {
-  // Mock Customer list
-  const [customers, setCustomers] = useState([
-    { id: 1, name: '이경래', gender: '남성', age: 35, grade: 'Gold', frequency: '많음', sales: 150000, points: 5000, date: '2026-07-14' },
-    { id: 2, name: '김민주', gender: '남성', age: 24, grade: 'VVIP', frequency: '많음', sales: 890000, points: 26000, date: '2026-07-14' },
-    { id: 3, name: '윤아름', gender: '여성', age: 28, grade: 'Family', frequency: '적음', sales: 29000, points: 500, date: '2026-07-14' },
-    { id: 4, name: '장민호', gender: '남성', age: 42, grade: 'VIP', frequency: '보통', sales: 345000, points: 12000, date: '2026-07-13' },
-    { id: 5, name: '송지은', gender: '여성', age: 31, grade: 'VVIP', frequency: '많음', sales: 1250000, points: 50000, date: '2026-07-12' },
-    { id: 6, name: '한재상', gender: '남성', age: 48, grade: 'Family', frequency: '적음', sales: 62000, points: 1500, date: '2026-07-12' },
-    { id: 7, name: '최윤서', gender: '여성', age: 22, grade: 'Gold', frequency: '보통', sales: 180000, points: 6400, date: '2026-07-10' },
-    { id: 8, name: '정동현', gender: '남성', age: 53, grade: 'VIP', frequency: '보통', sales: 410000, points: 15000, date: '2026-07-09' },
-    { id: 9, name: '박하은', gender: '여성', age: 37, grade: 'Gold', frequency: '많음', sales: 240000, points: 9000, date: '2026-07-08' },
-    { id: 10, name: '강현우', gender: '남성', age: 29, grade: 'Family', frequency: '적음', sales: 29000, points: 500, date: '2026-07-07' }
-  ]);
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        // Map database columns to the component structure
+        const mapped = data.map((item) => ({
+          id: item.id,
+          name: item.name || '이름 없음',
+          gender: '미지정', // Not collected on signup
+          age: '미지정',    // Not collected on signup
+          grade: 'Family',
+          frequency: '신규 가입',
+          sales: 0,
+          points: 0,
+          phone: item.phone || '연락처 없음',
+          date: item.created_at ? new Date(item.created_at).toISOString().split('T')[0] : '미지정',
+        }));
+
+        setCustomers(mapped);
+      } catch (err) {
+        console.error('Error fetching customers:', err);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
 
   // Filters State
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,25 +1,49 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock, User, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { X, Mail, Lock, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabaseClient';
 
 export default function AuthModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
-  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    phone: '',
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  if (!isOpen) return null;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(isLogin ? `${formData.email}님, 반갑습니다! (실제 로그인은 Supabase 연결 시 지원됩니다.)` : `${formData.name}님, 회원가입이 완료되었습니다! (실제 계정 생성은 Supabase 연결 시 지원됩니다.)`);
-    onClose();
+    setSubmitting(true);
+    setErrorMsg('');
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) throw error;
+
+      alert(`${data.user.email}님, 반갑습니다! 로그인되었습니다.`);
+      onClose();
+      window.location.reload(); // Refresh session globally
+    } catch (err) {
+      let friendlyMessage = err.message;
+      if (err.message === 'Invalid login credentials') {
+        friendlyMessage = '이메일 또는 비밀번호가 일치하지 않습니다.';
+      } else if (err.message === 'Email not confirmed') {
+        friendlyMessage = '이메일 인증이 완료되지 않았습니다. 메일함을 확인해 주세요.';
+      }
+      setErrorMsg(friendlyMessage || '로그인 중 오류가 발생했습니다.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -30,29 +54,20 @@ export default function AuthModal({ isOpen, onClose }) {
         </button>
         
         <div className="auth-header">
-          <h2>{isLogin ? '로그인' : '회원가입'}</h2>
+          <h2>로그인</h2>
           <p className="auth-subtitle">
-            {isLogin 
-              ? '산내돌짜장에 오신 것을 환영합니다.' 
-              : '가입하시고 다양한 멤버십 혜택을 받아보세요.'}
+            산내돌짜장에 오신 것을 환영합니다.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          {!isLogin && (
-            <div className="input-group">
-              <label><User size={16} />이름</label>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="홍길동"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-          )}
+        {errorMsg && (
+          <div className="error-alert-modal">
+            <AlertCircle size={16} />
+            <span>{errorMsg}</span>
+          </div>
+        )}
 
+        <form onSubmit={handleSubmit} className="auth-form">
           <div className="input-group">
             <label><Mail size={16} />이메일</label>
             <input
@@ -64,20 +79,6 @@ export default function AuthModal({ isOpen, onClose }) {
               onChange={handleChange}
             />
           </div>
-
-          {!isLogin && (
-            <div className="input-group">
-              <label><Phone size={16} />연락처</label>
-              <input
-                type="tel"
-                name="phone"
-                required
-                placeholder="010-1234-5678"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </div>
-          )}
 
           <div className="input-group">
             <label><Lock size={16} />비밀번호</label>
@@ -91,15 +92,15 @@ export default function AuthModal({ isOpen, onClose }) {
             />
           </div>
 
-          <button type="submit" className="auth-submit-btn">
-            {isLogin ? '로그인' : '회원가입 완료'}
+          <button type="submit" className="auth-submit-btn" disabled={submitting}>
+            {submitting ? '로그인 중...' : '로그인'}
           </button>
         </form>
 
         <div className="auth-footer">
-          <button onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? '아직 회원이 아니신가요? 회원가입' : '이미 계정이 있으신가요? 로그인'}
-          </button>
+          <Link to="/signup" onClick={onClose} className="auth-footer-link">
+            아직 회원이 아니신가요? 회원가입
+          </Link>
         </div>
       </div>
 
@@ -208,12 +209,31 @@ export default function AuthModal({ isOpen, onClose }) {
           transition: background 0.2s ease, transform 0.1s ease;
         }
 
-        .auth-submit-btn:hover {
+        .auth-submit-btn:hover:not(:disabled) {
           background: #463630;
         }
 
-        .auth-submit-btn:active {
+        .auth-submit-btn:active:not(:disabled) {
           transform: scale(0.98);
+        }
+
+        .auth-submit-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .error-alert-modal {
+          background-color: rgba(185, 74, 56, 0.08);
+          border: 1px solid var(--accent-spicy, #b94a38);
+          color: var(--accent-spicy, #b94a38);
+          padding: 10px 14px;
+          border-radius: 8px;
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 15px;
+          animation: fadeIn 0.3s ease-out;
         }
 
         .auth-footer {
@@ -221,14 +241,15 @@ export default function AuthModal({ isOpen, onClose }) {
           margin-top: 25px;
         }
 
-        .auth-footer button {
+        .auth-footer-link {
           font-size: 13px;
           color: #a68453;
           font-weight: 500;
           transition: color 0.2s ease;
+          text-decoration: none;
         }
 
-        .auth-footer button:hover {
+        .auth-footer-link:hover {
           color: #2c221e;
           text-decoration: underline;
         }

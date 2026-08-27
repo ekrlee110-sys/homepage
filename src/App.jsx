@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
+import Signup from './pages/Signup';
+
 import AdminLogin from './pages/AdminLogin';
 import AdminResetPassword from './pages/AdminResetPassword';
 export default function App() {
@@ -12,6 +14,7 @@ export default function App() {
  <Route path="/admin/login" element={<AdminLogin />} />
  <Route path="/admin/reset-password" element={<AdminResetPassword />} />       
         <Route path="/admin" element={<Admin />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   );

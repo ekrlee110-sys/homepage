@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
+import logoImg from '../assets/logo.png';
 import Story from '../components/Story';
 import Menu from '../components/Menu';
 import Reservation from '../components/Reservation';
@@ -9,6 +11,16 @@ import { Instagram, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function Home() {
   const [authOpen, setAuthOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('login') === 'true') {
+      setAuthOpen(true);
+      // Clean query parameter from URL to prevent re-opening on page refresh
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [location]);
 
   return (
     <div className="home-page">
@@ -25,7 +37,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <h3><span className="logo-hanja">山內</span>돌짜장</h3>
+            <img src={logoImg} alt="산내돌짜장 로고" className="footer-logo-img" />
             <p>192시간의 정성스런 기다림으로 최고의 한그릇을 대접합니다.</p>
           </div>
 
@@ -85,21 +97,11 @@ export default function Home() {
           margin-bottom: 50px;
         }
 
-        .footer-brand h3 {
-          font-size: 24px;
-          font-weight: 800;
-          color: var(--text-light);
+        .footer-logo-img {
+          height: 60px;
+          width: auto;
+          object-fit: contain;
           margin-bottom: 16px;
-        }
-
-        .footer-brand h3 .logo-hanja {
-          color: var(--accent-gold);
-          border: 1px solid var(--accent-gold);
-          padding: 0 4px;
-          border-radius: 4px;
-          font-size: 13px;
-          margin-right: 6px;
-          font-family: var(--font-title);
         }
 
         .footer-brand p {

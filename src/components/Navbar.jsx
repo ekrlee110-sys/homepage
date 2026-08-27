@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { UserCheck, Shield } from 'lucide-react';
+import { UserCheck, LogOut } from 'lucide-react';
+import { supabase } from '../lib/supabaseClient';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar({ onOpenAuth }) {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Check current session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth events
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.reload();
+  };
 
   // Do not show user navbar in admin pages
   if (isAdmin) return null;
@@ -23,8 +47,7 @@ export default function Navbar({ onOpenAuth }) {
     <nav className="navbar-container glass-panel">
       <div className="navbar-content container">
         <Link to="/" className="nav-logo">
-          <span className="logo-hanja">山內</span>
-          <span className="logo-korean">돌짜장</span>
+          <img src={logoImg} alt="산내돌짜장 로고" className="logo-img" />
         </Link>
 
         <div className="nav-links">
@@ -34,12 +57,20 @@ export default function Navbar({ onOpenAuth }) {
         </div>
 
         <div className="nav-actions">
-          <button className="nav-auth-btn" onClick={onOpenAuth}>
-            <UserCheck size={16} />
-            <span>로그인 / 가입</span>
-          </button>
-          
-         
+          {user ? (
+            <div className="user-nav-info">
+              <span className="user-email-tag">{user.user_metadata?.name || user.email.split('@')[0]}님</span>
+              <button className="nav-auth-btn logout-btn" onClick={handleLogout}>
+                <LogOut size={16} />
+                <span>로그아웃</span>
+              </button>
+            </div>
+          ) : (
+            <button className="nav-auth-btn" onClick={onOpenAuth}>
+              <UserCheck size={16} />
+              <span>로그인 / 가입</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -79,20 +110,10 @@ export default function Navbar({ onOpenAuth }) {
           transform: scale(1.02);
         }
 
-        .logo-hanja {
-          color: var(--accent-gold-dark);
-          font-family: var(--font-title);
-          font-weight: 500;
-          border: 1.5px solid var(--accent-gold-dark);
-          padding: 1px 6px;
-          border-radius: 4px;
-          font-size: 14px;
-          margin-right: 2px;
-        }
-
-        .logo-korean {
-          font-weight: 800;
-          color: var(--text-dark);
+        .logo-img {
+          height: 52px;
+          width: auto;
+          object-fit: contain;
         }
 
         .nav-links {
@@ -172,6 +193,18 @@ export default function Navbar({ onOpenAuth }) {
           background: var(--accent-gold-dark);
           color: var(--text-light);
           transform: translateY(-2px);
+        }
+
+        .user-nav-info {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .user-email-tag {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text-dark);
         }
 
         @media (max-width: 768px) {
