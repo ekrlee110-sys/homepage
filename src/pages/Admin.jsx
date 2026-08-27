@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Users, 
@@ -13,11 +13,18 @@ import {
 import DashboardTab from '../components/admin/DashboardTab';
 import CustomersTab from '../components/admin/CustomersTab';
 import StatsTab from '../components/admin/StatsTab';
-
+import { supabase } from '../supabase';
 export default function Admin() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const navigate = useNavigate();
+   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+useEffect(() => {
+  const checkAuth = async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) navigate('/admin/login');  
+  };
+  checkAuth();
+  }, [navigate]);
   const menuItems = [
     { id: 'dashboard', label: '대시보드', icon: <LayoutDashboard size={18} /> },
     { id: 'customers', label: '고객관리', icon: <Users size={18} /> },

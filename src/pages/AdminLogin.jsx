@@ -26,7 +26,23 @@ export default function AdminLogin() {
 
     navigate('/admin');
   };
+const handleResetPassword = async () => {
+  if (!email) {
+    alert('관리자 이메일을 입력해주세요.');
+    return;
+  }
 
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/admin/reset-password`,
+  });
+
+  if (error) {
+    alert('비밀번호 재설정 메일 발송에 실패했습니다.');
+    return;
+  }
+
+  alert('비밀번호 재설정 메일을 보냈습니다. 네이버 메일을 확인해주세요.');
+};
   return (
     <div style={{
       minHeight: '100vh',
@@ -89,6 +105,18 @@ export default function AdminLogin() {
         >
           {loading ? '로그인 중...' : '관리자 로그인'}
         </button>
+        <button
+  type="button"
+  onClick={handleResetPassword}
+  style={{
+    width: '100%',
+    padding: '12px',
+    marginTop: '10px',
+    cursor: 'pointer'
+  }}
+>
+  비밀번호 재설정
+</button>
       </form>
     </div>
   );
