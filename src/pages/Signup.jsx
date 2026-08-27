@@ -30,8 +30,7 @@ export default function Signup() {
 
   // Visibilities
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  
   // Focus states for real-time validation trigger
   const [touched, setTouched] = useState({
     name: false,
@@ -348,7 +347,7 @@ export default function Signup() {
               </label>
               <div className="input-wrapper">
                 <input
-                  type={showConfirmPassword ? 'text' : 'password'}
+                  type={showPassword ? 'text' : 'password'}
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="비밀번호 재입력"
@@ -358,14 +357,7 @@ export default function Signup() {
                   className={touched.confirmPassword && !isConfirmPasswordValid ? 'input-error' : touched.confirmPassword && isConfirmPasswordValid ? 'input-success' : ''}
                   required
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="eye-toggle-btn"
-                  tabIndex="-1"
-                >
-                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
+                
               </div>
               {touched.confirmPassword && formData.confirmPassword.length > 0 && (
                 isConfirmPasswordValid ? (
