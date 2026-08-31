@@ -9,9 +9,9 @@
 - **sitemap.xml**: 사이트맵 파일 추가 (`public/sitemap.xml`)
 - **index.html**:
   - `<link rel="canonical" href="https://homepage-mu-fawn-13.vercel.app/" />` 대표 URL 지정
-  - `<meta name="naver-site-verification" content="18088e525eb3c120cf80ac5c32ff688ce8fe09f2" />` 소유확인 메타태그 추가
+  - `<meta name="naver-site-verification" content="9a2c4fcfd72388c8b16f017b4a2acaf91f1c6719" />` 소유확인 메타태그 추가
   - Meta Description 및 Open Graph(OG) 태그 지정/유지
-- **소유확인 파일**: `public/naverba753f5e6bcd63ac6aaa034cc5f9b355.html` 생성
+- **소유확인 파일**: `public/naverf4c8a6664ce3b861bcbee558d8525e1b.html` 생성
 - **Supabase 초기화 안전장치**: 환경변수 누락 시 빈 화면 방지를 위한 fallback 설정
 
 ## 3. 검증 결과
