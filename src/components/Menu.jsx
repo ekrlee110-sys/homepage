@@ -1,53 +1,51 @@
-import React, { useState } from 'react';
-import { Star, Leaf, Flame, Sparkles, Utensils } from 'lucide-react';
+import React from 'react';
+import { Utensils } from 'lucide-react';
 
 export default function Menu() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const mainMenuItems = [
+  const signatureItems = [
     {
       id: 'aged-zzajang',
       name: '192시간 숙성 돌짜장',
-      category: 'zzajang',
-      description: '산내돌짜장의 기준이 되는 대표 메뉴. 192시간 특제 숙성 소스로 깊은 감칠맛을 선사합니다.',
+      subTitle: '처음이라면 가장 먼저.',
+      photoTitle: '메뉴 사진 공간',
+      photoGuide: '192시간 숙성 돌짜장',
+      description: '192시간 숙성 한식 짜장 소스의 기본 맛을 가장 잘 느낄 수 있는 메뉴.',
       prices: { mid: '29,000원', large: '40,000원' },
       image: '/dol_zzajang_main.png',
-      badge: '대표 메뉴',
-      icon: <Star size={16} />,
-      badgeColor: '#a68453'
+      badge: '대표 메뉴'
     },
     {
       id: 'chubu-perilla',
-      name: '추부 깻잎 돌짜장',
-      category: 'zzajang',
-      description: '추부 깻잎과 통들깨를 더해 깔끔하고 고소하게 즐기는 한식 스타일 돌짜장.',
+      name: '추부깻잎 돌짜장',
+      subTitle: '깔끔하고 꼬소한 맛을 좋아한다면.',
+      photoTitle: '메뉴 사진 공간',
+      photoGuide: '추부깻잎 돌짜장',
+      description: '추부깻잎과 통들깨로 참 꼬소하게 즐기는 돌짜장.',
       prices: { mid: '31,000원', large: '42,000원' },
       image: '/chubu_perilla_zzajang.png',
-      badge: '한식 대표',
-      icon: <Leaf size={16} />,
-      badgeColor: '#2e7d32'
+      badge: '한식 대표'
     },
     {
       id: 'mugeunji-zzajang',
-      name: '365 묵은지 쌈 돌짜장',
-      category: 'zzajang',
-      description: '365일 숙성 묵은지에 돌짜장을 싸 먹는 산내돌짜장만의 독창적인 시그니처 메뉴.',
+      name: '묵은지 쌈 돌짜장',
+      subTitle: '전국 최초 묵은지 돌짜장. 그 개운함을 즐기고 싶다면.',
+      photoTitle: '메뉴 사진 공간',
+      photoGuide: '묵은지 쌈 돌짜장',
+      description: '푹 쪄낸 국내산 묵은지로 돌짜장을 감싸, 깊은 맛과 개운함을 함께 즐깁니다.',
       prices: { mid: '33,000원', large: '44,000원' },
       image: '/mugeunji_dol_zzajang.png',
-      badge: '시그니처',
-      icon: <Sparkles size={16} />,
-      badgeColor: '#5c2a18'
+      badge: '시그니처'
     },
     {
       id: 'maninsan-galbi',
-      name: '만인산 둥지갈비찜',
-      category: 'galbi',
-      description: '매콤한 갈비찜을 산더미 파채와 함께 즐기는 산내돌짜장의 대표 곁들임 메뉴.',
+      name: '만인산 둥지 갈비찜',
+      subTitle: '돌짜장과 함께 즐기고 싶다면.',
+      photoTitle: '메뉴 사진 공간',
+      photoGuide: '만인산 둥지 갈비찜',
+      description: '부드러운 갈빗살과 파채를 돌짜장과 함께 즐기는 대표 곁들임 요리.',
       prices: { mid: '35,000원', large: '47,000원' },
       image: '/spicy_galbi_zzim.png',
-      badge: '대표 곁들임',
-      icon: <Flame size={16} />,
-      badgeColor: '#b94a38'
+      badge: '대표 곁들임'
     }
   ];
 
@@ -75,85 +73,77 @@ export default function Menu() {
     }
   ];
 
-  const filteredItems = selectedCategory === 'all' 
-    ? mainMenuItems 
-    : mainMenuItems.filter(item => item.category === selectedCategory);
-
   return (
-    <section id="menu" className="menu-section section-padding">
+    <section id="menu" className="menu-draft-section section-padding">
       <div className="container">
-        <div className="section-header text-center">
-          <span className="subtitle">SIGNATURE MENU</span>
-          <h2>산내돌짜장의 명품 메뉴</h2>
-          <div className="header-line"></div>
-          
-          <div className="category-tabs">
-            <button 
-              className={`tab-btn ${selectedCategory === 'all' ? 'active' : ''}`}
-              onClick={() => setSelectedCategory('all')}
-            >
-              전체 보기
-            </button>
-            <button 
-              className={`tab-btn ${selectedCategory === 'zzajang' ? 'active' : ''}`}
-              onClick={() => setSelectedCategory('zzajang')}
-            >
-              돌짜장류
-            </button>
-            <button 
-              className={`tab-btn ${selectedCategory === 'galbi' ? 'active' : ''}`}
-              onClick={() => setSelectedCategory('galbi')}
-            >
-              갈비찜류
-            </button>
+        {/* Draft Header Section */}
+        <div className="menu-header-row animate-fade-in-up">
+          <div className="menu-header-left">
+            <span className="menu-label">SIGNATURE MENU</span>
+            <h2 className="menu-headline">
+              처음 오셨다면,<br />
+              이렇게 고르세요.
+            </h2>
+          </div>
+          <div className="menu-header-right">
+            <p className="menu-guide-text">대표 메뉴는 사진이 꼭 있어야 전환이 좋습니다.</p>
           </div>
         </div>
 
-        {/* 메인 메뉴 4종 Grid */}
-        <div className="menu-grid">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="menu-card">
-              <div className="menu-image-container">
-                <img src={item.image} alt={item.name} className="menu-image" />
-                <div 
-                  className="menu-badge"
-                  style={{ backgroundColor: item.badgeColor }}
-                >
-                  {item.icon}
-                  <span>{item.badge}</span>
+        {/* 4 Signature Menu Cards Grid */}
+        <div className="signature-cards-grid animate-fade-in">
+          {signatureItems.map((item) => (
+            <div key={item.id} className="signature-card">
+              {/* Photo Box */}
+              <div className="sig-photo-box">
+                <img 
+                  src={item.image} 
+                  alt={item.name} 
+                  className="sig-card-img"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+                <div className="sig-photo-overlay">
+                  <span className="sig-photo-title">{item.photoTitle}</span>
+                  <span className="sig-photo-name">{item.photoGuide}</span>
                 </div>
               </div>
 
-              <div className="menu-info">
-                <h3>{item.name}</h3>
-                <p className="menu-desc">{item.description}</p>
+              {/* Text Info */}
+              <div className="sig-card-body">
+                <h3 className="sig-item-name">{item.name}</h3>
+                <p className="sig-item-subtitle">{item.subTitle}</p>
+                <p className="sig-item-desc">{item.description}</p>
                 
-                <div className="price-info">
-                  <div className="price-row">
-                    <span className="price-label">큰중 (2~3인분)</span>
-                    <span className="price-value">{item.prices.mid}</span>
-                  </div>
-                  <div className="price-row">
-                    <span className="price-label">큰대 (3~4인분)</span>
-                    <span className="price-value">{item.prices.large}</span>
-                  </div>
+                {/* Subtle Price Tag */}
+                <div className="sig-price-badge">
+                  <span>큰중 {item.prices.mid}</span>
+                  <span className="price-dot">·</span>
+                  <span>큰대 {item.prices.large}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 함께 먹으면 더 좋은 세트 영역 */}
+        {/* Bottom Closing Headline */}
+        <div className="menu-closing-statement text-center animate-fade-in-up">
+          <p className="closing-line-1">입은 즐겁게,</p>
+          <p className="closing-line-2">
+            <span className="highlight-brown">속은 편하게.</span>
+          </p>
+        </div>
+
+        {/* Set Menu Section */}
         <div id="set-menu" className="set-menu-section">
           <div className="set-header text-center">
-            <Utensils size={24} className="set-icon" />
+            <Utensils size={22} className="set-icon" />
             <h3>함께 먹으면 더 좋은 세트</h3>
             <p className="set-subtitle">돌짜장과 만인산 둥지갈비찜의 환상적인 조합을 푸짐하게 즐겨보세요.</p>
           </div>
 
           <div className="set-grid">
             {setMenuItems.map((set) => (
-              <div key={set.id} className="set-card glass-panel">
+              <div key={set.id} className="set-card">
                 <span className="set-tag">{set.tag}</span>
                 <h4 className="set-name">{set.name}</h4>
                 <p className="set-desc">{set.description}</p>
@@ -165,180 +155,221 @@ export default function Menu() {
             ))}
           </div>
         </div>
-
-        <div className="menu-notice">
-          <p>⚠️ 저희 매장은 최상의 품질 유지를 위해 <strong>짬뽕은 판매하지 않습니다.</strong></p>
-          <p>💡 <strong>맛있게 드시는 팁:</strong> 돌짜장을 드신 후 남은 양념에 둥지갈비찜 소스를 섞고, 밥을 비벼 드시면 더욱 환상적입니다.</p>
-        </div>
       </div>
 
       <style>{`
-        .menu-section {
-          background-color: var(--bg-primary);
+        .menu-draft-section {
+          background-color: #fbf8f3;
+          padding: 100px 0 110px 0;
+          position: relative;
+          border-top: 1px solid rgba(197, 168, 128, 0.2);
         }
 
-        .category-tabs {
+        .menu-header-row {
           display: flex;
-          justify-content: center;
-          gap: 12px;
-          margin-top: 30px;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: 48px;
         }
 
-        .tab-btn {
-          padding: 10px 24px;
-          border-radius: 30px;
+        .menu-label {
+          font-size: 13.5px;
+          font-weight: 800;
+          color: #a24b33;
+          letter-spacing: 1.8px;
+          margin-bottom: 12px;
+          display: inline-block;
+        }
+
+        .menu-headline {
+          font-size: 46px;
+          font-weight: 900;
+          line-height: 1.22;
+          color: #2b1e16;
+          letter-spacing: -1.2px;
+          margin: 0;
+          word-break: keep-all;
+        }
+
+        .menu-guide-text {
           font-size: 14px;
-          font-weight: 600;
-          border: 1px solid rgba(44, 34, 30, 0.15);
-          color: var(--text-dark);
-          transition: all 0.3s ease;
-          background: transparent;
+          color: #705c51;
+          letter-spacing: -0.3px;
+          margin: 0;
         }
 
-        .tab-btn.active, .tab-btn:hover {
-          background: var(--bg-dark);
-          color: var(--text-light);
-          border-color: var(--bg-dark);
-        }
-
-        .menu-grid {
+        /* 4 Cards Grid */
+        .signature-cards-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-          margin-top: 50px;
+          gap: 22px;
+          margin-bottom: 70px;
         }
 
-        .menu-card {
-          background: var(--bg-primary);
-          border-radius: 20px;
+        .signature-card {
+          background-color: #ede4d7;
+          border: 1px solid rgba(197, 168, 128, 0.45);
+          border-radius: 22px;
           overflow: hidden;
-          box-shadow: var(--shadow-sm);
-          border: 1px solid rgba(197, 168, 128, 0.2);
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          box-shadow: 0 8px 24px rgba(43, 30, 22, 0.05);
           display: flex;
           flex-direction: column;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .menu-card:hover {
-          transform: translateY(-10px);
-          box-shadow: var(--shadow-lg);
-          border-color: var(--accent-gold);
+        .signature-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 14px 32px rgba(43, 30, 22, 0.1);
         }
 
-        .menu-image-container {
+        .sig-photo-box {
+          height: 175px;
           position: relative;
-          width: 100%;
-          padding-top: 90%; /* slightly compact ratio */
+          background-color: #e2d6c4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
           overflow: hidden;
         }
 
-        .menu-image {
+        .sig-card-img {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          opacity: 0.22;
+          filter: saturate(0.85);
+          transition: opacity 0.3s ease, transform 0.4s ease;
         }
 
-        .menu-card:hover .menu-image {
-          transform: scale(1.08);
+        .signature-card:hover .sig-card-img {
+          opacity: 0.4;
+          transform: scale(1.05);
         }
 
-        .menu-badge {
-          position: absolute;
-          top: 16px;
-          left: 16px;
-          color: #fff;
-          padding: 6px 14px;
-          border-radius: 30px;
-          font-size: 11.5px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .menu-info {
-          padding: 22px 20px;
+        .sig-photo-overlay {
+          position: relative;
+          z-index: 2;
+          padding: 16px;
           display: flex;
           flex-direction: column;
-          flex-grow: 1;
+          align-items: center;
+          gap: 4px;
         }
 
-        .menu-info h3 {
+        .sig-photo-title {
+          font-size: 13.5px;
+          font-weight: 700;
+          color: #3b2c25;
+          letter-spacing: -0.2px;
+        }
+
+        .sig-photo-name {
+          font-size: 12px;
+          color: #6a574c;
+          letter-spacing: -0.2px;
+        }
+
+        .sig-card-body {
+          padding: 24px 20px 22px 20px;
+          background-color: #f5efe4;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .sig-item-name {
           font-size: 18px;
           font-weight: 800;
-          color: var(--bg-dark);
-          margin-bottom: 10px;
+          color: #2b1e16;
+          margin-bottom: 8px;
+          letter-spacing: -0.4px;
         }
 
-        .menu-desc {
-          font-size: 13px;
-          line-height: 1.55;
-          color: var(--text-dark);
-          opacity: 0.85;
-          margin-bottom: 20px;
-          flex-grow: 1;
-        }
-
-        .price-info {
-          border-top: 1.5px dashed rgba(197, 168, 128, 0.3);
-          padding-top: 16px;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .price-row {
-          display: flex;
-          justify-content: space-between;
+        .sig-item-subtitle {
           font-size: 13.5px;
-          font-weight: 500;
+          font-weight: 700;
+          color: #8c2d19;
+          margin-bottom: 12px;
+          line-height: 1.45;
+          letter-spacing: -0.3px;
         }
 
-        .price-label {
-          color: var(--text-muted);
+        .sig-item-desc {
+          font-size: 13px;
+          color: #55443b;
+          line-height: 1.6;
+          margin-bottom: 18px;
+          letter-spacing: -0.2px;
+          flex: 1;
         }
 
-        .price-value {
-          color: var(--bg-dark);
+        .sig-price-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 12.5px;
+          font-weight: 600;
+          color: #4a3a31;
+          background-color: #ede4d7;
+          padding: 6px 12px;
+          border-radius: 12px;
+          border: 1px solid rgba(197, 168, 128, 0.3);
+          align-self: flex-start;
+        }
+
+        .price-dot {
+          color: #8c2d19;
           font-weight: 700;
         }
 
-        /* 세트 메뉴 영역 스타일 */
+        /* Closing Statement */
+        .menu-closing-statement {
+          margin-bottom: 80px;
+        }
+
+        .closing-line-1, .closing-line-2 {
+          font-size: 34px;
+          font-weight: 900;
+          color: #2b1e16;
+          line-height: 1.35;
+          margin: 0;
+          letter-spacing: -1px;
+        }
+
+        .highlight-brown {
+          color: #8c2d19;
+        }
+
+        /* Set Menu Section */
         .set-menu-section {
-          margin-top: 70px;
-          padding: 40px;
-          background: linear-gradient(135deg, rgba(197, 168, 128, 0.12) 0%, rgba(44, 34, 30, 0.04) 100%);
-          border-radius: 24px;
-          border: 1px solid rgba(197, 168, 128, 0.3);
+          padding-top: 20px;
+          border-top: 1px dashed rgba(197, 168, 128, 0.35);
         }
 
         .set-header {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 32px;
+          margin-bottom: 36px;
         }
 
         .set-icon {
-          color: var(--accent-gold-dark);
+          color: #a24b33;
+          margin-bottom: 10px;
         }
 
         .set-header h3 {
-          font-size: 24px;
+          font-size: 26px;
           font-weight: 800;
-          color: var(--bg-dark);
+          color: #2b1e16;
+          margin-bottom: 6px;
         }
 
         .set-subtitle {
           font-size: 14px;
-          color: var(--text-dark);
-          opacity: 0.8;
+          color: #705c51;
         }
 
         .set-grid {
@@ -348,45 +379,45 @@ export default function Menu() {
         }
 
         .set-card {
-          padding: 28px 24px;
-          border-radius: 18px;
-          border: 1px solid rgba(197, 168, 128, 0.3);
+          background-color: #f5efe4;
+          border: 1px solid rgba(197, 168, 128, 0.35);
+          padding: 30px 24px;
+          border-radius: 20px;
+          text-align: center;
           position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 6px 18px rgba(43, 30, 22, 0.04);
+          transition: transform 0.3s ease;
         }
 
         .set-card:hover {
-          transform: translateY(-5px);
-          box-shadow: var(--shadow-md);
-          border-color: var(--accent-gold);
+          transform: translateY(-4px);
         }
 
         .set-tag {
-          align-self: flex-start;
-          background: var(--bg-dark);
-          color: var(--accent-gold);
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #8c2d19;
+          color: #ffffff;
           font-size: 11px;
-          font-weight: 700;
-          padding: 4px 10px;
+          font-weight: 800;
+          padding: 4px 12px;
           border-radius: 12px;
-          margin-bottom: 12px;
           letter-spacing: 0.5px;
         }
 
         .set-name {
           font-size: 18px;
           font-weight: 800;
-          color: var(--bg-dark);
-          margin-bottom: 8px;
+          color: #2b1e16;
+          margin-bottom: 10px;
+          margin-top: 6px;
         }
 
         .set-desc {
           font-size: 13px;
-          color: var(--text-dark);
-          opacity: 0.85;
+          color: #6a574c;
           line-height: 1.5;
           margin-bottom: 20px;
         }
@@ -395,42 +426,28 @@ export default function Menu() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-top: 1px solid rgba(197, 168, 128, 0.3);
-          padding-top: 14px;
+          background: #ede4d7;
+          padding: 10px 16px;
+          border-radius: 12px;
         }
 
         .set-price-label {
           font-size: 13px;
-          color: var(--accent-spicy);
+          color: #6a574c;
           font-weight: 600;
         }
 
         .set-price {
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 800;
-          color: var(--bg-dark);
+          color: #8c2d19;
         }
 
-        .menu-notice {
-          background-color: var(--bg-secondary);
-          border: 1px solid rgba(197, 168, 128, 0.3);
-          padding: 24px;
-          border-radius: 16px;
-          margin-top: 50px;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          font-size: 14px;
-          color: var(--text-dark);
-        }
-
-        .menu-notice strong {
-          color: var(--accent-spicy);
-        }
-
-        @media (max-width: 1100px) {
-          .menu-grid {
+        @media (max-width: 1024px) {
+          .menu-headline {
+            font-size: 38px;
+          }
+          .signature-cards-grid {
             grid-template-columns: repeat(2, 1fr);
           }
           .set-grid {
@@ -438,14 +455,20 @@ export default function Menu() {
           }
         }
 
-        @media (max-width: 768px) {
-          .menu-grid {
-            grid-template-columns: 1fr;
-            max-width: 450px;
-            margin: 40px auto 0 auto;
+        @media (max-width: 640px) {
+          .menu-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
           }
-          .set-menu-section {
-            padding: 24px 16px;
+          .menu-headline {
+            font-size: 30px;
+          }
+          .signature-cards-grid {
+            grid-template-columns: 1fr;
+          }
+          .closing-line-1, .closing-line-2 {
+            font-size: 26px;
           }
         }
       `}</style>
