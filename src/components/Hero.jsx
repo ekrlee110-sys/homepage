@@ -1,231 +1,353 @@
 import React from 'react';
-import { ArrowRight, Flame } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 export default function Hero() {
-  const scrollToReservation = () => {
-    const element = document.getElementById('reservation');
+  const scrollToMenu = () => {
+    const element = document.getElementById('menu');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="hero-section">
-      <div className="hero-container container">
-        <div className="hero-text animate-fade-in-up">
-          <div className="tagline">
-            <Flame size={16} className="spicy-text" />
-            <span>대한민국 최초 한식 짜장면</span>
-          </div>
-          <h1>
-            지글지글 끓는 돌판 위,<br />
-            <span className="gold-text">192시간</span>의 기다림
+    <section className="hero-draft-section">
+      <div className="hero-draft-container container">
+        {/* Left Text Content */}
+        <div className="hero-left-content animate-fade-in-up">
+          <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
+          
+          <h1 className="hero-headline">
+            좋아하는<br />
+            짜장면,<br />
+            속까지<br />
+            편했으면<br />
+            했습니다.
           </h1>
-          <p className="hero-description">
-            산내돌짜장은 마지막 한 젓가락까지 식지 않는 뜨거운 감동을 드립니다.<br />
-            <strong>9시간 달인 상황버섯을 192시간 숙성합니다.</strong><br />
-            자극은 줄이고 감칠맛은 더한 속 편한 한식 짜장면 한 그릇에 집중합니다.
+
+          <p className="hero-narrative">
+            전통의 지혜와 <strong>한식대가의 경험</strong>을 오늘의 방식으로 풀어내,<br />
+            <strong>8일 밤낮, 192시간의 정성</strong>을 짜장에 담았습니다.
           </p>
-          <div className="hero-actions">
-            <button onClick={scrollToReservation} className="btn-primary">
-              <span>지금 실시간 예약하기</span>
-              <ArrowRight size={18} />
+
+          {/* 5 Core Philosophies */}
+          <div className="hero-five-promises">
+            <h4 className="promises-title">
+              산내돌짜장의 고집, <span>5가지</span>
+            </h4>
+            <div className="promises-badges">
+              <span className="promise-pill">돼지기름 없이, 직접 만든 식물성 기름</span>
+              <span className="promise-pill">주문마다 따로 조리</span>
+              <span className="promise-pill">192시간 저온 숙성</span>
+              <span className="promise-pill">9시간 상황버섯 달임</span>
+              <span className="promise-pill">한식대가의 경험</span>
+            </div>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="hero-cta-buttons">
+            <button onClick={scrollToMenu} className="hero-btn-dark">
+              대표 메뉴 보기
             </button>
-            <a href="#menu" className="btn-secondary">대표 메뉴 보기</a>
+            <a 
+              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hero-btn-outline"
+            >
+              <MapPin size={16} />
+              <span>네이버 길찾기</span>
+            </a>
           </div>
         </div>
 
-        <div className="hero-image-wrapper animate-fade-in">
-          <div className="hero-image-border">
-            <img 
-              src="/mugeunji_dol_zzajang.png" 
-              alt="산내돌짜장 대표메뉴 묵은지 돌짜장" 
-              className="hero-image"
-            />
+        {/* Right Photo Space */}
+        <div className="hero-right-visual animate-fade-in">
+          <div className="main-photo-card">
+            <div className="photo-image-container">
+              <img 
+                src="/mugeunji_dol_zzajang.png" 
+                alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진" 
+                className="main-food-img"
+              />
+              <div className="photo-caption-overlay">
+                <span className="photo-tag">대표 시그니처</span>
+                <p className="photo-title">지글지글 끓는 돌짜장 + 묵은지 쌈</p>
+                <p className="photo-desc">192시간 저온 숙성 특제 한식 소스로 완성한 깊은 풍미</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <style>{`
-        .hero-section {
-          background-color: var(--bg-primary);
-          padding: 160px 0 100px 0;
+        .hero-draft-section {
+          background-color: #fbf8f3;
+          padding: 130px 0 80px 0;
+          position: relative;
+          min-height: 88vh;
           display: flex;
           align-items: center;
-          position: relative;
-          min-height: 90vh;
         }
 
-        .hero-container {
+        .hero-draft-container {
           display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 60px;
+          grid-template-columns: 1.15fr 0.95fr;
+          gap: 50px;
           align-items: center;
         }
 
-        .hero-text {
+        .hero-left-content {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          text-align: left;
         }
 
-        .tagline {
+        .hero-subtitle {
+          font-size: 15px;
+          font-weight: 700;
+          color: #a24b33;
+          letter-spacing: -0.2px;
+          margin-bottom: 18px;
+          display: inline-block;
+        }
+
+        .hero-headline {
+          font-size: 64px;
+          font-weight: 900;
+          line-height: 1.18;
+          color: #2b1e16;
+          letter-spacing: -1.5px;
+          margin-bottom: 24px;
+          word-break: keep-all;
+        }
+
+        .hero-narrative {
+          font-size: 16px;
+          line-height: 1.68;
+          color: #55443b;
+          margin-bottom: 32px;
+          letter-spacing: -0.3px;
+        }
+
+        .hero-narrative strong {
+          color: #2b1e16;
+          font-weight: 700;
+        }
+
+        .hero-five-promises {
+          margin-bottom: 36px;
+          width: 100%;
+        }
+
+        .promises-title {
+          font-size: 14px;
+          font-weight: 700;
+          color: #2b1e16;
+          margin-bottom: 12px;
+          letter-spacing: -0.3px;
+        }
+
+        .promises-title span {
+          color: #a24b33;
+        }
+
+        .promises-badges {
           display: flex;
-          align-items: center;
+          flex-wrap: wrap;
           gap: 8px;
-          background: rgba(197, 168, 128, 0.15);
-          color: var(--accent-gold-dark);
-          padding: 6px 16px;
+          max-width: 580px;
+        }
+
+        .promise-pill {
+          background-color: #ede4d7;
+          color: #3e2d23;
+          font-size: 13.5px;
+          font-weight: 600;
+          padding: 7px 15px;
           border-radius: 20px;
-          font-size: 13px;
-          font-weight: 600;
-          margin-bottom: 24px;
-          letter-spacing: 0.5px;
+          letter-spacing: -0.3px;
+          border: 1px solid rgba(197, 168, 128, 0.35);
+          transition: all 0.2s ease;
         }
 
-        .hero-text h1 {
-          font-size: 52px;
-          line-height: 1.25;
-          font-weight: 800;
-          color: var(--bg-dark);
-          margin-bottom: 24px;
+        .promise-pill:hover {
+          background-color: #e2d6c4;
+          transform: translateY(-1px);
         }
 
-        .hero-description {
-          font-size: 17px;
-          line-height: 1.7;
-          color: var(--text-dark);
-          margin-bottom: 40px;
-        }
-
-        .hero-description strong {
-          color: var(--accent-spicy);
-          font-weight: 600;
-        }
-
-        .hero-actions {
-          display: flex;
-          gap: 16px;
-          align-items: center;
-        }
-
-        .btn-primary {
-          background: var(--bg-dark);
-          color: var(--text-light);
-          padding: 16px 28px;
-          border-radius: 12px;
-          font-size: 16px;
-          font-weight: 600;
+        .hero-cta-buttons {
           display: flex;
           align-items: center;
-          gap: 10px;
-          box-shadow: var(--shadow-md);
-          transition: background 0.3s ease, transform 0.2s ease;
+          gap: 12px;
         }
 
-        .btn-primary:hover {
-          background: #463630;
+        .hero-btn-dark {
+          background-color: #1f1916;
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 700;
+          padding: 13px 26px;
+          border-radius: 25px;
+          border: 1.5px solid #1f1916;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 12px rgba(31, 25, 22, 0.15);
+        }
+
+        .hero-btn-dark:hover {
+          background-color: #3b2c25;
+          border-color: #3b2c25;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(31, 25, 22, 0.22);
+        }
+
+        .hero-btn-outline {
+          background-color: #fbf8f3;
+          color: #1f1916;
+          font-size: 15px;
+          font-weight: 700;
+          padding: 12px 24px;
+          border-radius: 25px;
+          border: 1.5px solid #1f1916;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+
+        .hero-btn-outline:hover {
+          background-color: #ede4d7;
           transform: translateY(-2px);
         }
 
-        .btn-secondary {
-          background: transparent;
-          color: var(--text-dark);
-          border: 1.5px solid rgba(44, 34, 30, 0.2);
-          padding: 15px 28px;
-          border-radius: 12px;
-          font-size: 16px;
-          font-weight: 600;
-          transition: all 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-          background: rgba(44, 34, 30, 0.04);
-          border-color: var(--bg-dark);
-          transform: translateY(-2px);
-        }
-
-        .hero-image-wrapper {
-          position: relative;
+        /* Right Main Photo Card */
+        .hero-right-visual {
           display: flex;
           justify-content: center;
-        }
-
-        .hero-image-border {
-          position: relative;
-          border: 1.5px solid var(--accent-gold);
-          padding: 12px;
-          border-radius: 30px;
-          background: #f5ede1;
-          box-shadow: var(--shadow-lg);
-          transition: transform 0.5s ease;
-          overflow: hidden;
-        }
-
-        .hero-image-border:hover {
-          transform: scale(1.02) rotate(1deg);
-        }
-
-        .hero-image {
           width: 100%;
-          max-width: 450px;
-          height: auto;
-          aspect-ratio: 4/3;
-          object-fit: cover;
+        }
+
+        .main-photo-card {
+          width: 100%;
+          max-width: 480px;
+          background: #f0e7da;
+          padding: 12px;
+          border-radius: 28px;
+          box-shadow: 0 20px 45px rgba(43, 30, 22, 0.1);
+          border: 1px solid rgba(197, 168, 128, 0.4);
+          transition: transform 0.3s ease;
+        }
+
+        .main-photo-card:hover {
+          transform: translateY(-4px);
+        }
+
+        .photo-image-container {
+          position: relative;
           border-radius: 20px;
+          overflow: hidden;
+          background-color: #2b1e16;
+          aspect-ratio: 4/3.4;
         }
 
-        .hero-image-badge {
+        .main-food-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s ease;
+        }
+
+        .main-photo-card:hover .main-food-img {
+          transform: scale(1.04);
+        }
+
+        .photo-caption-overlay {
           position: absolute;
-          bottom: 40px;
-          left: -30px;
-          background: var(--bg-dark);
-          color: var(--text-light);
-          padding: 16px 24px;
-          border-radius: 16px;
-          box-shadow: var(--shadow-lg);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(to top, rgba(20, 14, 11, 0.88) 0%, rgba(20, 14, 11, 0.5) 60%, transparent 100%);
+          padding: 24px 20px 18px 20px;
+          color: #ffffff;
         }
 
-        .badge-title {
-          font-family: var(--font-title);
-          font-size: 20px;
+        .photo-tag {
+          font-size: 11px;
           font-weight: 700;
-          color: var(--accent-gold);
+          background-color: #c5a880;
+          color: #1f1916;
+          padding: 3px 9px;
+          border-radius: 10px;
+          display: inline-block;
+          margin-bottom: 6px;
+          letter-spacing: 0.3px;
         }
 
-        .badge-desc {
-          font-size: 12px;
-          font-weight: 400;
-          opacity: 0.8;
-          white-space: nowrap;
+        .photo-title {
+          font-size: 17px;
+          font-weight: 700;
+          margin-bottom: 3px;
+          color: #ffffff;
+          letter-spacing: -0.3px;
         }
 
-        @media (max-width: 992px) {
-          .hero-container {
+        .photo-desc {
+          font-size: 12.5px;
+          opacity: 0.85;
+          margin: 0;
+          letter-spacing: -0.2px;
+        }
+
+        @media (max-width: 1024px) {
+          .hero-draft-container {
             grid-template-columns: 1fr;
-            gap: 50px;
+            gap: 40px;
+          }
+
+          .hero-headline {
+            font-size: 48px;
+          }
+
+          .hero-left-content {
+            align-items: center;
             text-align: center;
           }
-          
-          .hero-text {
-            align-items: center;
+
+          .promises-badges {
+            justify-content: center;
           }
 
-          .hero-text h1 {
-            font-size: 40px;
+          .hero-cta-buttons {
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .hero-draft-section {
+            padding: 100px 0 60px 0;
           }
 
-          .hero-image-badge {
-            left: 10px;
-            bottom: -20px;
-            flex-direction: row;
-            align-items: center;
-            padding: 10px 18px;
-            gap: 10px;
+          .hero-headline {
+            font-size: 38px;
+          }
+
+          .promise-pill {
+            font-size: 12.5px;
+            padding: 6px 12px;
+          }
+
+          .hero-cta-buttons {
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .hero-btn-dark, .hero-btn-outline {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
           }
         }
       `}</style>
