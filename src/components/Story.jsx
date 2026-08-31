@@ -4,7 +4,7 @@ import { Award, Thermometer, ShieldCheck } from 'lucide-react';
 export default function Story() {
   return (
     <section id="story" className="story-section section-padding">
-      <div className="container">
+      <div id="philosophy" className="container">
         <div className="section-header text-center">
           <span className="subtitle">OUR PHILOSOPHY</span>
           <h2>입은 즐겁게, 속은 편하게<br /><span className="gold-text">산내돌짜장의 세 가지 고집</span></h2>

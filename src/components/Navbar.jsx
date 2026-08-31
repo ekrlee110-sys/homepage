@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { UserCheck, LogOut } from 'lucide-react';
+import { MapPin, UserCheck, LogOut } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 import logoImg from '../assets/logo.png';
 
@@ -38,7 +38,6 @@ export default function Navbar({ onOpenAuth }) {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // If not on home page, navigate to home and then scroll (using router or window.location)
       window.location.href = `/#${id}`;
     }
   };
@@ -50,27 +49,42 @@ export default function Navbar({ onOpenAuth }) {
           <img src={logoImg} alt="산내돌짜장 로고" className="logo-img" />
         </Link>
 
+        {/* Draft Navigation Menu */}
         <div className="nav-links">
-          <button onClick={() => scrollToSection('story')} className="nav-link-btn">브랜드 스토리</button>
+          <button onClick={() => scrollToSection('story')} className="nav-link-btn">브랜드 이야기</button>
+          <button onClick={() => scrollToSection('philosophy')} className="nav-link-btn">산내돌짜장의 고집 5가지</button>
           <button onClick={() => scrollToSection('menu')} className="nav-link-btn">대표 메뉴</button>
-          <button onClick={() => scrollToSection('reservation')} className="nav-link-btn">예약 문의</button>
+          <button onClick={() => scrollToSection('set-menu')} className="nav-link-btn">세트 메뉴</button>
+          <button onClick={() => scrollToSection('trust')} className="nav-link-btn">인증과 신뢰</button>
+          <button onClick={() => scrollToSection('reservation')} className="nav-link-btn">오시는 길</button>
         </div>
 
+        {/* Right Actions */}
         <div className="nav-actions">
           {user ? (
             <div className="user-nav-info">
               <span className="user-email-tag">{user.user_metadata?.name || user.email.split('@')[0]}님</span>
               <button className="nav-auth-btn logout-btn" onClick={handleLogout}>
-                <LogOut size={16} />
+                <LogOut size={15} />
                 <span>로그아웃</span>
               </button>
             </div>
           ) : (
-            <button className="nav-auth-btn" onClick={onOpenAuth}>
+            <button className="nav-auth-text-btn" onClick={onOpenAuth}>
               <UserCheck size={16} />
-              <span>로그인 / 가입</span>
+              <span>로그인</span>
             </button>
           )}
+
+          <a 
+            href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="nav-map-btn"
+          >
+            <MapPin size={15} />
+            <span>길찾기</span>
+          </a>
         </div>
       </div>
 
@@ -80,12 +94,14 @@ export default function Navbar({ onOpenAuth }) {
           top: 0;
           left: 0;
           right: 0;
-          height: 80px;
+          height: 75px;
           z-index: 100;
           display: flex;
           align-items: center;
-          transition: var(--transition-smooth);
-          box-shadow: var(--shadow-sm);
+          background: rgba(251, 248, 243, 0.94);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(197, 168, 128, 0.25);
+          box-shadow: 0 2px 10px rgba(43, 30, 22, 0.04);
         }
 
         .navbar-content {
@@ -98,36 +114,36 @@ export default function Navbar({ onOpenAuth }) {
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 6px;
-          font-weight: 900;
-          letter-spacing: -0.5px;
-          font-size: 22px;
-          color: var(--bg-dark);
-          transition: transform 0.2s ease;
-        }
-
-        .nav-logo:hover {
-          transform: scale(1.02);
+          text-decoration: none;
         }
 
         .logo-img {
-          height: 52px;
+          height: 48px;
           width: auto;
           object-fit: contain;
         }
 
         .nav-links {
           display: flex;
-          gap: 36px;
+          align-items: center;
+          gap: 24px;
         }
 
         .nav-link-btn {
-          font-size: 15px;
-          font-weight: 500;
-          color: var(--text-dark);
-          transition: color 0.2s ease;
+          background: none;
+          border: none;
+          font-size: 14.5px;
+          font-weight: 600;
+          color: #3b2c25;
+          cursor: pointer;
+          padding: 6px 2px;
           position: relative;
-          padding: 8px 0;
+          transition: color 0.2s ease;
+          letter-spacing: -0.3px;
+        }
+
+        .nav-link-btn:hover {
+          color: #a24b33;
         }
 
         .nav-link-btn::after {
@@ -137,13 +153,9 @@ export default function Navbar({ onOpenAuth }) {
           height: 2px;
           bottom: 0;
           left: 50%;
-          background-color: var(--accent-gold-dark);
-          transition: all 0.3s ease;
+          background-color: #a24b33;
+          transition: all 0.25s ease;
           transform: translateX(-50%);
-        }
-
-        .nav-link-btn:hover {
-          color: var(--accent-gold-dark);
         }
 
         .nav-link-btn:hover::after {
@@ -153,73 +165,92 @@ export default function Navbar({ onOpenAuth }) {
         .nav-actions {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
         }
 
-        .nav-auth-btn {
-          display: flex;
+        .nav-auth-text-btn {
+          background: none;
+          border: none;
+          display: inline-flex;
           align-items: center;
-          gap: 6px;
-          background: var(--bg-dark);
-          color: var(--text-light);
-          padding: 10px 18px;
-          border-radius: 30px;
-          font-size: 14px;
-          font-weight: 500;
-          box-shadow: 0 4px 12px rgba(44, 34, 30, 0.15);
-          transition: background 0.3s ease, transform 0.2s ease;
+          gap: 4px;
+          font-size: 13.5px;
+          font-weight: 600;
+          color: #66554b;
+          padding: 6px 10px;
+          border-radius: 16px;
+          cursor: pointer;
+          transition: all 0.2s ease;
         }
 
-        .nav-auth-btn:hover {
-          background: #463630;
-          transform: translateY(-2px);
+        .nav-auth-text-btn:hover {
+          background-color: #ede4d7;
+          color: #1f1916;
         }
 
-        .nav-admin-btn {
-          display: flex;
+        .nav-map-btn {
+          background-color: #1f1916;
+          color: #ffffff;
+          display: inline-flex;
           align-items: center;
-          gap: 6px;
-          background: transparent;
-          color: var(--accent-gold-dark);
-          border: 1.5px solid var(--accent-gold-dark);
-          padding: 8px 16px;
-          border-radius: 30px;
+          gap: 5px;
+          padding: 8px 18px;
+          border-radius: 20px;
           font-size: 14px;
-          font-weight: 500;
-          transition: all 0.3s ease, transform 0.2s ease;
+          font-weight: 700;
+          text-decoration: none;
+          box-shadow: 0 2px 8px rgba(31, 25, 22, 0.18);
+          transition: all 0.2s ease;
+          letter-spacing: -0.2px;
         }
 
-        .nav-admin-btn:hover {
-          background: var(--accent-gold-dark);
-          color: var(--text-light);
-          transform: translateY(-2px);
+        .nav-map-btn:hover {
+          background-color: #3b2c25;
+          transform: translateY(-1px);
         }
 
         .user-nav-info {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 8px;
         }
 
         .user-email-tag {
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 600;
-          color: var(--text-dark);
+          color: #3b2c25;
         }
 
-        @media (max-width: 768px) {
+        .logout-btn {
+          background: none;
+          border: 1px solid rgba(197, 168, 128, 0.5);
+          color: #66554b;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 5px 10px;
+          border-radius: 14px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+
+        .logout-btn:hover {
+          background: #ede4d7;
+          color: #1f1916;
+        }
+
+        @media (max-width: 1024px) {
           .nav-links {
-            display: none; /* Hide links on mobile for simplicity */
+            gap: 14px;
           }
-          .logo-korean {
-            font-size: 18px;
+          .nav-link-btn {
+            font-size: 13px;
           }
-          .nav-auth-btn span, .nav-admin-btn span {
+        }
+
+        @media (max-width: 860px) {
+          .nav-links {
             display: none;
-          }
-          .nav-auth-btn, .nav-admin-btn {
-            padding: 8px;
-            border-radius: 50%;
           }
         }
       `}</style>

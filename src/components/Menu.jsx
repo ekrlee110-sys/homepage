@@ -144,7 +144,7 @@ export default function Menu() {
         </div>
 
         {/* 함께 먹으면 더 좋은 세트 영역 */}
-        <div className="set-menu-section">
+        <div id="set-menu" className="set-menu-section">
           <div className="set-header text-center">
             <Utensils size={24} className="set-icon" />
             <h3>함께 먹으면 더 좋은 세트</h3>
