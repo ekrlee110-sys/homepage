@@ -1,5 +1,4 @@
 import React from 'react';
-import { Utensils } from 'lucide-react';
 
 export default function Menu() {
   const signatureItems = [
@@ -52,31 +51,40 @@ export default function Menu() {
   const setMenuItems = [
     {
       id: 'set-aged',
-      name: '192시간 숙성 돌짜장 세트',
-      description: '192시간 숙성 돌짜장(중) + 만인산 둥지갈비찜(중) + 음료',
+      name: '192시간 숙성 세트',
+      subTitle: '처음 방문이라면 가장 먼저.',
+      photoTitle: '세트 사진 공간',
+      photoGuide: '192시간 숙성 세트',
+      description: '192시간 숙성 돌짜장과 만인산 둥지 갈비찜을 함께 즐기는 대표 세트.',
       price: '61,000원',
-      tag: 'BEST SET'
+      image: '/dol_zzajang_main.png'
     },
     {
       id: 'set-chubu',
-      name: '추부 깻잎 돌짜장 세트',
-      description: '추부 깻잎 돌짜장(중) + 만인산 둥지갈비찜(중) + 음료',
+      name: '추부깻잎 세트',
+      subTitle: '깔끔하고 꼬소한 조합을 좋아한다면.',
+      photoTitle: '세트 사진 공간',
+      photoGuide: '추부깻잎 세트',
+      description: '추부깻잎 돌짜장과 갈비찜을 함께 즐기는 산뜻한 세트.',
       price: '63,000원',
-      tag: 'POPULAR SET'
+      image: '/chubu_perilla_zzajang.png'
     },
     {
       id: 'set-mugeunji',
-      name: '365 묵은지 쌈 돌짜장 세트',
-      description: '365 묵은지 쌈 돌짜장(중) + 만인산 둥지갈비찜(중) + 음료',
+      name: '묵은지 쌈 세트',
+      subTitle: '개운한 조합을 좋아한다면.',
+      photoTitle: '세트 사진 공간',
+      photoGuide: '묵은지 쌈 세트',
+      description: '묵은지 쌈 돌짜장과 갈비찜을 함께 즐기는 산내돌짜장만의 세트.',
       price: '65,000원',
-      tag: 'SIGNATURE SET'
+      image: '/mugeunji_dol_zzajang.png'
     }
   ];
 
   return (
     <section id="menu" className="menu-draft-section section-padding">
       <div className="container">
-        {/* Draft Header Section */}
+        {/* SIGNATURE MENU Section */}
         <div className="menu-header-row animate-fade-in-up">
           <div className="menu-header-left">
             <span className="menu-label">SIGNATURE MENU</span>
@@ -114,7 +122,7 @@ export default function Menu() {
                 <p className="sig-item-subtitle">{item.subTitle}</p>
                 <p className="sig-item-desc">{item.description}</p>
                 
-                {/* Subtle Price Tag */}
+                {/* Price Tag */}
                 <div className="sig-price-badge">
                   <span>큰중 {item.prices.mid}</span>
                   <span className="price-dot">·</span>
@@ -125,7 +133,7 @@ export default function Menu() {
           ))}
         </div>
 
-        {/* Bottom Closing Headline */}
+        {/* Middle Closing Headline */}
         <div className="menu-closing-statement text-center animate-fade-in-up">
           <p className="closing-line-1">입은 즐겁게,</p>
           <p className="closing-line-2">
@@ -133,23 +141,48 @@ export default function Menu() {
           </p>
         </div>
 
-        {/* Set Menu Section */}
-        <div id="set-menu" className="set-menu-section">
-          <div className="set-header text-center">
-            <Utensils size={22} className="set-icon" />
-            <h3>함께 먹으면 더 좋은 세트</h3>
-            <p className="set-subtitle">돌짜장과 만인산 둥지갈비찜의 환상적인 조합을 푸짐하게 즐겨보세요.</p>
+        {/* SET MENU Section */}
+        <div id="set-menu" className="set-menu-block">
+          <div className="menu-header-row animate-fade-in-up">
+            <div className="menu-header-left">
+              <span className="menu-label">SET MENU</span>
+              <h2 className="menu-headline">
+                다시 오셨다면,<br />
+                이번엔 색다르게 즐겨보세요.
+              </h2>
+            </div>
+            <div className="menu-header-right">
+              <p className="menu-guide-text">세트 메뉴도 사진이 있어야 고객이 바로 상상을 합니다.</p>
+            </div>
           </div>
 
-          <div className="set-grid">
+          <div className="set-cards-grid animate-fade-in">
             {setMenuItems.map((set) => (
-              <div key={set.id} className="set-card">
-                <span className="set-tag">{set.tag}</span>
-                <h4 className="set-name">{set.name}</h4>
-                <p className="set-desc">{set.description}</p>
-                <div className="set-price-row">
-                  <span className="set-price-label">세트 할인가</span>
-                  <span className="set-price">{set.price}</span>
+              <div key={set.id} className="set-card-item">
+                {/* Set Photo Box */}
+                <div className="set-photo-box">
+                  <img 
+                    src={set.image} 
+                    alt={set.name} 
+                    className="set-card-img"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                  <div className="set-photo-overlay">
+                    <span className="set-photo-title">{set.photoTitle}</span>
+                    <span className="set-photo-name">{set.photoGuide}</span>
+                  </div>
+                </div>
+
+                {/* Set Text Info */}
+                <div className="set-card-body">
+                  <h3 className="set-item-name">{set.name}</h3>
+                  <p className="set-item-subtitle">{set.subTitle}</p>
+                  <p className="set-item-desc">{set.description}</p>
+                  
+                  <div className="set-price-badge">
+                    <span className="set-badge-label">세트가</span>
+                    <span className="set-badge-value">{set.price}</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -198,15 +231,15 @@ export default function Menu() {
           margin: 0;
         }
 
-        /* 4 Cards Grid */
+        /* 4 Signature Cards Grid */
         .signature-cards-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 22px;
-          margin-bottom: 70px;
+          margin-bottom: 75px;
         }
 
-        .signature-card {
+        .signature-card, .set-card-item {
           background-color: #ede4d7;
           border: 1px solid rgba(197, 168, 128, 0.45);
           border-radius: 22px;
@@ -217,12 +250,12 @@ export default function Menu() {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .signature-card:hover {
+        .signature-card:hover, .set-card-item:hover {
           transform: translateY(-5px);
           box-shadow: 0 14px 32px rgba(43, 30, 22, 0.1);
         }
 
-        .sig-photo-box {
+        .sig-photo-box, .set-photo-box {
           height: 175px;
           position: relative;
           background-color: #e2d6c4;
@@ -233,7 +266,7 @@ export default function Menu() {
           overflow: hidden;
         }
 
-        .sig-card-img {
+        .sig-card-img, .set-card-img {
           position: absolute;
           top: 0;
           left: 0;
@@ -245,12 +278,12 @@ export default function Menu() {
           transition: opacity 0.3s ease, transform 0.4s ease;
         }
 
-        .signature-card:hover .sig-card-img {
+        .signature-card:hover .sig-card-img, .set-card-item:hover .set-card-img {
           opacity: 0.4;
           transform: scale(1.05);
         }
 
-        .sig-photo-overlay {
+        .sig-photo-overlay, .set-photo-overlay {
           position: relative;
           z-index: 2;
           padding: 16px;
@@ -260,20 +293,20 @@ export default function Menu() {
           gap: 4px;
         }
 
-        .sig-photo-title {
+        .sig-photo-title, .set-photo-title {
           font-size: 13.5px;
           font-weight: 700;
           color: #3b2c25;
           letter-spacing: -0.2px;
         }
 
-        .sig-photo-name {
+        .sig-photo-name, .set-photo-name {
           font-size: 12px;
           color: #6a574c;
           letter-spacing: -0.2px;
         }
 
-        .sig-card-body {
+        .sig-card-body, .set-card-body {
           padding: 24px 20px 22px 20px;
           background-color: #f5efe4;
           flex: 1;
@@ -282,7 +315,7 @@ export default function Menu() {
           text-align: left;
         }
 
-        .sig-item-name {
+        .sig-item-name, .set-item-name {
           font-size: 18px;
           font-weight: 800;
           color: #2b1e16;
@@ -290,7 +323,7 @@ export default function Menu() {
           letter-spacing: -0.4px;
         }
 
-        .sig-item-subtitle {
+        .sig-item-subtitle, .set-item-subtitle {
           font-size: 13.5px;
           font-weight: 700;
           color: #8c2d19;
@@ -299,7 +332,7 @@ export default function Menu() {
           letter-spacing: -0.3px;
         }
 
-        .sig-item-desc {
+        .sig-item-desc, .set-item-desc {
           font-size: 13px;
           color: #55443b;
           line-height: 1.6;
@@ -308,7 +341,7 @@ export default function Menu() {
           flex: 1;
         }
 
-        .sig-price-badge {
+        .sig-price-badge, .set-price-badge {
           display: flex;
           align-items: center;
           gap: 6px;
@@ -322,14 +355,24 @@ export default function Menu() {
           align-self: flex-start;
         }
 
+        .set-badge-label {
+          color: #6a574c;
+        }
+
+        .set-badge-value {
+          color: #8c2d19;
+          font-weight: 800;
+        }
+
         .price-dot {
           color: #8c2d19;
           font-weight: 700;
         }
 
-        /* Closing Statement */
+        /* Middle Closing Statement */
         .menu-closing-statement {
-          margin-bottom: 80px;
+          margin-bottom: 90px;
+          padding-top: 10px;
         }
 
         .closing-line-1, .closing-line-2 {
@@ -345,102 +388,16 @@ export default function Menu() {
           color: #8c2d19;
         }
 
-        /* Set Menu Section */
-        .set-menu-section {
+        /* Set Menu Block */
+        .set-menu-block {
           padding-top: 20px;
           border-top: 1px dashed rgba(197, 168, 128, 0.35);
         }
 
-        .set-header {
-          margin-bottom: 36px;
-        }
-
-        .set-icon {
-          color: #a24b33;
-          margin-bottom: 10px;
-        }
-
-        .set-header h3 {
-          font-size: 26px;
-          font-weight: 800;
-          color: #2b1e16;
-          margin-bottom: 6px;
-        }
-
-        .set-subtitle {
-          font-size: 14px;
-          color: #705c51;
-        }
-
-        .set-grid {
+        .set-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 24px;
-        }
-
-        .set-card {
-          background-color: #f5efe4;
-          border: 1px solid rgba(197, 168, 128, 0.35);
-          padding: 30px 24px;
-          border-radius: 20px;
-          text-align: center;
-          position: relative;
-          box-shadow: 0 6px 18px rgba(43, 30, 22, 0.04);
-          transition: transform 0.3s ease;
-        }
-
-        .set-card:hover {
-          transform: translateY(-4px);
-        }
-
-        .set-tag {
-          position: absolute;
-          top: -12px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #8c2d19;
-          color: #ffffff;
-          font-size: 11px;
-          font-weight: 800;
-          padding: 4px 12px;
-          border-radius: 12px;
-          letter-spacing: 0.5px;
-        }
-
-        .set-name {
-          font-size: 18px;
-          font-weight: 800;
-          color: #2b1e16;
-          margin-bottom: 10px;
-          margin-top: 6px;
-        }
-
-        .set-desc {
-          font-size: 13px;
-          color: #6a574c;
-          line-height: 1.5;
-          margin-bottom: 20px;
-        }
-
-        .set-price-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: #ede4d7;
-          padding: 10px 16px;
-          border-radius: 12px;
-        }
-
-        .set-price-label {
-          font-size: 13px;
-          color: #6a574c;
-          font-weight: 600;
-        }
-
-        .set-price {
-          font-size: 18px;
-          font-weight: 800;
-          color: #8c2d19;
         }
 
         @media (max-width: 1024px) {
@@ -450,7 +407,7 @@ export default function Menu() {
           .signature-cards-grid {
             grid-template-columns: repeat(2, 1fr);
           }
-          .set-grid {
+          .set-cards-grid {
             grid-template-columns: 1fr;
           }
         }
