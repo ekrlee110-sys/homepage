@@ -1,371 +1,394 @@
-import React, { useState } from 'react';
-import { Calendar, Users, Clock, User, Phone, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { MapPin, Phone } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 export default function Reservation() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    date: '',
-    time: '',
-    guests: '2명',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  const handleReset = () => {
-    setFormData({
-      name: '',
-      phone: '',
-      date: '',
-      time: '',
-      guests: '2명',
-      message: ''
-    });
-    setSubmitted(false);
-  };
-
   return (
-    <section id="reservation" className="reserve-section section-padding">
+    <section id="reservation" className="visit-draft-section">
       <div className="container">
-        <div className="reserve-wrapper">
-          <div className="reserve-info-panel">
-            <span className="subtitle">RESERVATION</span>
-            <h2>실시간 테이블 예약</h2>
-            <p className="reserve-desc">
-              192시간 숙성 돌짜장의 깊은 풍미와 갓 서빙된 지글지글 뜨거운 돌판 요리를 더욱 편안하게 즐기실 수 있도록 자리를 준비해 드립니다.
+        {/* Main VISIT Block */}
+        <div className="visit-grid">
+          {/* Left Store Info & Action Buttons */}
+          <div className="visit-left-content animate-fade-in-up">
+            <span className="visit-label">VISIT</span>
+            <h2 className="visit-headline">
+              소중한 사람과 함께하는<br />
+              편안한 한 끼.
+            </h2>
+            <p className="visit-guide-text">
+              마지막 구간은 길찾기와 문의로 바로 연결되는 전환 구간입니다.
             </p>
-            
-            <div className="info-details">
-              <div className="info-item">
-                <strong>영업 시간</strong>
-                <span>11:30 ~ 20:00 (라스트오더 19:15)</span>
+
+            {/* Info Table / List */}
+            <div className="visit-info-list">
+              <div className="visit-info-row">
+                <span className="info-key">주소</span>
+                <span className="info-val">대전광역시 동구 산내로 457</span>
               </div>
-              <div className="info-item">
-                <strong>정기 휴무</strong>
-                <span>매주 월요일 (월요일이 공휴일인 경우 정상 영업)</span>
+
+              <div className="visit-info-row">
+                <span className="info-key">전화</span>
+                <a href="tel:0507-1340-0457" className="info-val tel-link">0507-1340-0457</a>
               </div>
-              <div className="info-item">
-                <strong>매장 문의</strong>
-                <span>0507-1340-0457</span>
+
+              <div className="visit-info-row">
+                <span className="info-key">주차</span>
+                <span className="info-val">매장 전용 주차장과 식당 옆 골목길까지 약 50대 주차 가능</span>
               </div>
-              <div className="info-item">
-                <strong>오시는 길</strong>
-                <span>대전광역시 동구 산내로 (넓은 주차장 완비)</span>
+
+              <div className="visit-info-row">
+                <span className="info-key">영업시간</span>
+                <div className="info-val schedule-list">
+                  <p>화~금 11:30~20:00</p>
+                  <p>토·일 11:00~20:00</p>
+                  <p>브레이크타임 15:30~16:30</p>
+                  <p>라스트오더 19:20</p>
+                  <p className="highlight-holiday">매주 월요일 휴무 (공휴일·임시공휴일은 정상영업)</p>
+                </div>
               </div>
+
+              <div className="visit-info-row">
+                <span className="info-key">웨이팅 · 방문 문의</span>
+                <div className="info-val waiting-desc">
+                  <p>시간 지정 예약은 받지 않습니다.</p>
+                  <p>캐치테이블 웨이팅 또는 전화 문의를 이용해 주세요.</p>
+                  <p className="waiting-sub">캐치테이블 이용이 어려우신 분은 전화 주시면, 가능한 빠르게 입장하실 수 있도록 도와드립니다.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom CTA Buttons */}
+            <div className="visit-actions">
+              <a 
+                href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-naver-map"
+              >
+                <MapPin size={16} />
+                <span>네이버 길찾기</span>
+              </a>
+
+              <a 
+                href="tel:0507-1340-0457" 
+                className="btn-call-inquiry"
+              >
+                <Phone size={16} />
+                <span>전화 문의 0507-1340-0457</span>
+              </a>
             </div>
           </div>
 
-          <div className="reserve-form-panel glass-panel">
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="reserve-form">
-                <div className="form-grid">
-                  <div className="input-field">
-                    <label><User size={16} /> 예약자명</label>
-                    <input 
-                      type="text" 
-                      name="name" 
-                      required 
-                      placeholder="성함을 입력해주세요" 
-                      value={formData.name}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="input-field">
-                    <label><Phone size={16} /> 연락처</label>
-                    <input 
-                      type="tel" 
-                      name="phone" 
-                      required 
-                      placeholder="010-0000-0000" 
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="input-field">
-                    <label><Calendar size={16} /> 방문 날짜</label>
-                    <input 
-                      type="date" 
-                      name="date" 
-                      required 
-                      value={formData.date}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="input-field">
-                    <label><Clock size={16} /> 방문 시간</label>
-                    <select 
-                      name="time" 
-                      required 
-                      value={formData.time}
-                      onChange={handleChange}
-                    >
-                      <option value="">시간 선택</option>
-                      <option value="11:30">11:30</option>
-                      <option value="12:00">12:00</option>
-                      <option value="12:30">12:30</option>
-                      <option value="13:00">13:00</option>
-                      <option value="13:30">13:30</option>
-                      <option value="17:00">17:00</option>
-                      <option value="17:30">17:30</option>
-                      <option value="18:00">18:00</option>
-                      <option value="18:30">18:30</option>
-                      <option value="19:00">19:00</option>
-                    </select>
-                  </div>
-
-                  <div className="input-field full-width">
-                    <label><Users size={16} /> 인원 수</label>
-                    <select 
-                      name="guests" 
-                      value={formData.guests}
-                      onChange={handleChange}
-                    >
-                      <option value="1명">1명</option>
-                      <option value="2명">2명</option>
-                      <option value="3명">3명</option>
-                      <option value="4명">4명</option>
-                      <option value="5명~8명">단체 (5명 ~ 8명)</option>
-                      <option value="8명 이상">단체 (8명 초과)</option>
-                    </select>
-                  </div>
-
-                  <div className="input-field full-width">
-                    <label>요청 사항 (선택)</label>
-                    <textarea 
-                      name="message" 
-                      rows="3" 
-                      placeholder="아기가 있어요, 창가 자리 원해요 등 요청사항을 남겨주세요."
-                      value={formData.message}
-                      onChange={handleChange}
-                    ></textarea>
-                  </div>
+          {/* Right Map Photo Container */}
+          <div className="visit-right-map animate-fade-in">
+            <a 
+              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="map-card-link"
+            >
+              <div className="map-placeholder-box">
+                <div className="map-overlay-content">
+                  <span className="map-title">지도 / 방문 안내 공간</span>
+                  <span className="map-subtitle">네이버 지도 캡처 또는 매장 외관 + 지도 조합</span>
+                  <span className="map-click-hint">클릭 시 네이버 지도로 연결됩니다</span>
                 </div>
-
-                <button type="submit" className="reserve-submit-btn">예약 신청하기</button>
-              </form>
-            ) : (
-              <div className="reserve-success text-center animate-fade-in">
-                <CheckCircle size={56} className="success-icon" />
-                <h3>예약 신청이 완료되었습니다!</h3>
-                <p className="success-msg">
-                  방문 시간 맞추어 자리를 조율하겠습니다.<br />
-                  예약 세부 현황은 카카오 알림톡으로 발송해 드립니다.
-                </p>
-                <div className="summary-card">
-                  <p><strong>예약자:</strong> {formData.name}님</p>
-                  <p><strong>일시:</strong> {formData.date} {formData.time}</p>
-                  <p><strong>인원:</strong> {formData.guests}</p>
-                </div>
-                <button onClick={handleReset} className="reserve-reset-btn">새로운 예약 신청</button>
               </div>
-            )}
+            </a>
           </div>
+        </div>
+
+        {/* Footer Brand Logo & Slogan */}
+        <div className="visit-footer-brand text-center animate-fade-in-up">
+          <div className="footer-logo-box">
+            <img src={logoImg} alt="산내돌짜장 로고" className="footer-logo-img" />
+          </div>
+          <p className="footer-slogan-sub">대한민국 최초 한식 짜장면</p>
+          <h3 className="footer-slogan-main">속이 편한 짜장, 산내돌짜장</h3>
+          <p className="footer-copy">&copy; {new Date().getFullYear()} 산내돌짜장. All Rights Reserved.</p>
         </div>
       </div>
 
       <style>{`
-        .reserve-section {
-          background-color: var(--bg-secondary);
+        .visit-draft-section {
+          background-color: #1f1916;
+          color: #fbf8f3;
+          padding: 100px 0 60px 0;
+          position: relative;
         }
 
-        .reserve-wrapper {
+        .visit-grid {
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
+          grid-template-columns: 1.15fr 1fr;
           gap: 60px;
-          align-items: center;
+          align-items: flex-start;
+          margin-bottom: 90px;
         }
 
-        .reserve-info-panel h2 {
-          font-size: 36px;
+        .visit-left-content {
+          text-align: left;
+        }
+
+        .visit-label {
+          font-size: 13.5px;
           font-weight: 800;
-          color: var(--bg-dark);
-          margin-bottom: 20px;
+          color: #c5a880;
+          letter-spacing: 1.8px;
+          margin-bottom: 14px;
+          display: inline-block;
         }
 
-        .reserve-desc {
-          font-size: 15px;
-          line-height: 1.7;
-          color: var(--text-dark);
-          opacity: 0.9;
-          margin-bottom: 40px;
+        .visit-headline {
+          font-size: 46px;
+          font-weight: 900;
+          line-height: 1.25;
+          color: #ffffff;
+          letter-spacing: -1.2px;
+          margin-bottom: 12px;
+          word-break: keep-all;
         }
 
-        .info-details {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .info-item {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .info-item strong {
+        .visit-guide-text {
           font-size: 14px;
-          color: var(--accent-gold-dark);
+          color: #a8998f;
+          margin-bottom: 36px;
+          letter-spacing: -0.2px;
         }
 
-        .info-item span {
-          font-size: 15px;
-          color: var(--text-dark);
-          font-weight: 500;
-        }
-
-        .reserve-form-panel {
-          border-radius: 24px;
-          padding: 40px;
-          box-shadow: var(--shadow-lg);
-          border: 1px solid rgba(197, 168, 128, 0.3);
-        }
-
-        .reserve-form {
+        /* Info List */
+        .visit-info-list {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          margin-bottom: 36px;
         }
 
-        .form-grid {
+        .visit-info-row {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
+          grid-template-columns: 130px 1fr;
+          gap: 16px;
+          padding: 16px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          font-size: 14px;
+          line-height: 1.6;
         }
 
-        .input-field {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
+        .info-key {
+          font-weight: 700;
+          color: #c5a880;
+          letter-spacing: -0.2px;
         }
 
-        .input-field.full-width {
-          grid-column: span 2;
+        .info-val {
+          color: #e4dad1;
+          letter-spacing: -0.2px;
         }
 
-        .input-field label {
-          font-size: 13px;
+        .tel-link {
+          color: #ffffff;
+          font-weight: 700;
+          text-decoration: none;
+        }
+
+        .tel-link:hover {
+          color: #c5a880;
+          text-decoration: underline;
+        }
+
+        .schedule-list p, .waiting-desc p {
+          margin: 0 0 3px 0;
+        }
+
+        .highlight-holiday {
+          color: #e07a5f;
           font-weight: 600;
-          color: var(--text-dark);
+        }
+
+        .waiting-sub {
+          font-size: 13px;
+          color: #a8998f;
+          margin-top: 6px !important;
+        }
+
+        /* Action Buttons */
+        .visit-actions {
           display: flex;
+          gap: 14px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .btn-naver-map {
+          background-color: #ffffff;
+          color: #1f1916;
+          display: inline-flex;
           align-items: center;
           gap: 6px;
-        }
-
-        .input-field input, .input-field select, .input-field textarea {
-          width: 100%;
-          padding: 12px 16px;
-          border: 1px solid rgba(197, 168, 128, 0.4);
-          border-radius: 10px;
-          background: #ffffff;
-          font-size: 14px;
-          color: var(--text-dark);
-          outline: none;
+          padding: 12px 26px;
+          border-radius: 30px;
+          font-size: 14.5px;
+          font-weight: 800;
+          text-decoration: none;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
           transition: all 0.2s ease;
         }
 
-        .input-field input:focus, .input-field select:focus, .input-field textarea:focus {
-          border-color: var(--accent-gold-dark);
-          box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.15);
-        }
-
-        .reserve-submit-btn {
-          width: 100%;
-          background: var(--bg-dark);
-          color: var(--text-light);
-          padding: 16px;
-          border-radius: 10px;
-          font-size: 16px;
-          font-weight: 600;
-          box-shadow: var(--shadow-md);
-          transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .reserve-submit-btn:hover {
-          background: #463630;
+        .btn-naver-map:hover {
+          background-color: #ede4d7;
           transform: translateY(-2px);
         }
 
-        .reserve-success {
-          padding: 20px 0;
-        }
-
-        .success-icon {
-          color: #4a8f5e;
-          margin-bottom: 20px;
-        }
-
-        .reserve-success h3 {
-          font-size: 22px;
+        .btn-call-inquiry {
+          background-color: transparent;
+          color: #ffffff;
+          border: 1.5px solid rgba(255, 255, 255, 0.4);
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 11px 22px;
+          border-radius: 30px;
+          font-size: 14px;
           font-weight: 700;
-          margin-bottom: 12px;
-          color: var(--bg-dark);
+          text-decoration: none;
+          transition: all 0.2s ease;
         }
 
-        .success-msg {
-          font-size: 14px;
-          color: var(--text-muted);
-          line-height: 1.6;
-          margin-bottom: 24px;
+        .btn-call-inquiry:hover {
+          border-color: #c5a880;
+          color: #c5a880;
+          transform: translateY(-2px);
         }
 
-        .summary-card {
-          background: rgba(197, 168, 128, 0.1);
-          border: 1px solid rgba(197, 168, 128, 0.2);
-          border-radius: 12px;
-          padding: 16px;
-          text-align: left;
-          max-width: 320px;
-          margin: 0 auto 24px auto;
+        /* Right Map Box */
+        .visit-right-map {
+          width: 100%;
+          height: 100%;
+          min-height: 480px;
+        }
+
+        .map-card-link {
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+        }
+
+        .map-placeholder-box {
+          width: 100%;
+          height: 100%;
+          min-height: 480px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 24px;
           display: flex;
-          flex-direction: column;
-          gap: 8px;
-          font-size: 14px;
-        }
-
-        .reserve-reset-btn {
-          background: transparent;
-          color: var(--accent-gold-dark);
-          border: 1.5px solid var(--accent-gold-dark);
-          padding: 10px 20px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 600;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 30px;
           transition: all 0.3s ease;
         }
 
-        .reserve-reset-btn:hover {
-          background: var(--accent-gold-dark);
-          color: var(--text-light);
+        .map-placeholder-box:hover {
+          border-color: #c5a880;
+          background: rgba(255, 255, 255, 0.05);
+          transform: translateY(-3px);
         }
 
-        @media (max-width: 992px) {
-          .reserve-wrapper {
+        .map-overlay-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .map-title {
+          font-size: 16px;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .map-subtitle {
+          font-size: 13px;
+          color: #a8998f;
+        }
+
+        .map-click-hint {
+          font-size: 12px;
+          color: #c5a880;
+          margin-top: 10px;
+          font-weight: 600;
+        }
+
+        /* Footer Brand Center */
+        .visit-footer-brand {
+          padding-top: 40px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo-box {
+          margin-bottom: 16px;
+        }
+
+        .footer-logo-img {
+          height: 52px;
+          width: auto;
+          object-fit: contain;
+          filter: brightness(1.1);
+        }
+
+        .footer-slogan-sub {
+          font-size: 13px;
+          color: #e07a5f;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-bottom: 6px;
+        }
+
+        .footer-slogan-main {
+          font-size: 22px;
+          font-weight: 900;
+          color: #ffffff;
+          letter-spacing: -0.5px;
+          margin-bottom: 20px;
+        }
+
+        .footer-copy {
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.35);
+          margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+          .visit-grid {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .reserve-form-panel {
-            padding: 30px 20px;
+          .visit-headline {
+            font-size: 36px;
+          }
+          .visit-right-map {
+            min-height: 320px;
+          }
+          .map-placeholder-box {
+            min-height: 320px;
           }
         }
 
-        @media (max-width: 576px) {
-          .form-grid {
-            grid-template-columns: 1fr;
+        @media (max-width: 640px) {
+          .visit-headline {
+            font-size: 30px;
           }
-          .input-field.full-width {
-            grid-column: span 1;
+          .visit-info-row {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+          .visit-actions {
+            flex-direction: column;
+            width: 100%;
+          }
+          .btn-naver-map, .btn-call-inquiry {
+            width: 100%;
+            justify-content: center;
           }
         }
       `}</style>
