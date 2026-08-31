@@ -17,11 +17,8 @@ export default function Hero() {
           <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
           
           <h1 className="hero-headline">
-            좋아하는<br />
-            짜장면,<br />
-            속까지<br />
-            편했으면<br />
-            했습니다.
+            좋아하는 짜장면,<br />
+            속까지 편했으면 했습니다.
           </h1>
 
           <p className="hero-narrative">
@@ -113,11 +110,11 @@ export default function Hero() {
         }
 
         .hero-headline {
-          font-size: 64px;
+          font-size: clamp(34px, 3.8vw, 54px);
           font-weight: 900;
-          line-height: 1.18;
+          line-height: 1.25;
           color: #2b1e16;
-          letter-spacing: -1.5px;
+          letter-spacing: -1.2px;
           margin-bottom: 24px;
           word-break: keep-all;
         }
