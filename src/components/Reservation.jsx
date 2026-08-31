@@ -330,11 +330,11 @@ export default function Reservation() {
         }
 
         .footer-logo-img {
-          height: 70px;
-          width: auto;
-          object-fit: contain;
+          width: 72px;
+          height: 72px;
+          object-fit: cover;
           border-radius: 50%;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
         }
 
         .footer-slogan-sub {
