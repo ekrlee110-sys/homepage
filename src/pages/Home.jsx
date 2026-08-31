@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import logoImg from '../assets/logo.png';
 import Story from '../components/Story';
+import Philosophy from '../components/Philosophy';
 import Menu from '../components/Menu';
 import Reservation from '../components/Reservation';
 import AuthModal from '../components/AuthModal';
@@ -29,6 +30,7 @@ export default function Home() {
       <main>
         <Hero />
         <Story />
+        <Philosophy />
         <Menu />
         <Reservation />
       </main>
