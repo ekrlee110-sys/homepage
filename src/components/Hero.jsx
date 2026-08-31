@@ -17,8 +17,7 @@ export default function Hero() {
           <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
           
           <h1 className="hero-headline">
-            좋아하는<br />
-            짜장면,<br />
+            좋아하는 짜장면,<br />
             속까지<br />
             편했으면<br />
             했습니다.
