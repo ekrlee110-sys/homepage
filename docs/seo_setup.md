@@ -9,7 +9,9 @@
 - **sitemap.xml**: 사이트맵 파일 추가 (`public/sitemap.xml`)
 - **index.html**:
   - `<link rel="canonical" href="https://sannaedol.com/" />` 대표 URL 지정
+  - `<meta name="naver-site-verification" content="18088e525eb3c120cf80ac5c32ff688ce8fe09f2" />` 소유확인 메타태그 추가
   - Meta Description 및 Open Graph(OG) 태그 지정/유지
+- **소유확인 파일**: `public/naverba753f5e6bcd63ac6aaa034cc5f9b355.html` 생성
 
 ## 3. 검증 결과
 - `npm run build`: 성공
