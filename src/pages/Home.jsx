@@ -5,6 +5,7 @@ import logoImg from '../assets/logo.png';
 import Story from '../components/Story';
 import Philosophy from '../components/Philosophy';
 import Menu from '../components/Menu';
+import Trust from '../components/Trust';
 import Reservation from '../components/Reservation';
 import AuthModal from '../components/AuthModal';
 import Navbar from '../components/Navbar';
@@ -32,6 +33,7 @@ export default function Home() {
         <Story />
         <Philosophy />
         <Menu />
+        <Trust />
         <Reservation />
       </main>
 
