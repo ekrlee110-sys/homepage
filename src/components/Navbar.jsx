@@ -118,9 +118,16 @@ export default function Navbar({ onOpenAuth }) {
         }
 
         .logo-img {
-          height: 48px;
-          width: auto;
-          object-fit: contain;
+          width: 52px;
+          height: 52px;
+          object-fit: cover;
+          border-radius: 50%;
+          transition: transform 0.2s ease;
+          box-shadow: 0 2px 8px rgba(43, 30, 22, 0.08);
+        }
+
+        .nav-logo:hover .logo-img {
+          transform: scale(1.06);
         }
 
         .nav-links {
