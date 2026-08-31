@@ -81,10 +81,37 @@ export default function Menu() {
     }
   ];
 
+  const sideMenuItems = [
+    {
+      id: 'side-rice',
+      name: '날치알 돌판 비빔밥',
+      photoTitle: '사이드 사진 공간',
+      photoGuide: '날치알 돌판 비빔밥',
+      description: '고소하게 마무리하고 싶을 때.',
+      image: '/dol_zzajang_main.png'
+    },
+    {
+      id: 'side-cabbage',
+      name: '아삭 양배추 칠리',
+      photoTitle: '사이드 사진 공간',
+      photoGuide: '아삭 양배추 칠리',
+      description: '아삭하고 가볍게 곁들이는 메뉴.',
+      image: '/chubu_perilla_zzajang.png'
+    },
+    {
+      id: 'side-pancake',
+      name: '김치부침개',
+      photoTitle: '사이드 사진 공간',
+      photoGuide: '김치부침개',
+      description: '첫 주문 시 반죽 1회 무료 제공',
+      image: '/mugeunji_dol_zzajang.png'
+    }
+  ];
+
   return (
     <section id="menu" className="menu-draft-section section-padding">
       <div className="container">
-        {/* SIGNATURE MENU Section */}
+        {/* 1. SIGNATURE MENU Section */}
         <div className="menu-header-row animate-fade-in-up">
           <div className="menu-header-left">
             <span className="menu-label">SIGNATURE MENU</span>
@@ -141,7 +168,7 @@ export default function Menu() {
           </p>
         </div>
 
-        {/* SET MENU Section */}
+        {/* 2. SET MENU Section */}
         <div id="set-menu" className="set-menu-block">
           <div className="menu-header-row animate-fade-in-up">
             <div className="menu-header-left">
@@ -183,6 +210,48 @@ export default function Menu() {
                     <span className="set-badge-label">세트가</span>
                     <span className="set-badge-value">{set.price}</span>
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 3. SIDE MENU Section */}
+        <div id="side-menu" className="side-menu-block">
+          <div className="menu-header-row animate-fade-in-up">
+            <div className="menu-header-left">
+              <span className="menu-label">SIDE MENU</span>
+              <h2 className="menu-headline">
+                한 끼를 더 맛있게 채우는<br />
+                곁들임 메뉴
+              </h2>
+            </div>
+            <div className="menu-header-right">
+              <p className="menu-guide-text">사이드 메뉴는 작은 사진만 있어도 충분합니다.</p>
+            </div>
+          </div>
+
+          <div className="side-cards-grid animate-fade-in">
+            {sideMenuItems.map((side) => (
+              <div key={side.id} className="side-card-item">
+                {/* Side Photo Box */}
+                <div className="side-photo-box">
+                  <img 
+                    src={side.image} 
+                    alt={side.name} 
+                    className="side-card-img"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                  <div className="side-photo-overlay">
+                    <span className="side-photo-title">{side.photoTitle}</span>
+                    <span className="side-photo-name">{side.photoGuide}</span>
+                  </div>
+                </div>
+
+                {/* Side Text Info */}
+                <div className="side-card-body">
+                  <h3 className="side-item-name">{side.name}</h3>
+                  <p className="side-item-desc">{side.description}</p>
                 </div>
               </div>
             ))}
@@ -239,7 +308,7 @@ export default function Menu() {
           margin-bottom: 75px;
         }
 
-        .signature-card, .set-card-item {
+        .signature-card, .set-card-item, .side-card-item {
           background-color: #ede4d7;
           border: 1px solid rgba(197, 168, 128, 0.45);
           border-radius: 22px;
@@ -250,7 +319,7 @@ export default function Menu() {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .signature-card:hover, .set-card-item:hover {
+        .signature-card:hover, .set-card-item:hover, .side-card-item:hover {
           transform: translateY(-5px);
           box-shadow: 0 14px 32px rgba(43, 30, 22, 0.1);
         }
@@ -266,7 +335,18 @@ export default function Menu() {
           overflow: hidden;
         }
 
-        .sig-card-img, .set-card-img {
+        .side-photo-box {
+          height: 155px;
+          position: relative;
+          background-color: #e2d6c4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          overflow: hidden;
+        }
+
+        .sig-card-img, .set-card-img, .side-card-img {
           position: absolute;
           top: 0;
           left: 0;
@@ -278,12 +358,14 @@ export default function Menu() {
           transition: opacity 0.3s ease, transform 0.4s ease;
         }
 
-        .signature-card:hover .sig-card-img, .set-card-item:hover .set-card-img {
+        .signature-card:hover .sig-card-img, 
+        .set-card-item:hover .set-card-img,
+        .side-card-item:hover .side-card-img {
           opacity: 0.4;
           transform: scale(1.05);
         }
 
-        .sig-photo-overlay, .set-photo-overlay {
+        .sig-photo-overlay, .set-photo-overlay, .side-photo-overlay {
           position: relative;
           z-index: 2;
           padding: 16px;
@@ -293,14 +375,14 @@ export default function Menu() {
           gap: 4px;
         }
 
-        .sig-photo-title, .set-photo-title {
+        .sig-photo-title, .set-photo-title, .side-photo-title {
           font-size: 13.5px;
           font-weight: 700;
           color: #3b2c25;
           letter-spacing: -0.2px;
         }
 
-        .sig-photo-name, .set-photo-name {
+        .sig-photo-name, .set-photo-name, .side-photo-name {
           font-size: 12px;
           color: #6a574c;
           letter-spacing: -0.2px;
@@ -315,7 +397,16 @@ export default function Menu() {
           text-align: left;
         }
 
-        .sig-item-name, .set-item-name {
+        .side-card-body {
+          padding: 22px 20px 24px 20px;
+          background-color: #f5efe4;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .sig-item-name, .set-item-name, .side-item-name {
           font-size: 18px;
           font-weight: 800;
           color: #2b1e16;
@@ -339,6 +430,14 @@ export default function Menu() {
           margin-bottom: 18px;
           letter-spacing: -0.2px;
           flex: 1;
+        }
+
+        .side-item-desc {
+          font-size: 13.5px;
+          color: #55443b;
+          line-height: 1.55;
+          margin: 0;
+          letter-spacing: -0.2px;
         }
 
         .sig-price-badge, .set-price-badge {
@@ -388,13 +487,19 @@ export default function Menu() {
           color: #8c2d19;
         }
 
-        /* Set Menu Block */
+        /* Set & Side Menu Blocks */
         .set-menu-block {
+          padding-top: 20px;
+          margin-bottom: 85px;
+          border-top: 1px dashed rgba(197, 168, 128, 0.35);
+        }
+
+        .side-menu-block {
           padding-top: 20px;
           border-top: 1px dashed rgba(197, 168, 128, 0.35);
         }
 
-        .set-cards-grid {
+        .set-cards-grid, .side-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 24px;
@@ -407,7 +512,7 @@ export default function Menu() {
           .signature-cards-grid {
             grid-template-columns: repeat(2, 1fr);
           }
-          .set-cards-grid {
+          .set-cards-grid, .side-cards-grid {
             grid-template-columns: 1fr;
           }
         }
