@@ -15,10 +15,10 @@ export default function Hero() {
         {/* Left Text Content */}
         <div className="hero-left-content animate-fade-in-up">
           <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
-          
-          <h1 className="hero-headline">
+
+          <h1 className="hero-heading">
             좋아하는 짜장면,<br />
-            속까지 편했으면 했습니다.
+            <span className="hero-heading-point">속까지 편했으면</span> 했습니다.
           </h1>
 
           <p className="hero-narrative">
@@ -45,10 +45,10 @@ export default function Hero() {
             <button onClick={scrollToMenu} className="hero-btn-dark">
               대표 메뉴 보기
             </button>
-            <a 
-              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-btn-outline"
             >
               <MapPin size={16} />
@@ -61,9 +61,9 @@ export default function Hero() {
         <div className="hero-right-visual animate-fade-in">
           <div className="main-photo-card">
             <div className="photo-image-container">
-              <img 
-                src="/mugeunji_dol_zzajang.png" 
-                alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진" 
+              <img
+                src="/mugeunji_dol_zzajang.png"
+                alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진"
                 className="main-food-img"
               />
               <div className="photo-caption-overlay">
@@ -101,7 +101,7 @@ export default function Hero() {
         }
 
         .hero-subtitle {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 700;
           color: #a24b33;
           letter-spacing: -0.2px;
@@ -347,6 +347,12 @@ export default function Hero() {
             text-align: center;
           }
         }
+       .hero-heading-point {
+  color: #C45132;
+
+
+
+}   
       `}</style>
     </section>
   );
