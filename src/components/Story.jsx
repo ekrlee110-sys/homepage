@@ -10,15 +10,11 @@ export default function Story() {
           <div className="photo-card top-main-card">
             <div className="photo-inner">
               <img 
-                src="/dol_zzajang_main.png" 
+                src="/brand_story_main.jpg.jpg"
                 alt="산내돌짜장 브랜드 메인 스토리 대표 사진" 
                 className="card-bg-img"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
-              <div className="photo-placeholder-overlay">
-                <span className="photo-card-title">브랜드 메인 스토리 사진</span>
-                <span className="photo-card-sub">대표 사진 또는 브랜드 스토리 대표 이미지</span>
-              </div>
             </div>
           </div>
 
@@ -28,15 +24,11 @@ export default function Story() {
             <div className="photo-card bottom-card">
               <div className="photo-inner">
                 <img 
-                  src="/mugeunji_dol_zzajang.png" 
+                  src="/ChatGPT%20Image%202026년%209월%203일%20오전%2012_30_55.png"
                   alt="묵은지 끓이는 과정 사진" 
                   className="card-bg-img"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
-                <div className="photo-placeholder-overlay">
-                  <span className="photo-card-title">과정 사진</span>
-                  <span className="photo-card-sub">묵은지 끓이는 사진 또는 짧은 영상</span>
-                </div>
               </div>
             </div>
 
@@ -44,15 +36,11 @@ export default function Story() {
             <div className="photo-card bottom-card">
               <div className="photo-inner">
                 <img 
-                  src="/chubu_perilla_zzajang.png" 
-                  alt="장독대 숙성 분위기 사진" 
-                  className="card-bg-img"
+                  src="/Edit_set-menu_image_composition_202608080730.jpeg" 
+                  alt="묵은지 돌짜장과 갈비찜 세트" 
+                  className="card-bg-img story-set-card-img"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
-                <div className="photo-placeholder-overlay">
-                  <span className="photo-card-title">분위기 사진</span>
-                  <span className="photo-card-sub">장독대 / 숙성 / 한식의 시간감</span>
-                </div>
               </div>
             </div>
           </div>
@@ -63,17 +51,17 @@ export default function Story() {
           <span className="story-label">OUR STORY</span>
 
           <h2 className="story-main-heading">
-            중식의 짜장을,<br />
-            한식의 방식으로 다시<br />
-            만들었습니다.
+            익숙한 짜장면에<br />
+            <span className="story-headline-emphasis">한식대가의 비법</span>을 더해,<br />
+            <span className="story-headline-final">우리만의 짜장을 만들었습니다.</span>
           </h2>
 
           <div className="story-paragraphs">
             <p className="story-p-lead">
-              짜장면은 좋아하지만 먹고 난 뒤의 무거움은 늘 아쉬웠습니다.
+              짜장면은 좋아하지만 먹고 난 뒤의 <span className="story-body-emphasis">무거움</span>은 늘 아쉬웠습니다.
             </p>
             <p className="story-p-sub">
-              그래서 오래 이어온 우리 음식의 지혜와 <strong>한식대가의 경험</strong>을 짜장에 담았습니다.
+              그래서 오래 이어온 <span className="story-body-emphasis-neutral">우리 음식의 지혜</span>와 <span className="story-body-emphasis-neutral">한식대가의 경험</span>을 <span className="story-body-emphasis-neutral">우리만의 짜장</span>에 담았습니다.
             </p>
           </div>
 
@@ -139,7 +127,7 @@ export default function Story() {
         }
 
         .bottom-card {
-          height: 190px;
+          height: 200px;
         }
 
         .photo-inner {
@@ -160,39 +148,14 @@ export default function Story() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.25;
-          filter: saturate(0.85);
-          transition: opacity 0.4s ease, transform 0.4s ease;
+          object-position: center center;
         }
 
-        .photo-card:hover .card-bg-img {
-          opacity: 0.4;
-          transform: scale(1.03);
-        }
-
-        .photo-placeholder-overlay {
-          position: relative;
-          z-index: 2;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-        }
-
-        .photo-card-title {
-          font-size: 15.5px;
-          font-weight: 700;
-          color: #3b2c25;
-          letter-spacing: -0.3px;
-        }
-
-        .photo-card-sub {
-          font-size: 12.5px;
-          color: #705c51;
-          letter-spacing: -0.2px;
-          line-height: 1.4;
+        .story-set-card-img {
+          object-fit: cover;
+          opacity: 1;
+          filter: brightness(0.72) saturate(1.13) contrast(1.03);
+          transform: scale(1.2) translate(-7px, 7px);
         }
 
         /* Right Text Narrative */
@@ -222,6 +185,19 @@ export default function Story() {
           word-break: keep-all;
         }
 
+        .story-headline-emphasis {
+          color: #a24b33;
+          font-weight: 900;
+        }
+
+        .story-headline-strong {
+          font-weight: 950;
+        }
+
+        .story-headline-final {
+          white-space: nowrap;
+        }
+
         .story-paragraphs {
           margin-bottom: 30px;
         }
@@ -244,6 +220,16 @@ export default function Story() {
         .story-p-sub strong {
           color: #2b1e16;
           font-weight: 700;
+        }
+
+        .story-body-emphasis {
+          color: #a24b33;
+          font-weight: 800;
+        }
+
+        .story-body-emphasis-neutral {
+          color: #4a3a31;
+          font-weight: 800;
         }
 
         /* Quote Callout Card */
@@ -331,7 +317,11 @@ export default function Story() {
           }
 
           .bottom-card {
-            height: 160px;
+            height: 250px;
+          }
+
+          .story-set-card-img {
+            filter: brightness(0.76) saturate(1.18) contrast(1.05);
           }
 
           .story-quote-card {

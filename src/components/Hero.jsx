@@ -18,7 +18,7 @@ export default function Hero() {
           
           <h1 className="hero-headline">
             좋아하는 짜장면,<br />
-            속까지 편했으면 했습니다.
+            <span className="hero-headline-emphasis">속까지 편했으면</span> 했습니다.
           </h1>
 
           <p className="hero-narrative">
@@ -29,14 +29,14 @@ export default function Hero() {
           {/* 5 Core Philosophies */}
           <div className="hero-five-promises">
             <h4 className="promises-title">
-              산내돌짜장의 고집, <span>5가지</span>
+              산내돌짜장이 다른 <span>5가지</span>
             </h4>
             <div className="promises-badges">
-              <span className="promise-pill">돼지기름 없이, 직접 만든 식물성 기름</span>
-              <span className="promise-pill">주문마다 따로 조리</span>
-              <span className="promise-pill">192시간 저온 숙성</span>
-              <span className="promise-pill">9시간 상황버섯 달임</span>
-              <span className="promise-pill">한식대가의 경험</span>
+              <span className="promise-pill">30년 내공, 한식대가의 비법</span>
+              <span className="promise-pill">야채를 우려 만든 수제기름</span>
+              <span className="promise-pill">9시간 달인 상황버섯 육수</span>
+              <span className="promise-pill">8일 밤낮, 192시간 숙성</span>
+              <span className="promise-pill">주문 즉시 고객 맞춤 조리</span>
             </div>
           </div>
 
@@ -62,15 +62,10 @@ export default function Hero() {
           <div className="main-photo-card">
             <div className="photo-image-container">
               <img 
-                src="/mugeunji_dol_zzajang.png" 
+                src="/dol_zzajang_main.png"
                 alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진" 
                 className="main-food-img"
               />
-              <div className="photo-caption-overlay">
-                <span className="photo-tag">대표 시그니처</span>
-                <p className="photo-title">지글지글 끓는 돌짜장 + 묵은지 쌈</p>
-                <p className="photo-desc">192시간 저온 숙성 특제 한식 소스로 완성한 깊은 풍미</p>
-              </div>
             </div>
           </div>
         </div>
@@ -117,6 +112,11 @@ export default function Hero() {
           letter-spacing: -1.2px;
           margin-bottom: 24px;
           word-break: keep-all;
+        }
+
+        .hero-headline-emphasis {
+          color: #a24b33;
+          font-weight: 900;
         }
 
         .hero-narrative {
@@ -298,7 +298,7 @@ export default function Hero() {
           letter-spacing: -0.2px;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 640px) {
           .hero-draft-container {
             grid-template-columns: 1fr;
             gap: 40px;
@@ -328,7 +328,30 @@ export default function Hero() {
           }
 
           .hero-headline {
-            font-size: 38px;
+            font-size: clamp(31px, 9vw, 38px);
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+          }
+
+          .hero-narrative {
+            font-size: 15px;
+            margin-bottom: 26px;
+          }
+
+          .hero-narrative br {
+            display: none;
+          }
+
+          .hero-five-promises {
+            margin-bottom: 28px;
+          }
+
+          .promises-badges {
+            gap: 6px;
+          }
+
+          .hero-cta-buttons {
+            gap: 8px;
           }
 
           .promise-pill {
@@ -345,6 +368,27 @@ export default function Hero() {
             width: 100%;
             justify-content: center;
             text-align: center;
+          }
+
+          .main-photo-card {
+            padding: 8px;
+            border-radius: 20px;
+          }
+
+          .photo-image-container {
+            border-radius: 14px;
+          }
+
+          .photo-caption-overlay {
+            padding: 20px 14px 14px;
+          }
+
+          .photo-title {
+            font-size: 15px;
+          }
+
+          .photo-desc {
+            font-size: 11.5px;
           }
         }
       `}</style>

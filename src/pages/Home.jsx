@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Story from '../components/Story';
+import HanokSpace from '../components/HanokSpace';
 import Philosophy from '../components/Philosophy';
 import Menu from '../components/Menu';
 import Trust from '../components/Trust';
@@ -30,6 +31,7 @@ export default function Home() {
       <main>
         <Hero />
         <Story />
+        <HanokSpace />
         <Philosophy />
         <Menu />
         <Trust />

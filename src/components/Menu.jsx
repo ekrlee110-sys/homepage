@@ -9,8 +9,7 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '192시간 숙성 돌짜장',
       description: '192시간 숙성 한식 짜장 소스의 기본 맛을 가장 잘 느낄 수 있는 메뉴.',
-      prices: { mid: '29,000원', large: '40,000원' },
-      image: '/dol_zzajang_main.png',
+      image: '/ChatGPT Image 2026년 7월 26일 오전 08_46_40.png',
       badge: '대표 메뉴'
     },
     {
@@ -20,7 +19,6 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '추부깻잎 돌짜장',
       description: '추부깻잎과 통들깨로 참 꼬소하게 즐기는 돌짜장.',
-      prices: { mid: '31,000원', large: '42,000원' },
       image: '/chubu_perilla_zzajang.png',
       badge: '한식 대표'
     },
@@ -31,7 +29,6 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '묵은지 쌈 돌짜장',
       description: '푹 쪄낸 국내산 묵은지로 돌짜장을 감싸, 깊은 맛과 개운함을 함께 즐깁니다.',
-      prices: { mid: '33,000원', large: '44,000원' },
       image: '/mugeunji_dol_zzajang.png',
       badge: '시그니처'
     },
@@ -42,7 +39,6 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '만인산 둥지 갈비찜',
       description: '부드러운 갈빗살과 파채를 돌짜장과 함께 즐기는 대표 곁들임 요리.',
-      prices: { mid: '35,000원', large: '47,000원' },
       image: '/spicy_galbi_zzim.png',
       badge: '대표 곁들임'
     }
@@ -134,13 +130,15 @@ export default function Menu() {
                 <img 
                   src={item.image} 
                   alt={item.name} 
-                  className="sig-card-img"
+                  className={`sig-card-img ${item.id === 'aged-zzajang' ? 'sig-card-img-featured' : ''}`}
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
-                <div className="sig-photo-overlay">
-                  <span className="sig-photo-title">{item.photoTitle}</span>
-                  <span className="sig-photo-name">{item.photoGuide}</span>
-                </div>
+                {item.id !== 'aged-zzajang' && (
+                  <div className="sig-photo-overlay">
+                    <span className="sig-photo-title">{item.photoTitle}</span>
+                    <span className="sig-photo-name">{item.photoGuide}</span>
+                  </div>
+                )}
               </div>
 
               {/* Text Info */}
@@ -148,13 +146,6 @@ export default function Menu() {
                 <h3 className="sig-item-name">{item.name}</h3>
                 <p className="sig-item-subtitle">{item.subTitle}</p>
                 <p className="sig-item-desc">{item.description}</p>
-                
-                {/* Price Tag */}
-                <div className="sig-price-badge">
-                  <span>큰중 {item.prices.mid}</span>
-                  <span className="price-dot">·</span>
-                  <span>큰대 {item.prices.large}</span>
-                </div>
               </div>
             </div>
           ))}
@@ -365,6 +356,15 @@ export default function Menu() {
           transform: scale(1.05);
         }
 
+        .sig-card-img-featured {
+          opacity: 1;
+          object-position: center 45%;
+        }
+
+        .signature-card:hover .sig-card-img-featured {
+          opacity: 1;
+        }
+
         .sig-photo-overlay, .set-photo-overlay, .side-photo-overlay {
           position: relative;
           z-index: 2;
@@ -388,7 +388,15 @@ export default function Menu() {
           letter-spacing: -0.2px;
         }
 
-        .sig-card-body, .set-card-body {
+        .sig-card-body {
+          padding: 24px 20px 22px 20px;
+          background-color: #f5efe4;
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .set-card-body {
           padding: 24px 20px 22px 20px;
           background-color: #f5efe4;
           flex: 1;
@@ -423,7 +431,15 @@ export default function Menu() {
           letter-spacing: -0.3px;
         }
 
-        .sig-item-desc, .set-item-desc {
+        .sig-item-desc {
+          font-size: 13px;
+          color: #55443b;
+          line-height: 1.6;
+          margin-bottom: 0;
+          letter-spacing: -0.2px;
+        }
+
+        .set-item-desc {
           font-size: 13px;
           color: #55443b;
           line-height: 1.6;
@@ -440,7 +456,7 @@ export default function Menu() {
           letter-spacing: -0.2px;
         }
 
-        .sig-price-badge, .set-price-badge {
+        .set-price-badge {
           display: flex;
           align-items: center;
           gap: 6px;
@@ -461,11 +477,6 @@ export default function Menu() {
         .set-badge-value {
           color: #8c2d19;
           font-weight: 800;
-        }
-
-        .price-dot {
-          color: #8c2d19;
-          font-weight: 700;
         }
 
         /* Middle Closing Statement */
