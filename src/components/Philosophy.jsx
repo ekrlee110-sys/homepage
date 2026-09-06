@@ -41,9 +41,7 @@ export default function Philosophy() {
     {
       num: '02',
       title: '주문 즉시 고객 맞춤 조리',
-      photoTitle: '사진 공간',
-      photoDesc: '주문 즉시 고객 맞춤 조리하는 웍 또는 돌판 장면',
-      imgSrc: '/mugeunji_dol_zzajang.png',
+      imgSrc: '/ChatGPT Image 2026년 9월 6일 오후 10_58_54.png',
       desc1: '한 번에 많이 만들어 덜어내지 않고, 주문 즉시 고객 맞춤 조리합니다.',
       desc2: '손이 더 가더라도 한 분 한 분께 제대로 대접하기 위한 방식입니다.'
     }
@@ -78,14 +76,23 @@ export default function Philosophy() {
             {promises.slice(0, 3).map((item) => (
               <div key={item.num} className="promise-card">
                 {/* Photo Space */}
-                <div className={`card-photo-box ${item.num === '05' || item.num === '03' || item.num === '01' ? 'master-card-photo-box' : ''}`}>
-                  <img 
-                    src={item.imgSrc} 
-                    alt={item.title} 
-                    className={`card-bg-food-img ${item.num === '05' ? 'master-card-img' : ''} ${item.num === '03' || item.num === '01' ? 'broth-card-img' : ''}`}
-                    onError={(e) => { e.target.style.display = 'none'; }}
-                  />
-                  {item.num !== '05' && item.num !== '01' && item.num !== '03' && (
+                <div className={`card-photo-box ${item.num === '05' || item.num === '03' || item.num === '01' || item.num === '02' ? 'master-card-photo-box' : ''}`}>
+                  {item.num === '02' ? (
+                    <img
+                      src={item.imgSrc}
+                      alt={item.title}
+                      className="custom-cooking-card-img"
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  ) : (
+                    <img 
+                      src={item.imgSrc} 
+                      alt={item.title} 
+                      className={`card-bg-food-img ${item.num === '05' ? 'master-card-img' : ''} ${item.num === '03' || item.num === '01' ? 'broth-card-img' : ''}`}
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  )}
+                  {item.num !== '05' && item.num !== '01' && item.num !== '03' && item.num !== '02' && (
                     <div className="card-photo-overlay">
                       <span className="photo-label">{item.photoTitle}</span>
                       <span className="photo-guide">{item.photoDesc}</span>
@@ -327,9 +334,29 @@ export default function Philosophy() {
           transition: opacity 0.3s ease, transform 0.4s ease;
         }
 
+        .card-photo-box .custom-cooking-card-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 50% 60%;
+          opacity: 1;
+          filter: none;
+          transform: none;
+          transition: none;
+        }
+
         .promise-card:hover .card-bg-food-img {
           opacity: 0.35;
           transform: scale(1.05);
+        }
+
+        .promise-card:hover .custom-cooking-card-img {
+          opacity: 1;
+          transform: none;
+          filter: none;
         }
 
         .card-photo-overlay {
