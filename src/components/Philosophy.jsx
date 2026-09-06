@@ -341,7 +341,7 @@ export default function Philosophy() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: 50% 60%;
+          object-position: 50% 75%;
           opacity: 1;
           filter: none;
           transform: none;
