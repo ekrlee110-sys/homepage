@@ -1,4 +1,8 @@
 import React from 'react';
+import chubuPerillaImage from '../pages/추부.png';
+import cheongyangImage from '../pages/ChatGPT Image 2026년 9월 7일 오후 08_41_12 (2).png';
+import mugeunjiImage from '../pages/ChatGPT Image 2026년 9월 7일 오후 08_41_13 (3).png';
+import maninsanGalbiImage from '../pages/ChatGPT Image 2026년 7월 26일 오전 08_45_34.png';
 
 export default function Menu() {
   const signatureItems = [
@@ -10,6 +14,8 @@ export default function Menu() {
       photoGuide: '192시간 숙성 돌짜장',
       description: '192시간 숙성 한식 짜장 소스의 기본 맛을 가장 잘 느낄 수 있는 메뉴.',
       image: '/ChatGPT Image 2026년 7월 26일 오전 08_46_40.png',
+      imageScale: 1.08,
+      imagePosition: 'center 52%',
       badge: '대표 메뉴'
     },
     {
@@ -19,8 +25,22 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '추부깻잎 돌짜장',
       description: '추부깻잎과 통들깨로 참 꼬소하게 즐기는 돌짜장.',
-      image: '/chubu_perilla_zzajang.png',
+      image: chubuPerillaImage,
+      imageScale: 0.94,
+      imagePosition: 'center 51%',
       badge: '한식 대표'
+    },
+    {
+      id: 'cheongyang-zzajang',
+      name: '청양고추 돌짜장',
+      subTitle: '매운맛을 제대로 즐기고 싶다면.',
+      photoTitle: '메뉴 사진 공간',
+      photoGuide: '청양고추 돌짜장',
+      description: '청양고추의 강한 매운맛을 더해, 짜장의 진한 맛과 화끈한 여운을 함께 즐기는 돌짜장.',
+      image: cheongyangImage,
+      imageScale: 1.00,
+      imagePosition: 'center 51%',
+      badge: '대표 메뉴'
     },
     {
       id: 'mugeunji-zzajang',
@@ -29,7 +49,9 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '묵은지 쌈 돌짜장',
       description: '푹 쪄낸 국내산 묵은지로 돌짜장을 감싸, 깊은 맛과 개운함을 함께 즐깁니다.',
-      image: '/mugeunji_dol_zzajang.png',
+      image: mugeunjiImage,
+      imageScale: 1.02,
+      imagePosition: 'center 51%',
       badge: '시그니처'
     },
     {
@@ -39,7 +61,10 @@ export default function Menu() {
       photoTitle: '메뉴 사진 공간',
       photoGuide: '만인산 둥지 갈비찜',
       description: '부드러운 갈빗살과 파채를 돌짜장과 함께 즐기는 대표 곁들임 요리.',
-      image: '/spicy_galbi_zzim.png',
+      image: maninsanGalbiImage,
+      imageScale: 1.22,
+      imagePosition: 'center center',
+      imageTranslateY: -20,
       badge: '대표 곁들임'
     }
   ];
@@ -104,6 +129,44 @@ export default function Menu() {
     }
   ];
 
+  const firstSignatureRow = signatureItems.slice(0, 3);
+  const secondSignatureRow = signatureItems.slice(3, 5);
+
+  const renderSignatureCard = (item) => (
+    <div key={item.id} className={`signature-card ${item.id === 'chubu-perilla' ? 'signature-card-chubu' : ''}`}>
+      {/* Photo Box */}
+      <div className="sig-photo-box">
+        <img 
+          src={item.image} 
+          alt={item.name} 
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: item.imagePosition,
+            transform: `translateY(${item.imageTranslateY || 0}px) scale(${item.imageScale || 1})`,
+            transformOrigin: 'center center'
+          }}
+          className={`sig-card-img ${item.id === 'aged-zzajang' || item.id === 'chubu-perilla' || item.id === 'cheongyang-zzajang' || item.id === 'maninsan-galbi' ? 'sig-card-img-featured' : ''} ${item.id === 'chubu-perilla' ? 'sig-card-img-chubu' : ''} ${item.id === 'mugeunji-zzajang' ? 'sig-card-img-mugeunji' : ''} ${item.id === 'maninsan-galbi' ? 'sig-card-img-galbi' : ''}`}
+          onError={(e) => { e.target.style.display = 'none'; }}
+        />
+        {item.id !== 'aged-zzajang' && item.id !== 'chubu-perilla' && item.id !== 'cheongyang-zzajang' && item.id !== 'mugeunji-zzajang' && item.id !== 'maninsan-galbi' && (
+          <div className="sig-photo-overlay">
+            <span className="sig-photo-title">{item.photoTitle}</span>
+            <span className="sig-photo-name">{item.photoGuide}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Text Info */}
+      <div className="sig-card-body">
+        <h3 className="sig-item-name">{item.name}</h3>
+        <p className="sig-item-subtitle">{item.subTitle}</p>
+        <p className="sig-item-desc">{item.description}</p>
+      </div>
+    </div>
+  );
+
   return (
     <section id="menu" className="menu-draft-section section-padding">
       <div className="container">
@@ -121,34 +184,14 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* 4 Signature Menu Cards Grid */}
-        <div className="signature-cards-grid animate-fade-in">
-          {signatureItems.map((item) => (
-            <div key={item.id} className="signature-card">
-              {/* Photo Box */}
-              <div className="sig-photo-box">
-                <img 
-                  src={item.image} 
-                  alt={item.name} 
-                  className={`sig-card-img ${item.id === 'aged-zzajang' ? 'sig-card-img-featured' : ''}`}
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-                {item.id !== 'aged-zzajang' && (
-                  <div className="sig-photo-overlay">
-                    <span className="sig-photo-title">{item.photoTitle}</span>
-                    <span className="sig-photo-name">{item.photoGuide}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Text Info */}
-              <div className="sig-card-body">
-                <h3 className="sig-item-name">{item.name}</h3>
-                <p className="sig-item-subtitle">{item.subTitle}</p>
-                <p className="sig-item-desc">{item.description}</p>
-              </div>
-            </div>
-          ))}
+        {/* 5 Signature Menu Cards in a 3 + 2 layout */}
+        <div className="signature-cards-layout animate-fade-in">
+          <div className="signature-cards-grid">
+            {firstSignatureRow.map(renderSignatureCard)}
+          </div>
+          <div className="signature-cards-grid signature-cards-grid-second">
+            {secondSignatureRow.map(renderSignatureCard)}
+          </div>
         </div>
 
         {/* Middle Closing Headline */}
@@ -291,12 +334,32 @@ export default function Menu() {
           margin: 0;
         }
 
-        /* 4 Signature Cards Grid */
-        .signature-cards-grid {
+        /* Signature Cards Grid */
+        .signature-cards-layout {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(6, minmax(0, 1fr));
           gap: 22px;
           margin-bottom: 75px;
+          width: 100%;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .signature-cards-grid {
+          display: contents;
+        }
+
+        .signature-cards-grid .signature-card {
+          grid-column: span 2;
+        }
+
+        .signature-cards-grid-second .signature-card:first-child {
+          grid-column: 2 / span 2;
+        }
+
+        .signature-cards-grid-second .signature-card:last-child {
+          grid-column: 4 / span 2;
         }
 
         .signature-card, .set-card-item, .side-card-item {
@@ -315,7 +378,18 @@ export default function Menu() {
           box-shadow: 0 14px 32px rgba(43, 30, 22, 0.1);
         }
 
-        .sig-photo-box, .set-photo-box {
+        .sig-photo-box {
+          height: 250px;
+          position: relative;
+          background-color: #e2d6c4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          overflow: hidden;
+        }
+
+        .set-photo-box {
           height: 175px;
           position: relative;
           background-color: #e2d6c4;
@@ -361,6 +435,23 @@ export default function Menu() {
           object-position: center 45%;
         }
 
+        .sig-card-img-chubu {
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .sig-card-img-mugeunji {
+          opacity: 1;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .sig-card-img-galbi {
+          opacity: 1;
+          object-fit: cover;
+          object-position: center;
+        }
+
         .signature-card:hover .sig-card-img-featured {
           opacity: 1;
         }
@@ -394,6 +485,11 @@ export default function Menu() {
           display: flex;
           flex-direction: column;
           text-align: left;
+        }
+
+        .signature-card-chubu .sig-card-body {
+          flex: 1;
+          background-color: #f5efe4;
         }
 
         .set-card-body {
@@ -521,7 +617,19 @@ export default function Menu() {
             font-size: 38px;
           }
           .signature-cards-grid {
-            grid-template-columns: repeat(2, 1fr);
+            display: contents;
+          }
+          .signature-cards-layout {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+          }
+          .signature-cards-grid .signature-card {
+            grid-column: span 2;
+          }
+          .signature-cards-grid-second .signature-card:first-child {
+            grid-column: 1 / span 2;
+          }
+          .signature-cards-grid-second .signature-card:last-child {
+            grid-column: 3 / span 2;
           }
           .set-cards-grid, .side-cards-grid {
             grid-template-columns: 1fr;
@@ -538,7 +646,15 @@ export default function Menu() {
             font-size: 30px;
           }
           .signature-cards-grid {
-            grid-template-columns: 1fr;
+            display: contents;
+          }
+          .signature-cards-layout {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          .signature-cards-grid .signature-card,
+          .signature-cards-grid-second .signature-card:first-child,
+          .signature-cards-grid-second .signature-card:last-child {
+            grid-column: 1 / span 2;
           }
           .closing-line-1, .closing-line-2 {
             font-size: 26px;

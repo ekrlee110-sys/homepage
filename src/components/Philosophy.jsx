@@ -118,14 +118,14 @@ export default function Philosophy() {
             {promises.slice(3, 5).map((item) => (
               <div key={item.num} className="promise-card">
                 {/* Photo Space */}
-                <div className={`card-photo-box ${item.num === '04' ? 'master-card-photo-box' : ''}`}>
+                <div className={`card-photo-box ${item.num === '04' || item.num === '02' ? 'custom-cooking-card-photo-box' : ''} ${item.num === '04' ? 'aging-card-photo-box' : ''}`}>
                   <img 
                     src={item.imgSrc} 
                     alt={item.title} 
-                    className={`card-bg-food-img ${item.num === '04' ? 'aging-card-img' : ''}`}
+                    className={`${item.num === '02' ? 'custom-cooking-card-img' : 'card-bg-food-img'} ${item.num === '04' ? 'aging-card-img' : ''}`}
                     onError={(e) => { e.target.style.display = 'none'; }}
                   />
-                  {item.num !== '04' && (
+                  {item.num !== '04' && item.num !== '02' && (
                     <div className="card-photo-overlay">
                       <span className="photo-label">{item.photoTitle}</span>
                       <span className="photo-guide">{item.photoDesc}</span>
@@ -273,7 +273,7 @@ export default function Philosophy() {
         }
 
         .card-photo-box {
-          height: 150px;
+          height: 250px;
           position: relative;
           background-color: #e2d6c4;
           display: flex;
@@ -281,6 +281,7 @@ export default function Philosophy() {
           justify-content: center;
           text-align: center;
           overflow: hidden;
+          border-radius: 20px 20px 0 0;
         }
 
         .card-photo-box .master-card-img {
@@ -291,6 +292,10 @@ export default function Philosophy() {
         }
 
         .master-card-photo-box {
+          height: 250px;
+        }
+
+        .custom-cooking-card-photo-box {
           height: 250px;
         }
 
@@ -307,19 +312,23 @@ export default function Philosophy() {
         }
 
         .card-photo-box .aging-card-img {
-          position: static;
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
+          max-width: 100%;
           object-fit: cover;
-          object-position: 50% 42%;
+          object-position: center top;
           opacity: 1;
           filter: none;
-          transform: none;
+          transform: scale(1.12);
+          transform-origin: center top;
         }
 
         .promise-card:hover .aging-card-img {
           opacity: 1;
-          transform: none;
+          transform: scale(1.12);
         }
 
         .card-bg-food-img {
@@ -341,7 +350,7 @@ export default function Philosophy() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: 50% 0%;
+          object-position: center center;
           opacity: 1;
           filter: none;
           transform: none;
@@ -465,10 +474,6 @@ export default function Philosophy() {
           }
           .card-photo-box {
             height: 130px;
-          }
-
-          .master-card-photo-box {
-            height: 250px;
           }
         }
       `}</style>
