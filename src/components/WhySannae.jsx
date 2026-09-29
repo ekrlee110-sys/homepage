@@ -4,31 +4,35 @@ export default function WhySannae() {
   const reasons = [
     {
       id: 1,
-      photoTitle: '사진 공간',
-      photoDesc: '한옥 매장 외관',
+      image: '/ChatGPT 이미지 2026년 9월 29일 오후 05_43_01.png',
+      imageAlt: '산내돌짜장 한옥 공간 이미지',
+      imagePosition: 'center top',
       title: '한옥에서 즐기는 가족 외식',
       desc: '부모님과 아이가 함께하기 좋은 공간.'
     },
     {
       id: 2,
-      photoTitle: '사진 공간',
-      photoDesc: '매장 내부 좌석',
-      title: '편안한 매장 분위기',
-      desc: '한 끼를 천천히 즐기기 좋은 내부 공간.'
+      image: '/brand_story_main.jpg.jpg',
+      imageAlt: '음식을 준비하는 주방 이미지',
+      imagePosition: 'center',
+      title: '정성껏 준비하는 한 끼',
+      desc: '불 앞에서 차근차근 준비한 음식을 내어드립니다.'
     },
     {
       id: 3,
-      photoTitle: '사진 공간',
-      photoDesc: '넓은 주차장',
+      image: '/sannae-parking-lot.jpg.jpg',
+      imageAlt: '산내돌짜장 한옥 매장 앞 넓은 주차 공간',
+      imagePosition: 'center 55%',
       title: '넓은 주차 공간',
       desc: '주차 걱정 없이 편하게 방문할 수 있습니다.'
     },
     {
       id: 4,
-      photoTitle: '사진 공간',
-      photoDesc: '만인산 길 / 산내 풍경',
-      title: '나들이와 함께',
-      desc: '만인산·상소동 나들이길에 들르기 좋은 산내의 한 켠.'
+      image: '/nearby-trip.png.png',
+      imageAlt: '산내의 한옥과 산 풍경 이미지',
+      imagePosition: 'center center',
+      title: '대전 동구 8경과 함께',
+      desc: '상소동 산림욕장·만인산 자연휴양림으로 이어지는 대전 근교 나들이길.'
     }
   ];
 
@@ -45,7 +49,7 @@ export default function WhySannae() {
             </h2>
           </div>
           <div className="why-header-right">
-            <p className="why-guide-text">여기는 공간과 지역성을 보여주는 사진이 꼭 필요합니다.</p>
+            <p className="why-guide-text"></p>
           </div>
         </div>
 
@@ -53,12 +57,8 @@ export default function WhySannae() {
         <div className="why-cards-grid animate-fade-in">
           {reasons.map((item) => (
             <div key={item.id} className="why-card">
-              {/* Photo Box */}
               <div className="why-photo-box">
-                <div className="why-photo-overlay">
-                  <span className="w-photo-title">{item.photoTitle}</span>
-                  <span className="w-photo-desc">{item.photoDesc}</span>
-                </div>
+                <img src={item.image} alt={item.imageAlt} style={{ objectPosition: item.imagePosition }} loading="lazy" />
               </div>
 
               {/* Text Info */}
@@ -73,10 +73,10 @@ export default function WhySannae() {
 
       <style>{`
         .why-sannae-section {
-          background-color: #fbf8f3;
+          background-color: var(--brand-section-bg);
           padding: 100px 0 110px 0;
           position: relative;
-          border-top: 1px solid rgba(197, 168, 128, 0.2);
+          border-top: 1px solid var(--brand-section-divider);
         }
 
         .why-header-row {
@@ -89,7 +89,7 @@ export default function WhySannae() {
         .why-label {
           font-size: 13.5px;
           font-weight: 800;
-          color: #a24b33;
+          color: var(--brand-card-accent);
           letter-spacing: 1.8px;
           margin-bottom: 12px;
           display: inline-block;
@@ -99,7 +99,7 @@ export default function WhySannae() {
           font-size: 46px;
           font-weight: 900;
           line-height: 1.22;
-          color: #2b1e16;
+          color: var(--brand-card-title);
           letter-spacing: -1.2px;
           margin: 0;
           word-break: keep-all;
@@ -107,7 +107,7 @@ export default function WhySannae() {
 
         .why-guide-text {
           font-size: 14px;
-          color: #705c51;
+          color: var(--brand-card-body);
           letter-spacing: -0.3px;
           margin: 0;
         }
@@ -120,11 +120,11 @@ export default function WhySannae() {
         }
 
         .why-card {
-          background-color: #ede4d7;
-          border: 1px solid rgba(197, 168, 128, 0.45);
+          background-color: var(--brand-card-frame);
+          border: 1px solid var(--brand-card-border);
           border-radius: 22px;
           overflow: hidden;
-          box-shadow: 0 8px 24px rgba(43, 30, 22, 0.05);
+          box-shadow: var(--brand-card-shadow);
           display: flex;
           flex-direction: column;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -132,43 +132,25 @@ export default function WhySannae() {
 
         .why-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 14px 32px rgba(43, 30, 22, 0.1);
+          box-shadow: var(--brand-card-shadow-hover);
         }
 
         .why-photo-box {
           height: 165px;
-          background-color: #e4d7c5;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 16px;
+          background-color: var(--brand-photo-surface);
           overflow: hidden;
         }
 
-        .why-photo-overlay {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .w-photo-title {
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #3b2c25;
-          letter-spacing: -0.2px;
-        }
-
-        .w-photo-desc {
-          font-size: 12px;
-          color: #6a574c;
-          letter-spacing: -0.2px;
+        .why-photo-box img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
         }
 
         .why-card-body {
           padding: 24px 20px 24px 20px;
-          background-color: #f5efe4;
+          background-color: var(--brand-card-surface);
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -178,7 +160,7 @@ export default function WhySannae() {
         .why-item-title {
           font-size: 17.5px;
           font-weight: 800;
-          color: #2b1e16;
+          color: var(--brand-card-title);
           margin-bottom: 10px;
           letter-spacing: -0.4px;
           line-height: 1.35;
@@ -186,7 +168,7 @@ export default function WhySannae() {
 
         .why-item-desc {
           font-size: 13.5px;
-          color: #55443b;
+          color: var(--brand-card-body);
           line-height: 1.55;
           margin: 0;
           letter-spacing: -0.2px;
@@ -201,7 +183,7 @@ export default function WhySannae() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
           .why-header-row {
             flex-direction: column;
             align-items: flex-start;
@@ -212,6 +194,20 @@ export default function WhySannae() {
           }
           .why-cards-grid {
             grid-template-columns: 1fr;
+          }
+          .why-photo-box {
+            height: auto;
+            aspect-ratio: 16 / 10;
+          }
+          .why-card-body {
+            padding: 20px;
+          }
+          .why-item-title {
+            font-size: 19px;
+          }
+          .why-item-desc {
+            font-size: 15px;
+            line-height: 1.6;
           }
         }
       `}</style>

@@ -15,9 +15,7 @@ export default function Reservation() {
               소중한 사람과 함께하는<br />
               편안한 한 끼.
             </h2>
-            <p className="visit-guide-text">
-              마지막 구간은 길찾기와 문의로 바로 연결되는 전환 구간입니다.
-            </p>
+            <p className="visit-brand-promise">속이 편한 짜장, 산내돌짜장.</p>
 
             {/* Info Table / List */}
             <div className="visit-info-list">
@@ -89,9 +87,12 @@ export default function Reservation() {
             >
               <div className="map-placeholder-box">
                 <div className="map-overlay-content">
-                  <span className="map-title">지도 / 방문 안내 공간</span>
-                  <span className="map-subtitle">네이버 지도 캡처 또는 매장 외관 + 지도 조합</span>
-                  <span className="map-click-hint">클릭 시 네이버 지도로 연결됩니다</span>
+                  <span className="map-title">산내돌짜장 오시는 길</span>
+                  <span className="map-subtitle">대전광역시 동구 산내로 457</span>
+                  <span className="map-cta">
+                    <MapPin size={17} />
+                    네이버 지도에서 위치 확인
+                  </span>
                 </div>
               </div>
             </a>
@@ -146,6 +147,15 @@ export default function Reservation() {
           letter-spacing: -1.2px;
           margin-bottom: 12px;
           word-break: keep-all;
+        }
+
+        .visit-brand-promise {
+          margin: 0 0 30px;
+          color: #c8795f;
+          font-size: 18px;
+          font-weight: 800;
+          line-height: 1.5;
+          letter-spacing: -0.35px;
         }
 
         .visit-guide-text {
@@ -262,8 +272,9 @@ export default function Reservation() {
         /* Right Map Box */
         .visit-right-map {
           width: 100%;
-          height: 100%;
-          min-height: 480px;
+          height: 180px;
+          min-height: 0;
+          align-self: center;
         }
 
         .map-card-link {
@@ -276,7 +287,8 @@ export default function Reservation() {
         .map-placeholder-box {
           width: 100%;
           height: 100%;
-          min-height: 480px;
+          min-height: 0;
+          box-sizing: border-box;
           background: rgba(255, 255, 255, 0.03);
           border: 1px solid rgba(255, 255, 255, 0.15);
           border-radius: 24px;
@@ -284,7 +296,7 @@ export default function Reservation() {
           align-items: center;
           justify-content: center;
           text-align: center;
-          padding: 30px;
+          padding: 24px 30px;
           transition: all 0.3s ease;
         }
 
@@ -298,25 +310,43 @@ export default function Reservation() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 8px;
+          gap: 12px;
+          max-width: 100%;
         }
 
         .map-title {
-          font-size: 16px;
+          font-size: clamp(22px, 2.6vw, 30px);
           font-weight: 800;
           color: #ffffff;
+          letter-spacing: -0.8px;
         }
 
         .map-subtitle {
-          font-size: 13px;
-          color: #a8998f;
+          font-size: clamp(14px, 1.5vw, 17px);
+          color: #e4dad1;
+          line-height: 1.6;
+          word-break: keep-all;
         }
 
-        .map-click-hint {
-          font-size: 12px;
-          color: #c5a880;
-          margin-top: 10px;
-          font-weight: 600;
+        .map-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 0;
+          padding: 11px 20px;
+          border: 1px solid #c5a880;
+          border-radius: 30px;
+          background: #c5a880;
+          color: #1f1916;
+          font-size: 14px;
+          font-weight: 800;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .map-card-link:hover .map-cta {
+          background: #ede4d7;
+          border-color: #ede4d7;
         }
 
         /* Footer Brand Center */
@@ -368,20 +398,29 @@ export default function Reservation() {
             font-size: 36px;
           }
           .visit-right-map {
-            min-height: 320px;
+            height: 180px;
           }
           .map-placeholder-box {
-            min-height: 320px;
+            min-height: 0;
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
           .visit-headline {
             font-size: 30px;
+          }
+          .visit-brand-promise {
+            margin-bottom: 24px;
+            font-size: clamp(14px, 4.2vw, 16px);
+            white-space: nowrap;
           }
           .visit-info-row {
             grid-template-columns: 1fr;
             gap: 6px;
+            font-size: 15px;
+          }
+          .info-val {
+            line-height: 1.65;
           }
           .visit-actions {
             flex-direction: column;
@@ -390,6 +429,19 @@ export default function Reservation() {
           .btn-naver-map, .btn-call-inquiry {
             width: 100%;
             justify-content: center;
+            min-height: 48px;
+          }
+          .visit-right-map {
+            height: auto;
+          }
+          .map-card-link, .map-placeholder-box {
+            height: auto;
+          }
+          .map-placeholder-box {
+            padding: 28px 20px;
+          }
+          .map-cta {
+            min-height: 48px;
           }
         }
       `}</style>

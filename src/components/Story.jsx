@@ -52,7 +52,7 @@ export default function Story() {
 
           <h2 className="story-main-heading">
             익숙한 짜장면에<br />
-            <span className="story-headline-emphasis">한식대가의 비법</span>을 더해,<br />
+            <span className="story-headline-emphasis">한식의 시간</span>을 더해,<br />
             <span className="story-headline-final">우리만의 짜장을 만들었습니다.</span>
           </h2>
 
@@ -330,6 +330,101 @@ export default function Story() {
 
           .quote-line-1, .quote-line-2 {
             font-size: 13.5px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .story-draft-section {
+            padding-top: 32px;
+          }
+
+          .story-draft-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .story-visual-grid {
+            order: 1;
+          }
+
+          .story-text-content {
+            display: contents;
+          }
+
+          .story-label {
+            order: 0;
+            width: 100%;
+            margin: 0;
+            padding-top: 14px;
+            border-top: 1px solid rgba(197, 168, 128, 0.35);
+            text-align: left;
+          }
+
+          .story-main-heading {
+            order: 2;
+          }
+
+          .story-paragraphs {
+            order: 3;
+          }
+
+          .story-quote-card {
+            order: 4;
+          }
+
+          .story-main-heading {
+            width: 100%;
+            font-size: clamp(27px, 7vw, 36px);
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+          }
+
+          .story-headline-final {
+            white-space: normal;
+          }
+
+          .story-text-content,
+          .story-paragraphs {
+            width: 100%;
+            min-width: 0;
+          }
+
+          .story-p-lead,
+          .story-p-sub {
+            font-size: 15px;
+            overflow-wrap: anywhere;
+          }
+
+          .bottom-photo-row {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .story-quote-card {
+            width: 100%;
+            padding: 14px 12px;
+            gap: 10px;
+          }
+
+          .quote-message {
+            min-width: 0;
+          }
+
+          .quote-line-1,
+          .quote-line-2 {
+            font-size: 14px;
+            line-height: 1.5;
+            word-break: keep-all;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .bottom-photo-row {
+            grid-template-columns: 1fr;
+          }
+
+          .bottom-card {
+            height: 220px;
           }
         }
       `}</style>

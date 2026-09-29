@@ -260,6 +260,33 @@ export default function Navbar({ onOpenAuth }) {
             display: none;
           }
         }
+
+        @media (max-width: 767px) {
+          .navbar-container {
+            height: 68px;
+          }
+
+          .logo-img {
+            width: 44px;
+            height: 44px;
+          }
+
+          .nav-actions {
+            margin-left: auto;
+            gap: 6px;
+          }
+
+          .nav-auth-text-btn,
+          .user-nav-info {
+            display: none;
+          }
+
+          .nav-map-btn {
+            min-height: 44px;
+            padding: 8px 12px;
+          }
+
+        }
       `}</style>
     </nav>
   );

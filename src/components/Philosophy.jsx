@@ -26,14 +26,14 @@ export default function Philosophy() {
       photoTitle: '사진 공간',
       photoDesc: '상황버섯 차물 / 솥 / 달임수',
       imgSrc: '/ChatGPT Image 2026년 9월 5일 오전 12_10_07.png',
-      desc1: '상황버섯을 9시간씩 세 번 달여 한식 짜장 소스의 바탕을 만듭니다.',
+      desc1: '상황버섯을 3시간씩 세 번, 총 9시간 달여 한식 짜장 소스의 바탕을 만듭니다.',
       desc2: '오랜 달임으로 깊고 은은한 감칠맛의 기초를 만듭니다.'
     },
     {
       num: '04',
       title: '8일 밤낮, 192시간 숙성',
-      photoTitle: '사진 공간',
-      photoDesc: '숙성 소스 / 날짜 표기 용기 / 저온 보관 장면',
+      photoTitle: '',
+      photoDesc: '',
       imgSrc: '/ChatGPT Image 2026년 9월 5일 오전 01_16_20.png',
       desc1: '완성한 한식 짜장 소스를 낮은 온도에서 8일간 숙성합니다.',
       desc2: '우리가 찾아낸 192시간, 깊은 감칠맛과 속이 편한 짜장이 완성되는 시간입니다.'
@@ -53,10 +53,11 @@ export default function Philosophy() {
         {/* Header Title Area */}
         <div className="section-header text-center animate-fade-in-up">
           <span className="craft-label">TIME & CRAFT</span>
+          <p className="philosophy-evidence-label">192시간 숙성과학</p>
           
           <h2 className="philosophy-main-title">
             식탁에 오르는 시간 <span className="time-highlight">10분</span>,<br />
-            <span className="philosophy-title-final">그러나 우리는 <span className="time-highlight time-highlight-strong">201시간</span>을 준비합니다.</span>
+            <span className="philosophy-title-final">그러나 우리는 <span className="time-highlight time-highlight-strong">192시간</span>을 기다립니다.</span>
           </h2>
 
           <div className="time-pill-badge">
@@ -64,9 +65,7 @@ export default function Philosophy() {
           </div>
 
           <h3 className="five-promises-heading">산내돌짜장이 <span className="five-promises-emphasis">다른 5가지</span></h3>
-          <p className="section-guide-note">
-            사진이 들어가면 더 강해지는 구간이라 각 카드 위에 고정 사진 공간을 넣었습니다.
-          </p>
+          <p className="section-guide-note"></p>
         </div>
 
         {/* 5 Cards Grid */}
@@ -102,7 +101,6 @@ export default function Philosophy() {
 
                 {/* Card Text Content */}
                 <div className="card-body">
-                  <span className="card-num">{item.num}</span>
                   <h4 className="card-title">{item.title}</h4>
                   <div className="card-desc-group">
                     <p>{item.desc1}</p>
@@ -135,7 +133,6 @@ export default function Philosophy() {
 
                 {/* Card Text Content */}
                 <div className="card-body">
-                  <span className="card-num">{item.num}</span>
                   <h4 className="card-title">{item.title}</h4>
                   <div className="card-desc-group">
                     <p>{item.desc1}</p>
@@ -147,39 +144,39 @@ export default function Philosophy() {
           </div>
         </div>
 
-        {/* Bottom Closing Banner Statement */}
-        <div className="closing-statement text-center animate-fade-in-up">
-          <p className="statement-line-1">
-            깊은 감칠맛과 <span className="highlight-brown">속이 편한 짜장</span>을 위해
-          </p>
-          <p className="statement-line-2">
-            시간과 과정을 아끼지 않습니다.
-          </p>
-        </div>
       </div>
 
       <style>{`
         .philosophy-section {
-          background-color: #fbf8f3;
+          background-color: var(--brand-section-bg);
           padding: 100px 0 110px 0;
           position: relative;
-          border-top: 1px solid rgba(197, 168, 128, 0.2);
+          border-top: 1px solid var(--brand-section-divider);
         }
 
         .craft-label {
           font-size: 13.5px;
           font-weight: 800;
-          color: #a24b33;
+          color: var(--brand-card-accent);
           letter-spacing: 1.8px;
           margin-bottom: 14px;
           display: inline-block;
+        }
+
+        .philosophy-evidence-label {
+          margin: 0 0 12px;
+          color: var(--brand-card-accent);
+          font-size: 17px;
+          font-weight: 800;
+          line-height: 1.4;
+          letter-spacing: 0.02em;
         }
 
         .philosophy-main-title {
           font-size: 48px;
           font-weight: 900;
           line-height: 1.25;
-          color: #2b1e16;
+          color: var(--brand-card-title);
           letter-spacing: -1.2px;
           margin-bottom: 20px;
           word-break: keep-all;
@@ -190,7 +187,7 @@ export default function Philosophy() {
         }
 
         .time-highlight {
-          color: #a24b33;
+          color: var(--brand-card-accent);
           font-weight: 900;
         }
 
@@ -201,9 +198,9 @@ export default function Philosophy() {
         .time-pill-badge {
           display: inline-flex;
           align-items: center;
-          background-color: #ede4d7;
-          border: 1px solid rgba(197, 168, 128, 0.4);
-          color: #4a3a31;
+          background-color: var(--brand-card-frame);
+          border: 1px solid var(--brand-card-border);
+          color: var(--brand-card-body);
           font-size: 13.5px;
           font-weight: 700;
           padding: 6px 18px;
@@ -215,19 +212,19 @@ export default function Philosophy() {
         .five-promises-heading {
           font-size: 28px;
           font-weight: 800;
-          color: #2b1e16;
+          color: var(--brand-card-title);
           margin-bottom: 8px;
           letter-spacing: -0.5px;
         }
 
         .five-promises-emphasis {
-          color: #a24b33;
+          color: var(--brand-card-accent);
           font-weight: 900;
         }
 
         .section-guide-note {
           font-size: 13px;
-          color: #7a685e;
+          color: var(--brand-card-body);
           margin-bottom: 48px;
           letter-spacing: -0.2px;
         }
@@ -237,7 +234,7 @@ export default function Philosophy() {
           display: flex;
           flex-direction: column;
           gap: 24px;
-          margin-bottom: 70px;
+          margin-bottom: 0;
         }
 
         .cards-row {
@@ -257,11 +254,11 @@ export default function Philosophy() {
         }
 
         .promise-card {
-          background-color: #ede4d7;
-          border: 1px solid rgba(197, 168, 128, 0.45);
+          background-color: var(--brand-card-frame);
+          border: 1px solid var(--brand-card-border);
           border-radius: 20px;
           overflow: hidden;
-          box-shadow: 0 6px 20px rgba(43, 30, 22, 0.05);
+          box-shadow: var(--brand-card-shadow);
           display: flex;
           flex-direction: column;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -269,13 +266,13 @@ export default function Philosophy() {
 
         .promise-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 12px 28px rgba(43, 30, 22, 0.09);
+          box-shadow: var(--brand-card-shadow-hover);
         }
 
         .card-photo-box {
           height: 250px;
           position: relative;
-          background-color: #e2d6c4;
+          background-color: var(--brand-photo-surface);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -381,20 +378,20 @@ export default function Philosophy() {
         .photo-label {
           font-size: 13.5px;
           font-weight: 700;
-          color: #3b2c25;
+          color: var(--brand-card-title);
           letter-spacing: -0.2px;
         }
 
         .photo-guide {
           font-size: 11.5px;
-          color: #6a574c;
+          color: var(--brand-card-body);
           line-height: 1.35;
           letter-spacing: -0.2px;
         }
 
         .card-body {
           padding: 22px 20px 24px 20px;
-          background-color: #f5efe4;
+          background-color: var(--brand-card-surface);
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -412,7 +409,7 @@ export default function Philosophy() {
         .card-title {
           font-size: 17px;
           font-weight: 800;
-          color: #2b1e16;
+          color: var(--brand-card-title);
           margin-bottom: 12px;
           line-height: 1.35;
           letter-spacing: -0.4px;
@@ -426,7 +423,7 @@ export default function Philosophy() {
 
         .card-desc-group p {
           font-size: 13px;
-          color: #55443b;
+          color: var(--brand-card-body);
           line-height: 1.55;
           margin: 0;
           letter-spacing: -0.2px;
@@ -462,18 +459,41 @@ export default function Philosophy() {
           }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 767px) {
+          .philosophy-evidence-label {
+            margin-bottom: 10px;
+            font-size: 16px;
+          }
+
           .philosophy-main-title {
-            font-size: 22px;
+            font-size: clamp(26px, 6.5vw, 36px);
+            line-height: 1.3;
+          }
+          .philosophy-title-final {
+            white-space: normal;
+          }
+          .time-pill-badge {
+            max-width: 100%;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.5;
           }
           .top-row, .bottom-row {
             grid-template-columns: 1fr;
           }
+          .card-photo-box,
+          .master-card-photo-box,
+          .custom-cooking-card-photo-box {
+            height: clamp(190px, 58vw, 260px);
+          }
+          .card-title {
+            font-size: 18px;
+          }
+          .card-desc-group p {
+            font-size: 14.5px;
+          }
           .statement-line-1, .statement-line-2 {
             font-size: 20px;
-          }
-          .card-photo-box {
-            height: 130px;
           }
         }
       `}</style>

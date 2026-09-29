@@ -73,13 +73,14 @@ export default function HanokSpace() {
           word-break: keep-all;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
           .hanok-space-section {
             padding-bottom: 60px;
           }
 
           .hanok-space-image-wrap {
-            height: 300px;
+            width: calc(100% - 40px);
+            height: clamp(280px, 72vw, 380px);
           }
 
           .hanok-space-image {
@@ -97,7 +98,8 @@ export default function HanokSpace() {
           }
 
           .hanok-space-copy p {
-            font-size: 14px;
+            font-size: 15px;
+            line-height: 1.55;
           }
         }
       `}</style>

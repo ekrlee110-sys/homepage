@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
+import mugeunjiImage from '../pages/ChatGPT Image 2026년 9월 7일 오후 08_41_13 (3).png';
 
 export default function Hero() {
   const scrollToMenu = () => {
@@ -26,20 +27,6 @@ export default function Hero() {
             <strong>8일 밤낮, 192시간의 정성</strong>을 짜장에 담았습니다.
           </p>
 
-          {/* 5 Core Philosophies */}
-          <div className="hero-five-promises">
-            <h4 className="promises-title">
-              산내돌짜장이 다른 <span>5가지</span>
-            </h4>
-            <div className="promises-badges">
-              <span className="promise-pill">30년 내공, 한식대가의 비법</span>
-              <span className="promise-pill">야채를 우려 만든 수제기름</span>
-              <span className="promise-pill">9시간 달인 상황버섯 육수</span>
-              <span className="promise-pill">8일 밤낮, 192시간 숙성</span>
-              <span className="promise-pill">주문 즉시 고객 맞춤 조리</span>
-            </div>
-          </div>
-
           {/* CTA Buttons */}
           <div className="hero-cta-buttons">
             <button onClick={scrollToMenu} className="hero-btn-dark">
@@ -62,9 +49,10 @@ export default function Hero() {
           <div className="main-photo-card">
             <div className="photo-image-container">
               <img 
-                src="/dol_zzajang_main.png"
+                src={mugeunjiImage}
                 alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진" 
                 className="main-food-img"
+                style={{ objectPosition: 'center 51%' }}
               />
             </div>
           </div>
@@ -76,7 +64,7 @@ export default function Hero() {
           background-color: #fbf8f3;
           padding: 130px 0 80px 0;
           position: relative;
-          min-height: 88vh;
+          min-height: 0;
           display: flex;
           align-items: center;
         }
@@ -130,47 +118,6 @@ export default function Hero() {
         .hero-narrative strong {
           color: #2b1e16;
           font-weight: 700;
-        }
-
-        .hero-five-promises {
-          margin-bottom: 36px;
-          width: 100%;
-        }
-
-        .promises-title {
-          font-size: 14px;
-          font-weight: 700;
-          color: #2b1e16;
-          margin-bottom: 12px;
-          letter-spacing: -0.3px;
-        }
-
-        .promises-title span {
-          color: #a24b33;
-        }
-
-        .promises-badges {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          max-width: 580px;
-        }
-
-        .promise-pill {
-          background-color: #ede4d7;
-          color: #3e2d23;
-          font-size: 13.5px;
-          font-weight: 600;
-          padding: 7px 15px;
-          border-radius: 20px;
-          letter-spacing: -0.3px;
-          border: 1px solid rgba(197, 168, 128, 0.35);
-          transition: all 0.2s ease;
-        }
-
-        .promise-pill:hover {
-          background-color: #e2d6c4;
-          transform: translateY(-1px);
         }
 
         .hero-cta-buttons {
@@ -261,6 +208,86 @@ export default function Hero() {
           transform: scale(1.04);
         }
 
+        @media (max-width: 767px) {
+          .hero-draft-section {
+            min-height: 0;
+            padding: 96px 0 36px;
+          }
+
+          .hero-draft-container {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 24px;
+          }
+
+          .hero-left-content,
+          .hero-right-visual {
+            width: 100%;
+            min-width: 0;
+          }
+
+          .hero-headline {
+            font-size: clamp(30px, 7vw, 42px);
+            word-break: keep-all;
+          }
+
+          .hero-left-content {
+            align-items: center;
+            text-align: center;
+          }
+
+          .hero-narrative {
+            font-size: 15px;
+            margin-bottom: 26px;
+          }
+
+          .hero-narrative br {
+            display: none;
+          }
+
+          .hero-cta-buttons {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .hero-btn-dark,
+          .hero-btn-outline {
+            min-height: 48px;
+            justify-content: center;
+          }
+
+          .hero-right-visual {
+            display: block;
+          }
+
+          .main-photo-card {
+            width: 100%;
+            max-width: none;
+            padding: 8px;
+            border-radius: 20px;
+          }
+
+          .photo-image-container {
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+          }
+
+          .main-food-img {
+            object-position: center 51%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .hero-cta-buttons {
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .hero-btn-dark,
+          .hero-btn-outline {
+            width: 100%;
+          }
+        }
+
         .photo-caption-overlay {
           position: absolute;
           bottom: 0;
@@ -298,99 +325,6 @@ export default function Hero() {
           letter-spacing: -0.2px;
         }
 
-        @media (max-width: 640px) {
-          .hero-draft-container {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-
-          .hero-headline {
-            font-size: 48px;
-          }
-
-          .hero-left-content {
-            align-items: center;
-            text-align: center;
-          }
-
-          .promises-badges {
-            justify-content: center;
-          }
-
-          .hero-cta-buttons {
-            justify-content: center;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .hero-draft-section {
-            padding: 100px 0 60px 0;
-          }
-
-          .hero-headline {
-            font-size: clamp(31px, 9vw, 38px);
-            letter-spacing: -1px;
-            margin-bottom: 18px;
-          }
-
-          .hero-narrative {
-            font-size: 15px;
-            margin-bottom: 26px;
-          }
-
-          .hero-narrative br {
-            display: none;
-          }
-
-          .hero-five-promises {
-            margin-bottom: 28px;
-          }
-
-          .promises-badges {
-            gap: 6px;
-          }
-
-          .hero-cta-buttons {
-            gap: 8px;
-          }
-
-          .promise-pill {
-            font-size: 12.5px;
-            padding: 6px 12px;
-          }
-
-          .hero-cta-buttons {
-            flex-direction: column;
-            width: 100%;
-          }
-
-          .hero-btn-dark, .hero-btn-outline {
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-          }
-
-          .main-photo-card {
-            padding: 8px;
-            border-radius: 20px;
-          }
-
-          .photo-image-container {
-            border-radius: 14px;
-          }
-
-          .photo-caption-overlay {
-            padding: 20px 14px 14px;
-          }
-
-          .photo-title {
-            font-size: 15px;
-          }
-
-          .photo-desc {
-            font-size: 11.5px;
-          }
-        }
       `}</style>
     </section>
   );
