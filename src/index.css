@@ -15,6 +15,19 @@
   --accent-gold-dark: #a68453;/* Roasted Gold */
   --accent-spicy: #b94a38;     /* Sizzling Red (Spicy) */
   --accent-spicy-hover: #983827;
+
+  /* Shared brand palette for customer-facing cards */
+  --brand-section-bg: #fbf8f3;
+  --brand-card-frame: #ede4d7;
+  --brand-card-surface: #f5efe4;
+  --brand-photo-surface: #e4d7c5;
+  --brand-card-title: #2b1e16;
+  --brand-card-body: #4a3a31;
+  --brand-card-accent: #8c2d19;
+  --brand-card-border: rgba(197, 168, 128, 0.36);
+  --brand-section-divider: rgba(197, 168, 128, 0.22);
+  --brand-card-shadow: 0 6px 20px rgba(43, 30, 22, 0.045);
+  --brand-card-shadow-hover: 0 12px 28px rgba(43, 30, 22, 0.07);
   
   --shadow-sm: 0 2px 8px rgba(44, 34, 30, 0.04);
   --shadow-md: 0 8px 24px rgba(44, 34, 30, 0.08);
@@ -87,6 +100,24 @@ button {
 @media (max-width: 768px) {
   .section-padding {
     padding: 60px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  #root,
+  .home-page {
+    width: 100%;
+    min-width: 0;
+    overflow-x: clip;
   }
 }
 

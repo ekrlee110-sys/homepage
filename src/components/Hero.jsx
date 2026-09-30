@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
+import mugeunjiImage from '../pages/ChatGPT Image 2026년 9월 7일 오후 08_41_13 (3).png';
 
 export default function Hero() {
   const scrollToMenu = () => {
@@ -13,12 +14,12 @@ export default function Hero() {
     <section className="hero-draft-section">
       <div className="hero-draft-container container">
         {/* Left Text Content */}
-        <div className="hero-left-content animate-fade-in-up">
+        <div className="hero-left-content">
           <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
-
-          <h1 className="hero-heading">
+          
+          <h1 className="hero-headline">
             좋아하는 짜장면,<br />
-            <span className="hero-heading-point">속까지 편했으면</span> 했습니다.
+            <span className="hero-headline-emphasis">속까지 편했으면</span> 했습니다.
           </h1>
 
           <p className="hero-narrative">
@@ -26,29 +27,15 @@ export default function Hero() {
             <strong>8일 밤낮, 192시간의 정성</strong>을 짜장에 담았습니다.
           </p>
 
-          {/* 5 Core Philosophies */}
-          <div className="hero-five-promises">
-            <h4 className="promises-title">
-              산내돌짜장의 고집, <span>5가지</span>
-            </h4>
-            <div className="promises-badges">
-              <span className="promise-pill">돼지기름 없이, 직접 만든 식물성 기름</span>
-              <span className="promise-pill">주문마다 따로 조리</span>
-              <span className="promise-pill">192시간 저온 숙성</span>
-              <span className="promise-pill">9시간 상황버섯 달임</span>
-              <span className="promise-pill">한식대가의 경험</span>
-            </div>
-          </div>
-
           {/* CTA Buttons */}
           <div className="hero-cta-buttons">
             <button onClick={scrollToMenu} className="hero-btn-dark">
               대표 메뉴 보기
             </button>
-            <a
-              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5"
-              target="_blank"
-              rel="noopener noreferrer"
+            <a 
+              href="https://map.naver.com/p/search/%EC%82%B0%EB%82%B4%EB%8F%8C%EC%A7%9C%EC%9E%A5" 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="hero-btn-outline"
             >
               <MapPin size={16} />
@@ -58,19 +45,15 @@ export default function Hero() {
         </div>
 
         {/* Right Photo Space */}
-        <div className="hero-right-visual animate-fade-in">
+        <div className="hero-right-visual">
           <div className="main-photo-card">
             <div className="photo-image-container">
-              <img
-                src="/mugeunji_dol_zzajang.png"
-                alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진"
+              <img 
+                src={mugeunjiImage}
+                alt="지글지글 끓는 산내돌짜장과 365 묵은지 쌈 대표 음식 사진" 
                 className="main-food-img"
+                style={{ objectPosition: 'center 51%' }}
               />
-              <div className="photo-caption-overlay">
-                <span className="photo-tag">대표 시그니처</span>
-                <p className="photo-title">지글지글 끓는 돌짜장 + 묵은지 쌈</p>
-                <p className="photo-desc">192시간 저온 숙성 특제 한식 소스로 완성한 깊은 풍미</p>
-              </div>
             </div>
           </div>
         </div>
@@ -81,7 +64,7 @@ export default function Hero() {
           background-color: #fbf8f3;
           padding: 130px 0 80px 0;
           position: relative;
-          min-height: 88vh;
+          min-height: 0;
           display: flex;
           align-items: center;
         }
@@ -101,7 +84,7 @@ export default function Hero() {
         }
 
         .hero-subtitle {
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 700;
           color: #a24b33;
           letter-spacing: -0.2px;
@@ -119,6 +102,11 @@ export default function Hero() {
           word-break: keep-all;
         }
 
+        .hero-headline-emphasis {
+          color: #a24b33;
+          font-weight: 900;
+        }
+
         .hero-narrative {
           font-size: 16px;
           line-height: 1.68;
@@ -130,47 +118,6 @@ export default function Hero() {
         .hero-narrative strong {
           color: #2b1e16;
           font-weight: 700;
-        }
-
-        .hero-five-promises {
-          margin-bottom: 36px;
-          width: 100%;
-        }
-
-        .promises-title {
-          font-size: 14px;
-          font-weight: 700;
-          color: #2b1e16;
-          margin-bottom: 12px;
-          letter-spacing: -0.3px;
-        }
-
-        .promises-title span {
-          color: #a24b33;
-        }
-
-        .promises-badges {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          max-width: 580px;
-        }
-
-        .promise-pill {
-          background-color: #ede4d7;
-          color: #3e2d23;
-          font-size: 13.5px;
-          font-weight: 600;
-          padding: 7px 15px;
-          border-radius: 20px;
-          letter-spacing: -0.3px;
-          border: 1px solid rgba(197, 168, 128, 0.35);
-          transition: all 0.2s ease;
-        }
-
-        .promise-pill:hover {
-          background-color: #e2d6c4;
-          transform: translateY(-1px);
         }
 
         .hero-cta-buttons {
@@ -254,11 +201,112 @@ export default function Hero() {
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.6s ease;
+          animation: none;
         }
 
-        .main-photo-card:hover .main-food-img {
-          transform: scale(1.04);
+        .hero-subtitle { animation: heroReveal 0.65s ease-out both; }
+        .hero-headline { animation: heroReveal 0.7s ease-out 0.18s both; }
+        .hero-narrative { animation: heroReveal 0.7s ease-out 0.35s both; }
+        .hero-cta-buttons { animation: heroReveal 0.7s ease-out 0.5s both; }
+        .hero-right-visual { animation: heroReveal 0.8s ease-out 0.25s both; }
+
+        @keyframes heroReveal {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroImageBreathe {
+          from { transform: scale(1); }
+          to { transform: scale(1.045); }
+        }
+
+        @media (max-width: 767px), (prefers-reduced-motion: reduce) {
+          .main-food-img { animation: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-subtitle, .hero-headline, .hero-narrative,
+          .hero-cta-buttons, .hero-right-visual { animation: none; }
+        }
+
+        @media (max-width: 767px) {
+          .hero-draft-section {
+            min-height: 0;
+            padding: 96px 0 36px;
+          }
+
+          .hero-draft-container {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 24px;
+          }
+
+          .hero-left-content,
+          .hero-right-visual {
+            width: 100%;
+            min-width: 0;
+          }
+
+          .hero-headline {
+            font-size: clamp(30px, 7vw, 42px);
+            word-break: keep-all;
+          }
+
+          .hero-left-content {
+            align-items: center;
+            text-align: center;
+          }
+
+          .hero-narrative {
+            font-size: 15px;
+            margin-bottom: 26px;
+          }
+
+          .hero-narrative br {
+            display: none;
+          }
+
+          .hero-cta-buttons {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .hero-btn-dark,
+          .hero-btn-outline {
+            min-height: 48px;
+            justify-content: center;
+          }
+
+          .hero-right-visual {
+            display: block;
+          }
+
+          .main-photo-card {
+            width: 100%;
+            max-width: none;
+            padding: 8px;
+            border-radius: 20px;
+          }
+
+          .photo-image-container {
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+          }
+
+          .main-food-img {
+            object-position: center 51%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .hero-cta-buttons {
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .hero-btn-dark,
+          .hero-btn-outline {
+            width: 100%;
+          }
         }
 
         .photo-caption-overlay {
@@ -298,61 +346,6 @@ export default function Hero() {
           letter-spacing: -0.2px;
         }
 
-        @media (max-width: 1024px) {
-          .hero-draft-container {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-
-          .hero-headline {
-            font-size: 48px;
-          }
-
-          .hero-left-content {
-            align-items: center;
-            text-align: center;
-          }
-
-          .promises-badges {
-            justify-content: center;
-          }
-
-          .hero-cta-buttons {
-            justify-content: center;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .hero-draft-section {
-            padding: 100px 0 60px 0;
-          }
-
-          .hero-headline {
-            font-size: 38px;
-          }
-
-          .promise-pill {
-            font-size: 12.5px;
-            padding: 6px 12px;
-          }
-
-          .hero-cta-buttons {
-            flex-direction: column;
-            width: 100%;
-          }
-
-          .hero-btn-dark, .hero-btn-outline {
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-          }
-        }
-       .hero-heading-point {
-  color: #C45132;
-
-
-
-}   
       `}</style>
     </section>
   );

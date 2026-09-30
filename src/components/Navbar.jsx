@@ -56,6 +56,7 @@ export default function Navbar({ onOpenAuth }) {
           <button onClick={() => scrollToSection('menu')} className="nav-link-btn">대표 메뉴</button>
           <button onClick={() => scrollToSection('set-menu')} className="nav-link-btn">세트 메뉴</button>
           <button onClick={() => scrollToSection('trust')} className="nav-link-btn">인증과 신뢰</button>
+          <button onClick={() => scrollToSection('social')} className="nav-link-btn">영상·소식</button>
           <button onClick={() => scrollToSection('reservation')} className="nav-link-btn">오시는 길</button>
         </div>
 
@@ -246,12 +247,12 @@ export default function Navbar({ onOpenAuth }) {
           color: #1f1916;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1280px) {
           .nav-links {
-            gap: 14px;
+            gap: 12px;
           }
           .nav-link-btn {
-            font-size: 13px;
+            font-size: 12.5px;
           }
         }
 
@@ -259,6 +260,33 @@ export default function Navbar({ onOpenAuth }) {
           .nav-links {
             display: none;
           }
+        }
+
+        @media (max-width: 767px) {
+          .navbar-container {
+            height: 68px;
+          }
+
+          .logo-img {
+            width: 44px;
+            height: 44px;
+          }
+
+          .nav-actions {
+            margin-left: auto;
+            gap: 6px;
+          }
+
+          .nav-auth-text-btn,
+          .user-nav-info {
+            display: none;
+          }
+
+          .nav-map-btn {
+            min-height: 44px;
+            padding: 8px 12px;
+          }
+
         }
       `}</style>
     </nav>

@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Story from '../components/Story';
+import HanokSpace from '../components/HanokSpace';
+import BrandPhilosophy from '../components/BrandPhilosophy';
 import Philosophy from '../components/Philosophy';
 import Menu from '../components/Menu';
 import Trust from '../components/Trust';
+import Social from '../components/Social';
 import WhySannae from '../components/WhySannae';
 import Reservation from '../components/Reservation';
 import AuthModal from '../components/AuthModal';
 import Navbar from '../components/Navbar';
-
 export default function Home() {
   const [authOpen, setAuthOpen] = useState(false);
   const location = useLocation();
@@ -30,9 +32,12 @@ export default function Home() {
       <main>
         <Hero />
         <Story />
+        <HanokSpace />
+        <BrandPhilosophy />
         <Philosophy />
         <Menu />
         <Trust />
+        <Social />
         <WhySannae />
         <Reservation />
       </main>
