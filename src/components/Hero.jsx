@@ -14,7 +14,7 @@ export default function Hero() {
     <section className="hero-draft-section">
       <div className="hero-draft-container container">
         {/* Left Text Content */}
-        <div className="hero-left-content animate-fade-in-up">
+        <div className="hero-left-content">
           <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
           
           <h1 className="hero-headline">
@@ -45,7 +45,7 @@ export default function Hero() {
         </div>
 
         {/* Right Photo Space */}
-        <div className="hero-right-visual animate-fade-in">
+        <div className="hero-right-visual">
           <div className="main-photo-card">
             <div className="photo-image-container">
               <img 
@@ -201,11 +201,32 @@ export default function Hero() {
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.6s ease;
+          animation: none;
         }
 
-        .main-photo-card:hover .main-food-img {
-          transform: scale(1.04);
+        .hero-subtitle { animation: heroReveal 0.65s ease-out both; }
+        .hero-headline { animation: heroReveal 0.7s ease-out 0.18s both; }
+        .hero-narrative { animation: heroReveal 0.7s ease-out 0.35s both; }
+        .hero-cta-buttons { animation: heroReveal 0.7s ease-out 0.5s both; }
+        .hero-right-visual { animation: heroReveal 0.8s ease-out 0.25s both; }
+
+        @keyframes heroReveal {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroImageBreathe {
+          from { transform: scale(1); }
+          to { transform: scale(1.045); }
+        }
+
+        @media (max-width: 767px), (prefers-reduced-motion: reduce) {
+          .main-food-img { animation: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-subtitle, .hero-headline, .hero-narrative,
+          .hero-cta-buttons, .hero-right-visual { animation: none; }
         }
 
         @media (max-width: 767px) {

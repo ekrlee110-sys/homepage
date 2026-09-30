@@ -7,6 +7,7 @@ import BrandPhilosophy from '../components/BrandPhilosophy';
 import Philosophy from '../components/Philosophy';
 import Menu from '../components/Menu';
 import Trust from '../components/Trust';
+import Social from '../components/Social';
 import WhySannae from '../components/WhySannae';
 import Reservation from '../components/Reservation';
 import AuthModal from '../components/AuthModal';
@@ -36,6 +37,7 @@ export default function Home() {
         <Philosophy />
         <Menu />
         <Trust />
+        <Social />
         <WhySannae />
         <Reservation />
       </main>
