@@ -4,7 +4,17 @@ export default function BrandPhilosophy() {
   return (
     <section className="brand-philosophy-section" aria-label="산내돌짜장의 브랜드 철학">
       <div className="brand-philosophy-content container">
-        <h2 className="brand-philosophy-hanja">千時一道 · 名傳萬里</h2>
+       <img
+  src="/brand-frame.png"
+  alt="천시일도·명전만리"
+  style={{
+    display: 'block',
+    width: '100%',
+    maxWidth: '900px',
+    height: 'auto',
+    margin: '0 auto 16px',
+  }}
+/>
         <p className="brand-philosophy-korean">천시일도 · 명전만리</p>
         <p className="brand-philosophy-meaning">
           시간을 들여 한 길을 만들면,<br />

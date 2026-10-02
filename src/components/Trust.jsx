@@ -1,81 +1,36 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Trust() {
-  const masterCertificates = [
-    {
-      id: 1,
-      photoTitle: '',
-      photoDesc: '',
-      title: '대한민국 한식대가',
-      desc: ''
-    },
-    {
-      id: 2,
-      photoTitle: '',
-      photoDesc: '대한민국 신지식인',
-      title: '대한민국 신지식인',
-      desc: ''
-    },
-    {
-      id: 3,
-      photoTitle: '',
-      photoDesc: '',
-      title: '해양수산부 장관상',
-      desc: ''
-    },
-    {
-      id: 4,
-      photoTitle: '',
-      photoDesc: '',
-      title: '발효대가',
-      desc: ''
-    },
-    {
-      id: 5,
-      photoTitle: '',
-      photoDesc: '',
-      title: '한돈 인증',
-      desc: ''
-    },
-    {
-      id: 6,
-      photoTitle: '',
-      photoDesc: '',
-      sectionTitle: '방송 · 미디어',
-      title: '방송이 소개한 산내돌짜장',
-      desc: '',
-      broadcastGroups: [
-        {
-          network: 'KBS 2TV 생생정보',
-          note: '2회 소개',
-          appearances: [
-            { details: '2161회 · 2024.11.08', menu: '묵은지짜장면' },
-            { details: '888회 · 2019.08.26', menu: '돌짜장 / 통닭' }
-          ]
-        },
-        {
-          network: 'SBS 생방송투데이',
-          appearances: [
-            { details: '2979회 · 2022.01.18', menu: '돌짜장' }
-          ]
-        },
-        {
-          network: 'MBC 오늘N',
-          appearances: [
-            { details: '2665회 · 2026.02.25', menu: '묵은지돌짜장 / 매콤갈비찜' }
-          ]
-        }
-      ]
-    },
-    {
-      id: 7,
-      photoTitle: '',
-      photoDesc: '',
-      title: '백악관 셰프가 찾은 산내돌짜장',
-      desc: '산내돌짜장 방문 · 유튜브 소개',
-      mediaImage: '/whitehouse-chef.png'
-    }
-  ];
+  const certificates = [{"id": "korean-food-master", "image": "/trust/updated/korean-food-master.jpg", "title": "대한민국 한식대가", "desc": "현대음식·소스 · 대한민국한식포럼 · 2025년"}, {"id": "korean-cuisine-master", "image": "/trust/updated/korean-cuisine-master.jpg", "title": "대한민국 한식조리명인", "desc": "발효음식 · 국제명인조리사협회 · 2022년"}, {"id": "fermentation-master", "image": "/trust/updated/fermentation-master.jpg", "title": "대한민국 발효대가", "desc": "한국장류발효인협회 · 2025년"}];
+  const qualifications = [{"id": "kimchi-instructor", "image": "/trust/updated/kimchi-instructor.jpg", "title": "김치지도사", "desc": "대한민국한식포럼 · 민간자격 · 2024년", "crop": {"viewBox": "0 0 730 1055", "width": 1536, "height": 1055}}, {"id": "local-food-instructor", "image": "/trust/updated/local-food-instructor.jpg", "title": "향토음식지도사", "desc": "대한민국한식포럼 · 민간자격 · 2024년", "crop": {"viewBox": "791 0 745 1055", "width": 1536, "height": 1055}}, {"id": "soy-sauce-appraiser", "image": "/trust/updated/soy-sauce-appraiser.jpg", "title": "씨간장평가사", "desc": "한국장류발효인협회 · 2025년"}, {"id": "traditional-sauce-manager", "image": "/trust/updated/traditional-sauce-manager.jpg", "title": "전통장류관리사 2급", "desc": "한국전통치유발효협회 · 민간자격 · 2025년", "crop": {"viewBox": "0 0 730 1076", "width": 1536, "height": 1076}}, {"id": "traditional-sauce-maker", "image": "/trust/updated/traditional-sauce-maker.jpg", "title": "전통장류제조사 2급", "desc": "한국전통치유발효협회 · 민간자격 · 2025년", "crop": {"viewBox": "791 0 745 1076", "width": 1536, "height": 1076}}];
+  const awards = [{"id": "local-food-award", "image": "/trust/updated/local-food-award.jpg", "title": "향토음식 부문 최우수상", "desc": "해양수산부장관상 · 한국조리과학연구회팀 · 2025년", "crop": {"viewBox": "791 0 745 1023", "width": 1536, "height": 1023}}, {"id": "master-chef-award", "image": "/trust/updated/master-chef-award.jpg", "title": "코리아마스터셰프챔피언십 최우수상", "desc": "한국조리기능장협회 · 2025년"}, {"id": "healing-food-award", "image": "/trust/updated/healing-food-award.jpg", "title": "대한민국 치유식품대전 최우수상", "desc": "서울특별시의회의장상 · 2025년"}, {"id": "knowledge-recognition", "image": "/trust/updated/knowledge-recognition.jpg", "title": "대한민국 신지식인", "desc": "한국신지식인협회중앙회 · K-푸드 미슐랭 분야"}, {"id": "consumer-assessment", "image": "/trust/updated/consumer-assessment.jpg", "title": "KCIA 외식업 우수 평가", "desc": "한국소비자산업평가 · 대전 동구 중식당 부문 · 2022년"}];
+  const education = [{"id": "yonsei-course", "image": "/trust/updated/yonsei-course.jpg", "title": "외식산업고위자과정 수료", "desc": "연세대학교 생활환경대학원 · 제56기 · 2024년"}, {"id": "jangbogo-course", "image": "/trust/updated/jangbogo-course.jpg", "title": "장보고아카데미 수료", "desc": "장보고글로벌재단 · 7기 CEO 역량강화과정 · 2026년"}, {"id": "traditional-sauce-course", "image": "/trust/updated/traditional-sauce-course.jpg", "title": "전통장류제조사과정 수료", "desc": "한국전통치유발효협회 · 28시간 교육 · 2025년", "crop": {"viewBox": "791 0 745 1033", "width": 1536, "height": 1033}}, {"id": "korean-food-adviser", "image": "/trust/updated/korean-food-adviser.jpg", "title": "한식 자문위원 임명", "desc": "한국전통치유발효협회 · 2025년"}, {"id": "healing-food-appointment", "image": "/trust/updated/healing-food-appointment.jpg", "title": "국제힐링푸드연맹 위촉", "desc": "국제힐링푸드연맹 · 2025년"}, {"id": "journalist-commendation", "image": "/trust/updated/journalist-commendation.jpg", "title": "저널리스트아카데미 표창", "desc": "한국시민기자협회 뉴스포털1 · 2026년"}, {"id": "alumni-commendation", "image": "/trust/updated/alumni-commendation.jpg", "title": "총동창회 표창", "desc": "우송고등학교(대전상고) 총동창회 · 2025년"}, {"id": "sauce-education-commendation", "image": "/trust/updated/sauce-education-commendation.jpg", "title": "전통장류 교육 표창", "desc": "한국전통치유발효협회 · 2025년", "crop": {"viewBox": "0 0 730 1033", "width": 1536, "height": 1033}}];
+  const support = [{"id": "red-cross-sharing", "image": "/trust/updated/red-cross-sharing.jpg", "title": "희망풍차 나눔음식점", "desc": "대한적십자사"}, {"id": "bridge-store", "image": "/trust/updated/bridge-store.jpg", "title": "브리지스토어", "desc": "희망을 잇다 · 산내돌짜장 대전본점"}];
+  const serviceAwards = [{"id": "donggu-commendation", "image": "/trust/updated/donggu-commendation.jpg", "title": "장애인복지 증진 공로 표창", "desc": "대전광역시 동구청장 · 2025년"}, {"id": "junggu-commendation", "image": "/trust/updated/junggu-commendation.jpg", "title": "지역사회 공로 표창", "desc": "대전광역시 중구의회의장 · 2017년"}, {"id": "volunteer-commendation", "image": "/trust/updated/volunteer-commendation.jpg", "title": "봉사상 표창", "desc": "1004클럽나눔공동체 · 2026년"}, {"id": "fermentation-association-commendation", "image": "/trust/updated/fermentation-association-commendation.jpg", "title": "나눔·봉사 공로 표창", "desc": "한국전통치유발효협회 · 2025년"}];
+  const relatedCertificates = [{"id": "korean-food-master-certificate", "image": "/trust/updated/korean-food-master-certificate.jpg", "title": "대한민국 한식대가 인증서", "desc": "현대음식·소스 · 대한민국한식포럼 · 2025년"}, {"id": "cuisine-master-certificate", "image": "/trust/updated/cuisine-master-certificate.jpg", "title": "대한민국 한식조리명인 인증서", "desc": "발효음식 · 국제명인조리사협회 · 2022년", "crop": {"viewBox": "791 0 745 1024", "width": 1536, "height": 1024}}];
+  const media = [{"image": "/trust/photo-12.jpg", "title": "KBS 2TV 생생정보", "desc": "묵은지 돌짜장"}, {"image": "/trust/photo-13.jpg", "title": "KBS 2TV 생생정보", "desc": "통닭 돌짜장"}, {"image": "/trust/photo-14.jpg", "title": "SBS 생방송 투데이", "desc": "돌짜장"}, {"image": "/trust/photo-15.jpg", "title": "SBS 생방송 투데이", "desc": "짜장 소스"}, {"image": "/trust/photo-16.jpg", "title": "MBC 오늘N", "desc": "묵은지 돌짜장"}, {"image": "/trust/photo-17.jpg", "title": "MBC 오늘N", "desc": "산내돌짜장 소개"}, {"image": "/trust/photo-18.jpg", "title": "충청신문", "desc": "산내돌짜장 소개 · 2025년"}];
+  const [selected, setSelected] = useState(null);
+  const [expanded, setExpanded] = useState({});
+  const viewer = useRef(null);
+  useEffect(() => {
+    if (selected && viewer.current && !viewer.current.open) viewer.current.showModal();
+  }, [selected]);
+  const picture = (item) => item.crop ? (
+    <svg className="certificate-picture" viewBox={item.crop.viewBox} role="img" aria-label={item.title}>
+      <title>{item.title}</title><image href={item.image} width={item.crop.width} height={item.crop.height} />
+    </svg>
+  ) : <img src={item.image} alt={item.title} loading="lazy" />;
+  const cards = (items, kind = '') => (
+    <div className={`evidence-grid ${kind}`}>
+      {items.map(item => <article className="evidence-card" key={item.id || item.image}>
+        <button type="button" className="evidence-photo" onClick={() => setSelected(item)} aria-label={`${item.title} 사진 크게 보기`}>
+          {picture(item)}<span className="photo-zoom">크게 보기</span>
+        </button>
+        <div><h3>{item.title}</h3><p>{item.desc}</p></div>
+      </article>)}
+    </div>
+  );
+  const more = (title, items, kind = '') => <details className="evidence-more" onToggle={event => { const open = event.currentTarget.open; setExpanded(previous => ({ ...previous, [title]: open })); }}><summary>{title}<span>{items.length}건</span></summary>{expanded[title] && cards(items, kind)}</details>;
 
   const reviews = [
     {
@@ -98,74 +53,36 @@ export default function Trust() {
   return (
     <section id="trust" className="trust-draft-section section-padding">
       <div className="container">
-        {/* 1. MASTER & TRUST Section */}
-        <div className="master-trust-block">
-          <div className="master-trust-container">
-            {/* Left Header */}
-            <div className="trust-header-left animate-fade-in-up">
-              <span className="trust-label">MASTER & TRUST</span>
-              <h2 className="trust-headline">
-                인증과 신뢰도
-              </h2>
-              <p className="trust-desc"></p>
+        <nav className="trust-shortcuts" aria-label="인증과 나눔 바로가기">
+          <a href="#trust-certificates">인증·수상</a><a href="#trust-media">방송·언론</a><a href="#trust-sharing">나눔·후원</a>
+        </nav>
+        <div className="evidence-block" id="trust-certificates">
+          <span className="trust-label">인증·수상</span><h2 className="trust-headline">한식의 경험을 한 그릇에 담습니다</h2>
+          <p className="evidence-intro">한식과 발효의 경험에 192시간 숙성의 정성을 더했습니다.</p>
+          {cards(certificates, 'main-certificates')}
+          <p className="evidence-hint">사진을 누르면 문서를 크게 볼 수 있습니다</p>
+          {more('대표 인증서 보기', relatedCertificates)}
+          {more('한식·발효 자격', qualifications)}
+          {more('수상·평가', awards)}
+          {more('교육·대외활동', education)}
+        </div>
+        <div className="evidence-block" id="trust-media">
+          <span className="trust-label">방송·언론</span><h2 className="trust-headline">방송이 소개한 산내돌짜장</h2>
+          {cards(media.slice(0, 3), 'media-evidence')}
+          {more('방송·언론 더 보기', media.slice(3), 'media-evidence')}
+        </div>
+        <div className="evidence-block" id="trust-sharing">
+          <span className="trust-label">나눔·후원</span><h2 className="trust-headline">따뜻한 한 끼를 함께 나눕니다</h2>
+          <div className="sharing-story">
+            <div><h3>동구아름다운복지관과 함께합니다</h3>
+              <p>지역사회 장애인분들과 일상을 나누며 꾸준히 후원하고 있습니다.</p>
+              <ul className="sharing-actions"><li>후원금 전달</li><li>매장 식사 지원</li><li>매달 감자탕용 등뼈 지원</li></ul>
+              <p>직접 짜장면을 만들어 대접하는 식사 봉사에도 함께했습니다.</p>
             </div>
-
-            {/* Right 6 Cards Grid (2 cols x 3 rows) */}
-            <div className="trust-cards-grid animate-fade-in">
-              {masterCertificates.map((item) => (
-                <div key={item.id} className={`trust-card ${item.broadcastGroups ? 'trust-media-card' : ''} ${item.mediaImage ? 'trust-guest-card' : ''}`}>
-                  {/* Photo Space */}
-                  {item.mediaImage ? (
-                    <div className="trust-guest-photo-box">
-                      <img
-                        className="trust-guest-photo"
-                        src={item.mediaImage}
-                        alt="백악관 셰프와 산내돌짜장 대표가 매장에서 함께 찍은 사진"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <div className={`trust-photo-box ${item.broadcastGroups ? 'trust-media-photo-slot' : ''}`}>
-                      <div className="trust-photo-overlay">
-                        <span className="t-photo-title">{item.photoTitle}</span>
-                        <span className="t-photo-desc">{item.photoDesc}</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Body Text */}
-                  <div className="trust-card-body">
-                    {item.sectionTitle && <span className="trust-media-section-title">{item.sectionTitle}</span>}
-                    <h4 className="trust-item-title">{item.title}</h4>
-                    {item.broadcastGroups ? (
-                      <div className="broadcast-list">
-                        {item.broadcastGroups.map((group) => (
-                          <div className="broadcast-group" key={group.network}>
-                            <div className="broadcast-group-heading">
-                              <span className="broadcast-network">{group.network}</span>
-                              {group.note && <span className="broadcast-repeat-note">{group.note}</span>}
-                            </div>
-                            <ul className="broadcast-appearances">
-                              {group.appearances.map((appearance) => (
-                                <li className="broadcast-entry" key={`${appearance.details}-${appearance.menu}`}>
-                                  <span className="broadcast-details">{appearance.details}</span>
-                                  <span className="broadcast-menu">{appearance.menu}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    ) : item.mediaImage ? (
-                      <p className="trust-guest-desc">{item.desc}</p>
-                    ) : (
-                      <p className="trust-item-desc">{item.desc}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <figure><img src="/trust/photo-19.jpg" alt="짜장면 식사 봉사를 위해 준비한 재료" loading="lazy" /><figcaption>식사 봉사를 위해 준비한 재료</figcaption></figure>
           </div>
+          {cards(support, 'support-evidence')}
+          {more('나눔·봉사 표창 보기', serviceAwards)}
         </div>
 
         {/* 2. REAL VOICE Section */}
@@ -202,7 +119,58 @@ export default function Trust() {
         </div>
       </div>
 
+      <dialog ref={viewer} className="evidence-viewer" onClose={() => setSelected(null)} onClick={event => { if (event.target === event.currentTarget) viewer.current.close(); }}>
+        {selected && <>
+          <div className="viewer-header"><div><h2>{selected.title}</h2><p>{selected.desc}</p></div><button type="button" onClick={() => viewer.current.close()} aria-label="사진 닫기">닫기 ×</button></div>
+          <div className="viewer-picture">{picture(selected)}</div>
+          <a className="viewer-original" href={selected.image} target="_blank" rel="noopener noreferrer">원본 사진 보기 ↗</a>
+        </>}
+      </dialog>
+
       <style>{`
+        .trust-shortcuts { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:36px; }
+        .trust-shortcuts a { padding:10px 18px; border:1px solid #d8d3c9; border-radius:24px; color:#285342; text-decoration:none; font-size:14px; font-weight:700; }
+        .trust-shortcuts a:hover { background:#ecefe9; }
+        .evidence-block { margin-bottom:80px; scroll-margin-top:100px; }
+        .evidence-intro { max-width:760px; line-height:1.8; margin:0 0 28px; color:#444; word-break:keep-all; }
+        .evidence-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; align-items:stretch; }
+        .evidence-card { min-width:0; display:flex; flex-direction:column; border:1px solid #ded8ce; border-radius:10px; overflow:hidden; background:#fffdf8; }
+        .evidence-photo { position:relative; display:flex; align-items:center; justify-content:center; width:100%; height:280px; flex:none; padding:18px; border:0; box-sizing:border-box; background:#f5f2ec; cursor:zoom-in; }
+        .evidence-photo img, .certificate-picture { display:block; width:100%; height:100%; object-fit:contain; }
+        .main-certificates .evidence-photo { height:320px; padding:18px; }
+        .evidence-card > div { flex:1; padding:20px; border-top:1px solid #e5dfd5; }
+        .evidence-card h3 { color:#171717; font-size:18px; line-height:1.5; margin:0 0 8px; word-break:keep-all; }
+        .evidence-card p { color:#555; font-size:13px; line-height:1.7; margin:0; word-break:keep-all; }
+        .photo-zoom { position:absolute; right:10px; bottom:10px; padding:4px 8px; background:rgba(255,255,255,.92); color:#555; font-size:11px; border-radius:4px; }
+        .evidence-hint { margin:12px 0 24px; color:#666; font-size:12px; }
+        .media-evidence .evidence-photo { height:190px; padding:12px; }
+        .evidence-more { margin-top:12px; border:1px solid #ded8ce; border-radius:8px; background:#fffdf8; overflow:hidden; }
+        .evidence-more summary { cursor:pointer; color:#285342; font-weight:700; padding:18px 20px; font-size:15px; }
+        .evidence-more summary span { float:right; color:#777; font-weight:400; font-size:13px; }
+        .evidence-more[open] summary { border-bottom:1px solid #ded8ce; }
+        .evidence-more > .evidence-grid { padding:20px; }
+        .support-evidence { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        .sharing-story { display:grid; grid-template-columns:1.5fr 1fr; gap:30px; margin:0 0 28px; padding:28px; background:#f5f2ec; border-radius:10px; }
+        .sharing-story h3 { font-size:22px; line-height:1.5; margin:0 0 16px; word-break:keep-all; }
+        .sharing-story p { font-size:15px; line-height:1.8; margin:0 0 14px; color:#444; word-break:keep-all; }
+        .sharing-actions { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:18px 0; }
+        .sharing-actions li { padding:8px 12px; border:1px solid #d8d3c9; border-radius:6px; background:#fffdf8; font-size:13px; color:#285342; }
+        .sharing-story figure { margin:0; align-self:center; }
+        .sharing-story img { width:100%; height:200px; object-fit:contain; display:block; }
+        .sharing-story figcaption { font-size:12px; text-align:center; margin-top:8px; color:#666; }
+        .evidence-viewer { width:min(960px,94vw); max-height:92dvh; padding:22px; border:0; border-radius:12px; box-sizing:border-box; background:#fffdf8; color:#171717; }
+        .evidence-viewer::backdrop { background:rgba(0,0,0,.75); }
+        .viewer-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:16px; }
+        .viewer-header h2 { font-size:20px; margin:0 0 6px; line-height:1.5; }
+        .viewer-header p { font-size:13px; line-height:1.6; color:#555; margin:0; }
+        .viewer-header button { flex:none; border:1px solid #ccc; border-radius:6px; background:#fff; padding:10px 12px; cursor:pointer; color:#222; }
+        .viewer-picture { height:65dvh; }
+        .viewer-picture img { width:100%; height:100%; object-fit:contain; }
+        .viewer-original { display:inline-block; margin-top:14px; color:#285342; font-size:13px; }
+        .trust-shortcuts a:focus-visible, .evidence-photo:focus-visible, .evidence-more summary:focus-visible, .viewer-header button:focus-visible { outline:3px solid #39795d; outline-offset:-3px; }
+        @media(max-width:900px) { .evidence-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .main-certificates { grid-template-columns:repeat(3,minmax(0,1fr)); } .main-certificates .evidence-photo { height:240px; padding:12px; } .sharing-story { grid-template-columns:1fr; } }
+        @media(max-width:540px) { .evidence-grid, .main-certificates, .support-evidence { grid-template-columns:1fr; } .evidence-block { margin-bottom:56px; } .main-certificates .evidence-photo { height:240px; } .evidence-photo { height:260px; } .evidence-card > div { padding:16px; } .evidence-more > .evidence-grid { padding:12px; } .sharing-story { padding:20px; } .sharing-story h3 { font-size:20px; } .evidence-viewer { padding:16px; } .viewer-header h2 { font-size:17px; } .trust-shortcuts a { padding:10px 14px; } }
+
         .trust-draft-section {
           background-color: var(--brand-section-bg);
           padding: 100px 0 110px 0;
@@ -455,13 +423,10 @@ export default function Trust() {
           overflow-wrap: anywhere;
         }
 
-            gap: 9px;
-          border-top: 1px dashed rgba(197, 168, 128, 0.35);
-        }
 
         .real-voice-container {
           display: grid;
-            font-size: 13.5px;
+          grid-template-columns: 1fr 1fr;
           gap: 50px;
           align-items: center;
         }
@@ -542,6 +507,8 @@ export default function Trust() {
         }
 
         @media (max-width: 767px) {
+          .trust-draft-section { padding: 24px 0; }
+
           .trust-headline, .voice-headline {
             font-size: clamp(28px, 6.5vw, 36px);
           }

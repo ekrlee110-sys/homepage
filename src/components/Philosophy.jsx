@@ -52,7 +52,7 @@ export default function Philosophy() {
       <div className="container">
         {/* Header Title Area */}
         <div className="section-header text-center animate-fade-in-up">
-          <span className="craft-label">TIME & CRAFT</span>
+          <span className="craft-label">숙성 이야기</span>
           <p className="philosophy-evidence-label">192시간 숙성과학</p>
           
           <h2 className="philosophy-main-title">
@@ -460,6 +460,8 @@ export default function Philosophy() {
         }
 
         @media (max-width: 767px) {
+          .philosophy-section { padding: 22px 0 24px; }
+
           .philosophy-evidence-label {
             margin-bottom: 10px;
             font-size: 16px;

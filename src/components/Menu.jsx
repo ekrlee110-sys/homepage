@@ -173,7 +173,7 @@ export default function Menu() {
       <div className="container">
         <div className="menu-header-row animate-fade-in-up">
           <div className="menu-header-left">
-            <span className="menu-label">SIGNATURE MENU</span>
+            <span className="menu-label">대표 메뉴</span>
             <h2 className="menu-headline">
               처음 오셨다면,<br />
               이렇게 고르세요.
@@ -200,7 +200,7 @@ export default function Menu() {
         <div id="set-menu" className="set-menu-block">
           <div className="menu-header-row animate-fade-in-up">
             <div className="menu-header-left">
-              <span className="menu-label">SET MENU</span>
+              <span className="menu-label">세트 메뉴</span>
               <h2 className="menu-headline">
                 함께 오셨다면,<br />
                 세트로 더 풍성하게 즐겨보세요.
@@ -242,7 +242,7 @@ export default function Menu() {
         <div id="side-menu" className="side-menu-block">
           <div className="menu-header-row animate-fade-in-up">
             <div className="menu-header-left">
-              <span className="menu-label">SIDE MENU</span>
+              <span className="menu-label">곁들임 메뉴</span>
               <h2 className="menu-headline">
                 한 끼를 더 맛있게 채우는<br />
                 곁들임 메뉴
@@ -671,6 +671,18 @@ export default function Menu() {
         }
 
         @media (max-width: 767px) {
+          .menu-draft-section { padding: 24px 0; }
+          .signature-cards-layout { margin-bottom: 0; }
+          .menu-closing-statement {
+            margin: 0;
+            padding: 32px 0;
+          }
+          .set-menu-block {
+            padding-top: 22px;
+            margin-bottom: 32px;
+          }
+          .side-menu-block { padding-top: 22px; }
+
           .menu-headline {
             font-size: clamp(27px, 6.5vw, 36px);
             line-height: 1.3;

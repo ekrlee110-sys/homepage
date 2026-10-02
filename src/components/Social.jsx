@@ -8,7 +8,7 @@ export default function Social() {
   return (
     <section id="social" className="social-section">
       <div className="container">
-        <p className="social-label">SANNAE STORIES</p>
+        <p className="social-label">산내 소식</p>
         <h2 className="social-title">산내돌짜장의 오늘을 만나보세요</h2>
         <p className="social-intro">뜨거운 돌판의 순간과 매장에서 전하는 이야기를 담았습니다.</p>
         <div className="social-grid">
@@ -36,7 +36,7 @@ export default function Social() {
         .social-card-copy strong { font-size: 19px; }
         .social-card-copy small { font-size: 14px; color: #66554b; }
         @media (max-width: 767px) {
-          .social-section { padding: 56px 0; }
+          .social-section { padding: 24px 0; }
           .social-grid { grid-template-columns: 1fr; gap: 12px; }
           .social-card { min-height: 88px; padding: 18px; }
         }

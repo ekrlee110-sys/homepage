@@ -1,5 +1,5 @@
 import React from 'react';
-
+import storyPoster from '../assets/sannae-story-love-care.png';
 export default function Story() {
   return (
     <section id="story" className="story-draft-section section-padding">
@@ -10,7 +10,8 @@ export default function Story() {
           <div className="photo-card top-main-card">
             <div className="photo-inner">
               <img 
-                src="/brand_story_main.jpg.jpg"
+               src="/brand_story_main.jpg.jpg"
+
                 alt="산내돌짜장 브랜드 메인 스토리 대표 사진" 
                 className="card-bg-img"
                 onError={(e) => { e.target.style.display = 'none'; }}
@@ -77,8 +78,41 @@ export default function Story() {
           </div>
         </div>
       </div>
-
+<div className="story-poster-section">
+  <img
+    src={storyPoster}
+    alt="사랑, 정성, 잇다 - 산내돌짜장 브랜드 이야기"
+    className="story-poster-image"
+  />
+</div>
       <style>{`
+      .story-poster-section {
+  width: 100%;
+  padding: 90px 24px 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-poster-image {
+  display: block;
+  width: 100%;
+  max-width: 1120px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .story-poster-section {
+    padding: 55px 16px 48px;
+  }
+
+  .story-poster-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
         .story-draft-section {
           background-color: #fbf8f3;
           padding: 100px 0 110px 0;
@@ -336,6 +370,7 @@ export default function Story() {
         @media (max-width: 767px) {
           .story-draft-section {
             padding-top: 32px;
+            padding-bottom: 0;
           }
 
           .story-draft-container {

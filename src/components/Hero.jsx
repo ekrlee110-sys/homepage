@@ -15,8 +15,6 @@ export default function Hero() {
       <div className="hero-draft-container container">
         {/* Left Text Content */}
         <div className="hero-left-content">
-          <span className="hero-subtitle">대한민국 최초 한식 짜장면</span>
-          
           <h1 className="hero-headline">
             좋아하는 짜장면,<br />
             <span className="hero-headline-emphasis">속까지 편했으면</span> 했습니다.
@@ -62,7 +60,7 @@ export default function Hero() {
       <style>{`
         .hero-draft-section {
           background-color: #fbf8f3;
-          padding: 130px 0 80px 0;
+          padding: 220px 0 80px 0;
           position: relative;
           min-height: 0;
           display: flex;
@@ -81,15 +79,6 @@ export default function Hero() {
           flex-direction: column;
           align-items: flex-start;
           text-align: left;
-        }
-
-        .hero-subtitle {
-          font-size: 15px;
-          font-weight: 700;
-          color: #a24b33;
-          letter-spacing: -0.2px;
-          margin-bottom: 18px;
-          display: inline-block;
         }
 
         .hero-headline {
@@ -204,7 +193,6 @@ export default function Hero() {
           animation: none;
         }
 
-        .hero-subtitle { animation: heroReveal 0.65s ease-out both; }
         .hero-headline { animation: heroReveal 0.7s ease-out 0.18s both; }
         .hero-narrative { animation: heroReveal 0.7s ease-out 0.35s both; }
         .hero-cta-buttons { animation: heroReveal 0.7s ease-out 0.5s both; }
@@ -225,14 +213,14 @@ export default function Hero() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hero-subtitle, .hero-headline, .hero-narrative,
+          .hero-headline, .hero-narrative,
           .hero-cta-buttons, .hero-right-visual { animation: none; }
         }
 
         @media (max-width: 767px) {
           .hero-draft-section {
             min-height: 0;
-            padding: 96px 0 36px;
+            padding: 204px 0 36px;
           }
 
           .hero-draft-container {

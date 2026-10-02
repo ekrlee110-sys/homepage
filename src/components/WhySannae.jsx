@@ -42,7 +42,7 @@ export default function WhySannae() {
         {/* Header Row */}
         <div className="why-header-row animate-fade-in-up">
           <div className="why-header-left">
-            <span className="why-label">WHY SANNAE</span>
+            <span className="why-label">산내를 찾는 이유</span>
             <h2 className="why-headline">
               한 끼를 위해<br />
               일부러 찾아오는 이유
@@ -184,6 +184,8 @@ export default function WhySannae() {
         }
 
         @media (max-width: 767px) {
+          .why-sannae-section { padding: 24px 0; }
+
           .why-header-row {
             flex-direction: column;
             align-items: flex-start;
