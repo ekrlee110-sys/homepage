@@ -69,6 +69,26 @@ export default function Menu() {
     }
   ];
 
+  const sideDescriptionEmphasis = {
+    'side-rice': '뜨거운 돌판에 슥슥 비벼',
+    'side-cabbage': '칠리 비빔만두를 싸서',
+    'side-pancake': '테이블에서 직접 부쳐'
+  };
+
+  const renderSideDescription = (side) => {
+    const phrase = sideDescriptionEmphasis[side.id];
+    const phraseIndex = side.description.indexOf(phrase);
+    if (phraseIndex < 0) return side.description;
+
+    return (
+      <>
+        {side.description.slice(0, phraseIndex)}
+        <span className="side-desc-emphasis">{phrase}</span>
+        {side.description.slice(phraseIndex + phrase.length)}
+      </>
+    );
+  };
+
   const setMenuItems = [
     {
       id: 'set-mugeunji',
@@ -137,6 +157,52 @@ export default function Menu() {
     }
   ];
 
+  const signatureDescriptionEmphasis = {
+    'aged-zzajang': '기본 맛',
+    'chubu-perilla': '참 꼬소하게',
+    'cheongyang-zzajang': '강한 매운맛',
+    'mugeunji-zzajang': '묵은지로 돌짜장을 감싸',
+    'maninsan-galbi': '부드러운 갈빗살과 파채'
+  };
+
+  const renderSignatureDescription = (item) => {
+    const phrase = signatureDescriptionEmphasis[item.id];
+    const phraseIndex = item.description.indexOf(phrase);
+    const mobileDescription = phraseIndex < 0
+      ? item.description
+      : <>
+          {item.description.slice(0, phraseIndex)}
+          <span className="signature-desc-emphasis">{phrase}</span>
+          {item.description.slice(phraseIndex + phrase.length)}
+        </>;
+
+    return (
+      <>
+        <span className="signature-description-desktop">{item.description}</span>
+        <span className="signature-description-mobile">{mobileDescription}</span>
+      </>
+    );
+  };
+
+  const renderSetDescription = (set) => {
+    const phrase = '함께 즐기는';
+    const phraseIndex = set.description.indexOf(phrase);
+    const mobileDescription = phraseIndex < 0
+      ? set.description
+      : <>
+          {set.description.slice(0, phraseIndex)}
+          <span className="set-desc-emphasis">{phrase}</span>
+          {set.description.slice(phraseIndex + phrase.length)}
+        </>;
+
+    return (
+      <>
+        <span className="set-description-desktop">{set.description}</span>
+        <span className="set-description-mobile">{mobileDescription}</span>
+      </>
+    );
+  };
+
   const topSignatureIds = ['mugeunji-zzajang', 'maninsan-galbi'];
   const bottomSignatureIds = ['aged-zzajang', 'chubu-perilla', 'cheongyang-zzajang'];
   const topSignatureRow = topSignatureIds.map((id) => signatureItems.find((item) => item.id === id));
@@ -163,7 +229,7 @@ export default function Menu() {
       <div className="sig-card-body">
         <h3 className="sig-item-name">{item.name}</h3>
         <p className="sig-item-subtitle">{item.subTitle}</p>
-        <p className="sig-item-desc">{item.description}</p>
+        <p className="sig-item-desc">{renderSignatureDescription(item)}</p>
       </div>
     </div>
   );
@@ -176,7 +242,7 @@ export default function Menu() {
             <span className="menu-label">대표 메뉴</span>
             <h2 className="menu-headline">
               처음 오셨다면,<br />
-              이렇게 고르세요.
+              <span className="signature-heading-emphasis">이렇게 고르세요</span>.
             </h2>
           </div>
         </div>
@@ -191,10 +257,23 @@ export default function Menu() {
         </div>
 
         <div className="menu-closing-statement text-center animate-fade-in-up">
-          <p className="closing-line-1">입은 즐겁게,</p>
-          <p className="closing-line-2">
-            <span className="highlight-brown">속은 편하게.</span>
+          <p className="closing-line-1">
+            <span className="closing-line-desktop">입은 즐겁게,</span>
           </p>
+          <p className="closing-line-2">
+            <span className="closing-line-desktop highlight-brown">속은 편하게.</span>
+          </p>
+          <div className="closing-mobile-stack">
+            <p className="closing-mobile-line">
+              <span className="closing-line-plain">입은</span>{' '}
+              <span className="closing-line-warm">즐겁게</span>
+            </p>
+            <span className="closing-mobile-emoji" aria-hidden="true">😊</span>
+            <p className="closing-mobile-line">
+              <span className="closing-line-plain">속은</span>{' '}
+              <span className="closing-line-red">편하게</span>
+            </p>
+          </div>
         </div>
 
         <div id="set-menu" className="set-menu-block">
@@ -203,7 +282,7 @@ export default function Menu() {
               <span className="menu-label">세트 메뉴</span>
               <h2 className="menu-headline">
                 함께 오셨다면,<br />
-                세트로 더 풍성하게 즐겨보세요.
+                세트로 <span className="set-menu-heading-emphasis">더 풍성하게</span> 즐겨보세요.
               </h2>
             </div>
           </div>
@@ -232,7 +311,7 @@ export default function Menu() {
                 <div className="set-card-body">
                   <h3 className="set-item-name">{set.name}</h3>
                   <p className="set-item-subtitle">{set.subTitle}</p>
-                  <p className="set-item-desc">{set.description}</p>
+                  <p className="set-item-desc">{renderSetDescription(set)}</p>
                 </div>
               </div>
             ))}
@@ -244,7 +323,7 @@ export default function Menu() {
             <div className="menu-header-left">
               <span className="menu-label">곁들임 메뉴</span>
               <h2 className="menu-headline">
-                한 끼를 더 맛있게 채우는<br />
+                한 끼를 <span className="side-menu-heading-emphasis">더 맛있게 채우는</span><br />
                 곁들임 메뉴
               </h2>
             </div>
@@ -263,7 +342,7 @@ export default function Menu() {
                 </div>
                 <div className="side-card-body">
                   <h3 className="side-item-name">{side.name}</h3>
-                  <p className="side-item-desc">{side.description}</p>
+                  <p className="side-item-desc">{renderSideDescription(side)}</p>
                 </div>
               </div>
             ))}
@@ -496,6 +575,9 @@ export default function Menu() {
           text-align: left;
         }
 
+        .signature-description-mobile { display: none; }
+        .set-description-mobile { display: none; }
+
         .signature-card-chubu .sig-card-body {
           flex: 1;
           background-color: var(--brand-card-surface);
@@ -603,6 +685,8 @@ export default function Menu() {
           color: var(--brand-card-accent);
         }
 
+        .closing-mobile-stack { display: none; }
+
         /* Set & Side Menu Blocks */
         .set-menu-block {
           padding-top: 20px;
@@ -672,6 +756,15 @@ export default function Menu() {
 
         @media (max-width: 767px) {
           .menu-draft-section { padding: 24px 0; }
+          .closing-line-1,
+          .closing-line-2 { display: none; }
+          .closing-mobile-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+          }
           .signature-cards-layout { margin-bottom: 0; }
           .menu-closing-statement {
             margin: 0;
@@ -683,10 +776,37 @@ export default function Menu() {
           }
           .side-menu-block { padding-top: 22px; }
 
-          .menu-headline {
-            font-size: clamp(27px, 6.5vw, 36px);
-            line-height: 1.3;
+          .menu-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0;
+            margin-bottom: 12px;
           }
+
+          .set-menu-block .menu-label {
+            color: var(--brand-card-accent);
+            font-size: 20px;
+            font-weight: 600;
+          }
+
+          .side-menu-block .menu-label {
+            color: var(--brand-card-accent);
+            font-size: 20px;
+            font-weight: 600;
+          }
+
+          .menu-headline {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
+            overflow-wrap: normal;
+            word-break: keep-all;
+          }
+
+          .signature-heading-emphasis { color: #9B3A2E; }
+          .set-menu-heading-emphasis { color: #9B3A2E; }
+          .side-menu-heading-emphasis { color: #9B3A2E; }
 
           .signature-cards-layout {
             grid-template-columns: minmax(0, 1fr);
@@ -729,6 +849,14 @@ export default function Menu() {
             line-height: 1.65;
           }
 
+          .signature-description-desktop { display: none; }
+          .signature-description-mobile { display: inline; }
+          .signature-desc-emphasis { font-weight: 700; }
+          .set-description-desktop { display: none; }
+          .set-description-mobile { display: inline; }
+          .set-desc-emphasis { font-weight: 700; }
+          .side-desc-emphasis { font-weight: 700; }
+
           .sig-item-subtitle,
           .set-item-subtitle {
             font-size: 14.5px;
@@ -736,8 +864,32 @@ export default function Menu() {
 
           .closing-line-1,
           .closing-line-2 {
-            font-size: clamp(27px, 7vw, 34px);
-            line-height: 1.25;
+            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Batang, serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.35;
+            letter-spacing: 0;
+          }
+
+          .closing-mobile-line {
+            margin: 0;
+            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Batang, serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.35;
+            letter-spacing: 0;
+            white-space: nowrap;
+          }
+
+          .menu-closing-statement .closing-line-plain { color: #382B23; font-weight: 400; }
+          .menu-closing-statement .closing-line-warm { color: #6B5143; font-weight: 700; }
+          .menu-closing-statement .closing-line-red { color: #9B3A2E; font-weight: 700; }
+          .closing-mobile-emoji {
+            display: block;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 32px;
+            line-height: 1;
+            color: #6B5143;
           }
         }
       `}</style>

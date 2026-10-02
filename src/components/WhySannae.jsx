@@ -36,6 +36,27 @@ export default function WhySannae() {
     }
   ];
 
+  const reasonDescriptionEmphasis = {
+    1: '부모님과 아이가 함께',
+    2: '차근차근 준비한 음식',
+    3: '편하게 방문',
+    4: '상소동 산림욕장·만인산 자연휴양림'
+  };
+
+  const renderReasonDescription = (item) => {
+    const phrase = reasonDescriptionEmphasis[item.id];
+    const phraseIndex = item.desc.indexOf(phrase);
+    if (phraseIndex < 0) return item.desc;
+
+    return (
+      <>
+        {item.desc.slice(0, phraseIndex)}
+        <span className="why-desc-emphasis">{phrase}</span>
+        {item.desc.slice(phraseIndex + phrase.length)}
+      </>
+    );
+  };
+
   return (
     <section className="why-sannae-section section-padding">
       <div className="container">
@@ -64,7 +85,7 @@ export default function WhySannae() {
               {/* Text Info */}
               <div className="why-card-body">
                 <h3 className="why-item-title">{item.title}</h3>
-                <p className="why-item-desc">{item.desc}</p>
+                <p className="why-item-desc">{renderReasonDescription(item)}</p>
               </div>
             </div>
           ))}
@@ -185,6 +206,15 @@ export default function WhySannae() {
 
         @media (max-width: 767px) {
           .why-sannae-section { padding: 24px 0; }
+          .why-desc-emphasis { font-weight: 700; }
+
+          .why-label {
+            color: var(--brand-card-accent);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0;
+            margin-bottom: 12px;
+          }
 
           .why-header-row {
             flex-direction: column;
@@ -192,7 +222,17 @@ export default function WhySannae() {
             gap: 12px;
           }
           .why-headline {
-            font-size: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
+            overflow-wrap: normal;
+            word-break: keep-all;
+          }
+          .why-guide-text {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
           }
           .why-cards-grid {
             grid-template-columns: 1fr;

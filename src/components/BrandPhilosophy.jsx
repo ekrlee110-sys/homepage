@@ -76,13 +76,22 @@ export default function BrandPhilosophy() {
           }
 
           .brand-philosophy-korean {
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin: 4px 0 8px;
+            color: #3b2c25;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: 0;
           }
 
           .brand-philosophy-meaning {
-            font-size: 15px;
-            line-height: 1.65;
+            color: #6B6259;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0;
+            text-align: center;
+            word-break: keep-all;
           }
         }
       `}</style>

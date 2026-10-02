@@ -21,7 +21,7 @@ export default function Reservation() {
             <div className="visit-info-list">
               <div className="visit-info-row">
                 <span className="info-key">주소</span>
-                <span className="info-val">대전광역시 동구 산내로 457</span>
+                <span className="info-val"><span className="visit-info-emphasis">대전광역시 동구 산내로 457</span></span>
               </div>
 
               <div className="visit-info-row">
@@ -31,7 +31,7 @@ export default function Reservation() {
 
               <div className="visit-info-row">
                 <span className="info-key">주차</span>
-                <span className="info-val">매장 전용 주차장과 식당 옆 골목길까지 약 50대 주차 가능</span>
+                <span className="info-val">매장 전용 주차장과 식당 옆 골목길까지 <span className="visit-info-emphasis">약 50대 주차 가능</span></span>
               </div>
 
               <div className="visit-info-row">
@@ -48,8 +48,8 @@ export default function Reservation() {
               <div className="visit-info-row">
                 <span className="info-key">웨이팅 · 방문 문의</span>
                 <div className="info-val waiting-desc">
-                  <p>시간 지정 예약은 받지 않습니다.</p>
-                  <p>캐치테이블 웨이팅 또는 전화 문의를 이용해 주세요.</p>
+                  <p><span className="visit-info-emphasis">시간 지정 예약은 받지 않습니다.</span></p>
+                  <p><span className="visit-info-emphasis">캐치테이블 웨이팅 또는 전화 문의</span>를 이용해 주세요.</p>
                   <p className="waiting-sub">캐치테이블 이용이 어려우신 분은 전화 주시면, 가능한 빠르게 입장하실 수 있도록 도와드립니다.</p>
                 </div>
               </div>
@@ -406,13 +406,32 @@ export default function Reservation() {
         }
 
         @media (max-width: 767px) {
+          .visit-info-emphasis { font-weight: 700; }
+
+          .visit-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #c8795f;
+            letter-spacing: 0;
+            margin-bottom: 12px;
+          }
           .visit-headline {
-            font-size: 30px;
+            margin-bottom: 16px;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
+            overflow-wrap: normal;
+            word-break: keep-all;
           }
           .visit-brand-promise {
             margin-bottom: 24px;
-            font-size: clamp(14px, 4.2vw, 16px);
-            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            white-space: normal;
+            word-break: keep-all;
           }
           .visit-info-row {
             grid-template-columns: 1fr;

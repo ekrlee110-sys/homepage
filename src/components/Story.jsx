@@ -49,36 +49,58 @@ export default function Story() {
 
         {/* Right Story Text Narrative */}
         <div className="story-text-content animate-fade-in-up">
-          <span className="story-label">OUR STORY</span>
+          <span className="story-label">
+            <span className="story-label-desktop">OUR STORY</span>
+            <span className="story-label-mobile">브랜드 이야기</span>
+          </span>
 
           <h2 className="story-main-heading">
-            익숙한 짜장면에<br />
-            <span className="story-headline-emphasis">한식의 시간</span>을 더해,<br />
-            <span className="story-headline-final">우리만의 짜장을 만들었습니다.</span>
+            <span className="story-heading-desktop">
+              익숙한 짜장면에<br />
+              <span className="story-headline-emphasis">한식의 시간</span>을 더해,<br />
+              <span className="story-headline-final">우리만의 짜장을 만들었습니다.</span>
+            </span>
+            <span className="story-heading-mobile">
+              익숙한 짜장면에<br />
+              <span className="story-headline-emphasis story-headline-mobile-emphasis">한식의 시간</span>을 더했습니다
+            </span>
           </h2>
 
           <div className="story-paragraphs">
-            <p className="story-p-lead">
-              짜장면은 좋아하지만 먹고 난 뒤의 <span className="story-body-emphasis">무거움</span>은 늘 아쉬웠습니다.
-            </p>
-            <p className="story-p-sub">
-              그래서 오래 이어온 <span className="story-body-emphasis-neutral">우리 음식의 지혜</span>와 <span className="story-body-emphasis-neutral">한식대가의 경험</span>을 <span className="story-body-emphasis-neutral">우리만의 짜장</span>에 담았습니다.
-            </p>
+            <div className="story-paragraphs-desktop">
+              <p className="story-p-lead">
+                짜장면은 좋아하지만 먹고 난 뒤의 <span className="story-body-emphasis">무거움</span>은 늘 아쉬웠습니다.
+              </p>
+              <p className="story-p-sub">
+                그래서 오래 이어온 우리 음식의 지혜와 <span className="story-body-emphasis-neutral">한식대가의 경험</span>을 우리만의 짜장에 담았습니다.
+              </p>
+            </div>
+            <div className="story-paragraphs-mobile">
+              <p>짜장면은 좋아하지만,<br />먹고 난 뒤의 <span className="story-mobile-emphasis">무거움</span>은 늘 아쉬웠습니다.</p>
+              <p>오래 이어온 우리 음식의 지혜와<br /><span className="story-mobile-emphasis">한식대가의 경험</span>을 짜장에 담았습니다.</p>
+            </div>
           </div>
 
           {/* Highlight Quote Box with Red/Brown Accent Bar */}
           <div className="story-quote-card">
             <div className="quote-accent-bar"></div>
             <div className="quote-message">
-              <p className="quote-line-1">짧은 시간에 만드는 짜장이 아니라,</p>
-              <p className="quote-line-2">
-                조금 느리더라도 <span className="highlight-brown">속이 편한 짜장</span>을 만들고 싶었습니다.
+              <div className="story-quote-desktop">
+                <p className="quote-line-1">짧은 시간에 만드는 짜장이 아니라,</p>
+                <p className="quote-line-2">
+                  조금 느리더라도 <span className="highlight-brown">속이 편한 짜장</span>을 만들고 싶었습니다.
+                </p>
+              </div>
+              <p className="story-quote-mobile">
+                조금 느리더라도,<br />
+                <span className="highlight-brown">속이 편한 짜장</span>을 만들고 싶었습니다.
               </p>
             </div>
           </div>
         </div>
       </div>
 <div className="story-poster-section">
+  <div className="story-poster-divider">산내의 시작</div>
   <img
     src={storyPoster}
     alt="사랑, 정성, 잇다 - 산내돌짜장 브랜드 이야기"
@@ -103,9 +125,42 @@ export default function Story() {
   border-radius: 0;
 }
 
+.story-poster-divider { display: none; }
+
 @media (max-width: 768px) {
   .story-poster-section {
-    padding: 55px 16px 48px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 32px 16px 48px;
+  }
+
+  .story-poster-divider {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    align-self: center;
+    box-sizing: border-box;
+    margin: 0 0 20px;
+    padding: 0;
+    background: transparent;
+    color: #382B23;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    white-space: nowrap;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .story-poster-divider::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 10px auto 0;
+    background: #B9A797;
   }
 
   .story-poster-image {
@@ -219,6 +274,11 @@ export default function Story() {
           word-break: keep-all;
         }
 
+        .story-heading-mobile { display: none; }
+        .story-label-mobile { display: none; }
+        .story-paragraphs-mobile,
+        .story-quote-mobile { display: none; }
+
         .story-headline-emphasis {
           color: #a24b33;
           font-weight: 900;
@@ -258,12 +318,12 @@ export default function Story() {
 
         .story-body-emphasis {
           color: #a24b33;
-          font-weight: 800;
+          font-weight: 600;
         }
 
         .story-body-emphasis-neutral {
           color: #4a3a31;
-          font-weight: 800;
+          font-weight: 600;
         }
 
         /* Quote Callout Card */
@@ -302,11 +362,13 @@ export default function Story() {
 
         .quote-line-2 {
           font-size: 15px;
-          font-weight: 700;
+          font-weight: 400;
           color: #2b1e16;
           margin: 0;
           letter-spacing: -0.3px;
         }
+
+        .story-quote-desktop .highlight-brown { font-weight: 600; }
 
         .highlight-brown {
           color: #8c2d19;
@@ -368,6 +430,15 @@ export default function Story() {
         }
 
         @media (max-width: 767px) {
+          .story-heading-desktop { display: none; }
+          .story-heading-mobile { display: inline; }
+          .story-label-desktop,
+          .story-paragraphs-desktop,
+          .story-quote-desktop { display: none; }
+          .story-label-mobile,
+          .story-paragraphs-mobile { display: block; }
+          .story-quote-mobile { display: block; }
+
           .story-draft-section {
             padding-top: 32px;
             padding-bottom: 0;
@@ -376,11 +447,12 @@ export default function Story() {
           .story-draft-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 0;
           }
 
           .story-visual-grid {
-            order: 1;
+            order: 0;
+            margin-bottom: 20px;
           }
 
           .story-text-content {
@@ -388,12 +460,16 @@ export default function Story() {
           }
 
           .story-label {
-            order: 0;
+            order: 1;
             width: 100%;
-            margin: 0;
+            margin: 0 0 12px;
             padding-top: 14px;
             border-top: 1px solid rgba(197, 168, 128, 0.35);
             text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: #a24b33;
+            letter-spacing: 0;
           }
 
           .story-main-heading {
@@ -410,10 +486,19 @@ export default function Story() {
 
           .story-main-heading {
             width: 100%;
-            font-size: clamp(27px, 7vw, 36px);
-            line-height: 1.3;
-            overflow-wrap: anywhere;
+            align-self: stretch;
+            margin: 0 0 16px;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #2b1e16;
+            letter-spacing: 0;
+            text-align: left;
+            overflow-wrap: break-word;
+            word-break: keep-all;
           }
+          .story-headline-emphasis { font-weight: inherit; }
+          .story-headline-mobile-emphasis { white-space: nowrap; }
 
           .story-headline-final {
             white-space: normal;
@@ -427,8 +512,36 @@ export default function Story() {
 
           .story-p-lead,
           .story-p-sub {
-            font-size: 15px;
-            overflow-wrap: anywhere;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            overflow-wrap: normal;
+            word-break: keep-all;
+          }
+
+          .story-paragraphs-mobile p {
+            margin: 0;
+            text-align: left;
+            color: #4a3a31;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            word-break: keep-all;
+          }
+
+          .story-paragraphs-mobile {
+            align-self: stretch;
+            text-align: left;
+          }
+
+          .story-paragraphs-mobile p + p { margin-top: 16px; }
+
+          .story-mobile-emphasis { font-weight: 600; }
+
+          .story-paragraphs {
+            margin-bottom: 50px;
           }
 
           .bottom-photo-row {
@@ -437,7 +550,7 @@ export default function Story() {
 
           .story-quote-card {
             width: 100%;
-            padding: 14px 12px;
+            padding: 16px;
             gap: 10px;
           }
 
@@ -451,6 +564,18 @@ export default function Story() {
             line-height: 1.5;
             word-break: keep-all;
           }
+
+          .story-quote-mobile {
+            margin: 0;
+            color: #2b1e16;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            word-break: keep-all;
+          }
+
+          .story-quote-mobile .highlight-brown { font-weight: 600; }
         }
 
         @media (max-width: 480px) {

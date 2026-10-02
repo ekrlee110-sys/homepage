@@ -93,13 +93,18 @@ export default function HanokSpace() {
           }
 
           .hanok-space-copy h2 {
-            margin-bottom: 8px;
-            font-size: clamp(27px, 8vw, 34px);
+            margin-bottom: 16px;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
           }
 
           .hanok-space-copy p {
-            font-size: 15px;
-            line-height: 1.55;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
           }
         }
       `}</style>

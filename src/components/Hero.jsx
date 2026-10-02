@@ -21,8 +21,14 @@ export default function Hero() {
           </h1>
 
           <p className="hero-narrative">
-            전통의 지혜와 <strong>한식대가의 경험</strong>을 오늘의 방식으로 풀어내,<br />
-            <strong>8일 밤낮, 192시간의 정성</strong>을 짜장에 담았습니다.
+            <span className="hero-narrative-desktop">
+              전통의 지혜와 <strong>한식대가의 경험</strong>을 오늘의 방식으로 풀어내,<br />
+              8일 밤낮, 192시간의 정성을 짜장에 담았습니다.
+            </span>
+            <span className="hero-narrative-mobile">
+              한식대가의 경험과 192시간 숙성<br />
+              <strong>속이 편한 짜장</strong>을 위한 정성입니다
+            </span>
           </p>
 
           {/* CTA Buttons */}
@@ -104,9 +110,11 @@ export default function Hero() {
           letter-spacing: -0.3px;
         }
 
+        .hero-narrative-mobile { display: none; }
+
         .hero-narrative strong {
           color: #2b1e16;
-          font-weight: 700;
+          font-weight: 600;
         }
 
         .hero-cta-buttons {
@@ -218,6 +226,9 @@ export default function Hero() {
         }
 
         @media (max-width: 767px) {
+          .hero-narrative-desktop { display: none; }
+          .hero-narrative-mobile { display: inline; }
+
           .hero-draft-section {
             min-height: 0;
             padding: 204px 0 36px;
@@ -235,9 +246,14 @@ export default function Hero() {
           }
 
           .hero-headline {
-            font-size: clamp(30px, 7vw, 42px);
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
             word-break: keep-all;
           }
+          .hero-headline-emphasis { font-weight: inherit; }
 
           .hero-left-content {
             align-items: center;
@@ -245,13 +261,29 @@ export default function Hero() {
           }
 
           .hero-narrative {
-            font-size: 15px;
-            margin-bottom: 26px;
+            width: 100%;
+            margin: 0 0 24px;
+            color: #55443b;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            text-align: center;
+            word-break: keep-all;
+            overflow-wrap: normal;
+          }
+
+          .hero-narrative-mobile strong {
+            color: inherit;
+            font-size: inherit;
+            font-weight: 700;
           }
 
           .hero-narrative br {
             display: none;
           }
+
+          .hero-narrative-mobile br { display: initial; }
 
           .hero-cta-buttons {
             flex-wrap: wrap;

@@ -47,21 +47,68 @@ export default function Philosophy() {
     }
   ];
 
+  const promiseDescriptionEmphasis = {
+    '05': { desc2: '한식의 방식으로 다시 만든' },
+    '01': { desc1: '직접 만든 식물성 기름' },
+    '03': { desc1: '3시간씩 세 번' },
+    '04': { desc1: '낮은 온도에서' },
+    '02': { desc2: '한 분 한 분께 제대로 대접' }
+  };
+
+  const renderPromiseDescription = (item, key) => {
+    const text = item[key];
+    const phrase = promiseDescriptionEmphasis[item.num]?.[key];
+    const phraseIndex = phrase ? text.indexOf(phrase) : -1;
+
+    if (phraseIndex < 0) return text;
+
+    return (
+      <>
+        {text.slice(0, phraseIndex)}
+        <span className="promise-desc-emphasis">{phrase}</span>
+        {text.slice(phraseIndex + phrase.length)}
+      </>
+    );
+  };
+
+  const renderPromiseTitle = (item) => {
+    const mobileTitle = {
+      '05': <><span className="promise-title-emphasis">30년 내공</span>, 한식대가의 비법</>,
+      '01': <>야채를 우려 만든 <span className="promise-title-emphasis">수제기름</span></>,
+      '03': <><span className="promise-title-emphasis">9시간</span> 달인 상황버섯 육수</>,
+      '04': <>8일 밤낮, <span className="promise-title-emphasis">192시간</span> 숙성</>,
+      '02': <><span className="promise-title-emphasis">주문 즉시</span> 고객 맞춤 조리</>
+    }[item.num];
+
+    return (
+      <>
+        <span className="promise-title-desktop">{item.title}</span>
+        <span className="promise-title-mobile">{mobileTitle}</span>
+      </>
+    );
+  };
+
   return (
     <section id="philosophy" className="philosophy-section section-padding">
       <div className="container">
         {/* Header Title Area */}
         <div className="section-header text-center animate-fade-in-up">
-          <span className="craft-label">숙성 이야기</span>
           <p className="philosophy-evidence-label">192시간 숙성과학</p>
-          
+
           <h2 className="philosophy-main-title">
-            식탁에 오르는 시간 <span className="time-highlight">10분</span>,<br />
-            <span className="philosophy-title-final">그러나 우리는 <span className="time-highlight time-highlight-strong">192시간</span>을 기다립니다.</span>
+            <span className="philosophy-title-desktop">
+              식탁에 오르는 시간 <span className="time-highlight">10분</span><br />
+              그러나 우리는<br />
+              <span className="time-highlight time-highlight-strong">192시간</span>을 기다립니다
+            </span>
           </h2>
 
           <div className="time-pill-badge">
-            <span>9시간 달인 상황버섯 육수 + 8일 밤낮, 192시간 숙성</span>
+            <span className="aging-copy-desktop">9시간 달인 상황버섯 육수 + 8일 밤낮, 192시간 숙성</span>
+            <span className="aging-copy-mobile">
+              <span>9시간 달인 상황버섯 육수로 만든 짜장 소스</span>
+              <span>한식대가의 비법으로 <span className="aging-copy-emphasis">8일간 저온 숙성</span>합니다</span>
+            </span>
           </div>
 
           <h3 className="five-promises-heading">산내돌짜장이 <span className="five-promises-emphasis">다른 5가지</span></h3>
@@ -101,10 +148,10 @@ export default function Philosophy() {
 
                 {/* Card Text Content */}
                 <div className="card-body">
-                  <h4 className="card-title">{item.title}</h4>
+                  <h4 className="card-title">{renderPromiseTitle(item)}</h4>
                   <div className="card-desc-group">
-                    <p>{item.desc1}</p>
-                    <p>{item.desc2}</p>
+                    <p>{renderPromiseDescription(item, 'desc1')}</p>
+                    <p>{renderPromiseDescription(item, 'desc2')}</p>
                   </div>
                 </div>
               </div>
@@ -133,10 +180,10 @@ export default function Philosophy() {
 
                 {/* Card Text Content */}
                 <div className="card-body">
-                  <h4 className="card-title">{item.title}</h4>
+                  <h4 className="card-title">{renderPromiseTitle(item)}</h4>
                   <div className="card-desc-group">
-                    <p>{item.desc1}</p>
-                    <p>{item.desc2}</p>
+                    <p>{renderPromiseDescription(item, 'desc1')}</p>
+                    <p>{renderPromiseDescription(item, 'desc2')}</p>
                   </div>
                 </div>
               </div>
@@ -185,6 +232,9 @@ export default function Philosophy() {
         .philosophy-title-final {
           white-space: nowrap;
         }
+
+        .philosophy-title-mobile,
+        .aging-copy-mobile { display: none; }
 
         .time-highlight {
           color: var(--brand-card-accent);
@@ -415,6 +465,8 @@ export default function Philosophy() {
           letter-spacing: -0.4px;
         }
 
+        .promise-title-mobile { display: none; }
+
         .card-desc-group {
           display: flex;
           flex-direction: column;
@@ -461,24 +513,92 @@ export default function Philosophy() {
 
         @media (max-width: 767px) {
           .philosophy-section { padding: 22px 0 24px; }
+          .promise-title-desktop { display: none; }
+          .promise-title-mobile { display: inline; }
+          .card-title {
+            color: #382B23;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
+            word-break: keep-all;
+            overflow-wrap: normal;
+          }
+          .promise-title-emphasis {
+            color: #9B3A2E;
+            font-size: inherit;
+            font-weight: inherit;
+          }
+          .philosophy-title-desktop,
+          .aging-copy-desktop { display: none; }
+          .philosophy-title-mobile,
+          .aging-copy-mobile { display: inline; }
+          .aging-copy-mobile > span { display: block; }
+          .aging-copy-emphasis {
+            color: #9B3A2E;
+            font-size: inherit;
+            font-weight: 700;
+          }
 
           .philosophy-evidence-label {
-            margin-bottom: 10px;
-            font-size: 16px;
+            display: block;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            color: #382B23;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-align: center;
+            white-space: nowrap;
           }
 
-          .philosophy-main-title {
-            font-size: clamp(26px, 6.5vw, 36px);
-            line-height: 1.3;
+          .philosophy-evidence-label::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            margin: 10px auto 0;
+            background: #B9A797;
           }
+
+          .philosophy-title-desktop,
+          .aging-copy-desktop { display: none; }
+          .aging-copy-mobile { display: inline; }
+
+          .philosophy-main-title {
+            margin: 20px 0 0;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #6B6259;
+            letter-spacing: 0;
+            text-align: center;
+            word-break: keep-all;
+            overflow-wrap: normal;
+          }
+          .philosophy-main-title .time-highlight { font-weight: inherit; }
           .philosophy-title-final {
             white-space: normal;
           }
           .time-pill-badge {
+            display: block;
+            width: 100%;
             max-width: 100%;
-            justify-content: center;
+            margin: 0 auto 30px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: #6B6259;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
             text-align: center;
-            line-height: 1.5;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .top-row, .bottom-row {
             grid-template-columns: 1fr;
@@ -494,6 +614,7 @@ export default function Philosophy() {
           .card-desc-group p {
             font-size: 14.5px;
           }
+          .promise-desc-emphasis { font-weight: 700; }
           .statement-line-1, .statement-line-2 {
             font-size: 20px;
           }

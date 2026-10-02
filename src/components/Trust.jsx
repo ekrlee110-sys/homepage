@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Social from './Social';
 
 export default function Trust() {
   const certificates = [{"id": "korean-food-master", "image": "/trust/updated/korean-food-master.jpg", "title": "대한민국 한식대가", "desc": "현대음식·소스 · 대한민국한식포럼 · 2025년"}, {"id": "korean-cuisine-master", "image": "/trust/updated/korean-cuisine-master.jpg", "title": "대한민국 한식조리명인", "desc": "발효음식 · 국제명인조리사협회 · 2022년"}, {"id": "fermentation-master", "image": "/trust/updated/fermentation-master.jpg", "title": "대한민국 발효대가", "desc": "한국장류발효인협회 · 2025년"}];
@@ -20,13 +21,80 @@ export default function Trust() {
       <title>{item.title}</title><image href={item.image} width={item.crop.width} height={item.crop.height} />
     </svg>
   ) : <img src={item.image} alt={item.title} loading="lazy" />;
+
+  const credentialTitleEmphasis = {
+    'korean-food-master': '한식대가',
+    'korean-cuisine-master': '한식조리명인',
+    'fermentation-master': '발효대가',
+    'kimchi-instructor': '김치지도사',
+    'local-food-instructor': '향토음식지도사',
+    'soy-sauce-appraiser': '씨간장평가사',
+    'traditional-sauce-manager': '전통장류관리사 2급',
+    'traditional-sauce-maker': '전통장류제조사 2급',
+    'local-food-award': '최우수상',
+    'master-chef-award': '코리아마스터셰프챔피언십',
+    'healing-food-award': '치유식품대전 최우수상',
+    'knowledge-recognition': '대한민국 신지식인',
+    'consumer-assessment': 'KCIA 외식업 우수 평가',
+    'korean-food-master-certificate': '한식대가',
+    'cuisine-master-certificate': '한식조리명인',
+    'donggu-commendation': '장애인복지 증진 공로 표창',
+    'junggu-commendation': '지역사회 공로 표창',
+    'volunteer-commendation': '봉사상 표창',
+    'fermentation-association-commendation': '나눔·봉사 공로 표창'
+  };
+
+  const broadcasterEmphasis = {
+    'KBS 2TV 생생정보': 'KBS 2TV',
+    'SBS 생방송 투데이': 'SBS',
+    'MBC 오늘N': 'MBC',
+    '충청신문': '충청신문'
+  };
+
+  const supportTitleEmphasis = {
+    'red-cross-sharing': '희망풍차 나눔음식점',
+    'bridge-store': '브리지스토어'
+  };
+
+  const supportDescriptionEmphasis = {
+    'red-cross-sharing': '대한적십자사',
+    'donggu-commendation': '대전광역시 동구청장',
+    'junggu-commendation': '대전광역시 중구의회의장',
+    'volunteer-commendation': '1004클럽나눔공동체',
+    'fermentation-association-commendation': '한국전통치유발효협회'
+  };
+
+  const renderEvidenceTitle = (item, kind) => {
+    const phrase = kind === 'media-evidence'
+      ? broadcasterEmphasis[item.title]
+      : kind === 'support-evidence'
+        ? supportTitleEmphasis[item.id]
+      : credentialTitleEmphasis[item.id];
+    const phraseIndex = phrase ? item.title.indexOf(phrase) : -1;
+    if (phraseIndex < 0) return item.title;
+    const className = kind === 'media-evidence'
+      ? 'broadcast-title-emphasis'
+      : kind === 'support-evidence'
+        ? 'support-org-emphasis'
+        : 'credential-title-emphasis';
+
+    return <>{item.title.slice(0, phraseIndex)}<span className={className}>{phrase}</span>{item.title.slice(phraseIndex + phrase.length)}</>;
+  };
+
+  const renderEvidenceDescription = (item) => {
+    const phrase = supportDescriptionEmphasis[item.id];
+    const phraseIndex = phrase ? item.desc.indexOf(phrase) : -1;
+    if (phraseIndex < 0) return item.desc;
+    return <>{item.desc.slice(0, phraseIndex)}<span className="support-org-emphasis">{phrase}</span>{item.desc.slice(phraseIndex + phrase.length)}</>;
+  };
+
   const cards = (items, kind = '') => (
     <div className={`evidence-grid ${kind}`}>
-      {items.map(item => <article className="evidence-card" key={item.id || item.image}>
+      {items.map(item => <article className={`evidence-card ${kind}`} key={item.id || item.image}>
         <button type="button" className="evidence-photo" onClick={() => setSelected(item)} aria-label={`${item.title} 사진 크게 보기`}>
           {picture(item)}<span className="photo-zoom">크게 보기</span>
         </button>
-        <div><h3>{item.title}</h3><p>{item.desc}</p></div>
+        <div><h3>{renderEvidenceTitle(item, kind)}</h3><p>{renderEvidenceDescription(item)}</p></div>
       </article>)}
     </div>
   );
@@ -57,8 +125,8 @@ export default function Trust() {
           <a href="#trust-certificates">인증·수상</a><a href="#trust-media">방송·언론</a><a href="#trust-sharing">나눔·후원</a>
         </nav>
         <div className="evidence-block" id="trust-certificates">
-          <span className="trust-label">인증·수상</span><h2 className="trust-headline">한식의 경험을 한 그릇에 담습니다</h2>
-          <p className="evidence-intro">한식과 발효의 경험에 192시간 숙성의 정성을 더했습니다.</p>
+          <span className="trust-label">인증·수상</span><h2 className="trust-headline"><span className="trust-mobile-emphasis">한식의 경험</span>을 한 그릇에 담습니다</h2>
+          <p className="evidence-intro">한식과 발효의 경험에 <span className="trust-copy-emphasis">192시간 숙성의 정성</span>을 더했습니다.</p>
           {cards(certificates, 'main-certificates')}
           <p className="evidence-hint">사진을 누르면 문서를 크게 볼 수 있습니다</p>
           {more('대표 인증서 보기', relatedCertificates)}
@@ -67,17 +135,17 @@ export default function Trust() {
           {more('교육·대외활동', education)}
         </div>
         <div className="evidence-block" id="trust-media">
-          <span className="trust-label">방송·언론</span><h2 className="trust-headline">방송이 소개한 산내돌짜장</h2>
+          <span className="trust-label">방송·언론</span><h2 className="trust-headline"><span className="trust-media-headline-emphasis">방송이 소개한</span> 산내돌짜장</h2>
           {cards(media.slice(0, 3), 'media-evidence')}
           {more('방송·언론 더 보기', media.slice(3), 'media-evidence')}
         </div>
         <div className="evidence-block" id="trust-sharing">
           <span className="trust-label">나눔·후원</span><h2 className="trust-headline">따뜻한 한 끼를 함께 나눕니다</h2>
           <div className="sharing-story">
-            <div><h3>동구아름다운복지관과 함께합니다</h3>
-              <p>지역사회 장애인분들과 일상을 나누며 꾸준히 후원하고 있습니다.</p>
+            <div><h3><span className="support-org-emphasis">동구아름다운복지관</span>과 함께합니다</h3>
+              <p>지역사회 장애인분들과 일상을 나누며 <span className="trust-copy-emphasis">꾸준히 후원</span>하고 있습니다.</p>
               <ul className="sharing-actions"><li>후원금 전달</li><li>매장 식사 지원</li><li>매달 감자탕용 등뼈 지원</li></ul>
-              <p>직접 짜장면을 만들어 대접하는 식사 봉사에도 함께했습니다.</p>
+              <p>직접 짜장면을 만들어 대접하는 <span className="trust-copy-emphasis">식사 봉사</span>에도 함께했습니다.</p>
             </div>
             <figure><img src="/trust/photo-19.jpg" alt="짜장면 식사 봉사를 위해 준비한 재료" loading="lazy" /><figcaption>식사 봉사를 위해 준비한 재료</figcaption></figure>
           </div>
@@ -118,6 +186,8 @@ export default function Trust() {
           </div>
         </div>
       </div>
+
+      <Social />
 
       <dialog ref={viewer} className="evidence-viewer" onClose={() => setSelected(null)} onClick={event => { if (event.target === event.currentTarget) viewer.current.close(); }}>
         {selected && <>
@@ -173,7 +243,7 @@ export default function Trust() {
 
         .trust-draft-section {
           background-color: var(--brand-section-bg);
-          padding: 100px 0 110px 0;
+          padding: 100px 0 0;
           position: relative;
           border-top: 1px solid var(--brand-section-divider);
         }
@@ -509,8 +579,48 @@ export default function Trust() {
         @media (max-width: 767px) {
           .trust-draft-section { padding: 24px 0; }
 
-          .trust-headline, .voice-headline {
-            font-size: clamp(28px, 6.5vw, 36px);
+          .credential-title-emphasis,
+          .trust-media-headline-emphasis { color: #9B3A2E; }
+          .evidence-hint {
+            color: #382B23;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.65;
+            word-break: keep-all;
+          }
+          .media-evidence .evidence-card h3,
+          .support-evidence .evidence-card h3,
+          .sharing-story h3 { font-weight: 400; }
+          .broadcast-title-emphasis,
+          .support-org-emphasis,
+          .trust-copy-emphasis { font-weight: 700; }
+
+          .trust-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0;
+            margin-bottom: 12px;
+          }
+          .evidence-block > .trust-label {
+            color: var(--brand-card-accent);
+            font-size: 20px;
+            font-weight: 600;
+          }
+          .trust-headline,
+          .voice-headline {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0;
+            overflow-wrap: normal;
+            word-break: keep-all;
+          }
+          .trust-headline { margin-bottom: 16px; }
+          .trust-mobile-emphasis { color: #9B3A2E; }
+          .evidence-intro {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.65;
           }
           .trust-cards-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
