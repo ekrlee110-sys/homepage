@@ -946,7 +946,15 @@ export default function Menu() {
             font-weight: 600;
             line-height: 1.45;
             letter-spacing: -0.3px;
-            white-space: nowrap;
+            white-space: normal;
+            word-break: keep-all;
+            overflow-wrap: normal;
+          }
+
+          .side-pancake-desc {
+            white-space: normal;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .side-pancake-subtitle span {
             display: inline;
