@@ -246,10 +246,14 @@ export default function WhySannae() {
           }
           .why-item-title {
             font-size: 19px;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .why-item-desc {
             font-size: 15px;
             line-height: 1.6;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
         }
       `}</style>
