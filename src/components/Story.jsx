@@ -494,7 +494,7 @@ export default function Story() {
             color: #2b1e16;
             letter-spacing: 0;
             text-align: left;
-            overflow-wrap: break-word;
+            overflow-wrap: normal;
             word-break: keep-all;
           }
           .story-headline-emphasis { font-weight: inherit; }
