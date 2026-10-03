@@ -56,6 +56,16 @@ export default function Philosophy() {
   };
 
   const renderPromiseDescription = (item, key) => {
+    if (item.num === '03' && key === 'desc1') {
+      return (
+        <>
+          상황버섯을 <span className="promise-desc-emphasis">3시간씩 세 번</span>, 총 9시간 달여
+          <br className="promise-mobile-break" />
+          한식 짜장 소스의 바탕을 만듭니다.
+        </>
+      );
+    }
+
     const text = item[key];
     const phrase = promiseDescriptionEmphasis[item.num]?.[key];
     const phraseIndex = phrase ? text.indexOf(phrase) : -1;
@@ -466,6 +476,7 @@ export default function Philosophy() {
         }
 
         .promise-title-mobile { display: none; }
+        .promise-mobile-break { display: none; }
 
         .card-desc-group {
           display: flex;
@@ -615,6 +626,7 @@ export default function Philosophy() {
             font-size: 14.5px;
           }
           .promise-desc-emphasis { font-weight: 700; }
+          .promise-mobile-break { display: initial; }
           .statement-line-1, .statement-line-2 {
             font-size: 20px;
           }
