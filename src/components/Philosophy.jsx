@@ -624,6 +624,8 @@ export default function Philosophy() {
           }
           .card-desc-group p {
             font-size: 14.5px;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .promise-desc-emphasis { font-weight: 700; }
           .promise-mobile-break { display: initial; }
