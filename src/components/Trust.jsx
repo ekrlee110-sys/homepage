@@ -427,7 +427,9 @@ export default function Trust() {
           color: var(--brand-card-accent);
           font-size: 12px;
           font-weight: 700;
-          white-space: nowrap;
+          white-space: normal;
+          word-break: keep-all;
+          overflow-wrap: normal;
         }
 
         .broadcast-list {
