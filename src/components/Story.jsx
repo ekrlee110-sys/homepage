@@ -57,12 +57,12 @@ export default function Story() {
           <h2 className="story-main-heading">
             <span className="story-heading-desktop">
               익숙한 짜장면에<br />
-              <span className="story-headline-emphasis">한식의 시간</span>을 더해,<br />
+              <span className="story-headline-emphasis">한식의 지혜</span>를 더해,<br />
               <span className="story-headline-final">우리만의 짜장을 만들었습니다.</span>
             </span>
             <span className="story-heading-mobile">
               익숙한 짜장면에<br />
-              <span className="story-headline-emphasis story-headline-mobile-emphasis">한식의 시간</span>을 더했습니다
+              <span className="story-headline-emphasis story-headline-mobile-emphasis">한식의 지혜</span>를 더했습니다
             </span>
           </h2>
 

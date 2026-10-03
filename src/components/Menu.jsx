@@ -9,10 +9,10 @@ export default function Menu() {
     {
       id: 'aged-zzajang',
       name: '192시간 숙성 돌짜장',
-      subTitle: '처음이라면 가장 먼저.',
+      subTitle: '192시간 숙성으로 완성한 담백함',
       photoTitle: '메뉴 사진 공간',
       photoGuide: '192시간 숙성 돌짜장',
-      description: '192시간 숙성 한식 짜장 소스의 기본 맛을 가장 잘 느낄 수 있는 메뉴.',
+      description: '192시간 숙성한 짜장 소스의 담백하고 깊은 맛을 즐기는 돌짜장',
       image: '/ChatGPT Image 2026년 7월 26일 오전 08_46_40.png',
       imageScale: 1.08,
       imagePosition: 'center 52%',
@@ -21,10 +21,10 @@ export default function Menu() {
     {
       id: 'chubu-perilla',
       name: '추부깻잎 돌짜장',
-      subTitle: '깔끔하고 꼬소한 맛을 좋아한다면.',
+      subTitle: '매장에서 10분 거리, 농장에서 자란 싱싱한 추부깻잎',
       photoTitle: '메뉴 사진 공간',
       photoGuide: '추부깻잎 돌짜장',
-      description: '추부깻잎과 통들깨로 참 꼬소하게 즐기는 돌짜장.',
+      description: '향긋한 추부깻잎과 통들깨, 꼬소하고 깔끔하게 즐기는 새로운 조합',
       image: chubuPerillaImage,
       imageScale: 0.94,
       imagePosition: 'center 51%',
@@ -33,10 +33,10 @@ export default function Menu() {
     {
       id: 'cheongyang-zzajang',
       name: '청양고추 돌짜장',
-      subTitle: '매운맛을 제대로 즐기고 싶다면.',
+      subTitle: '화끈한 매운맛',
       photoTitle: '메뉴 사진 공간',
       photoGuide: '청양고추 돌짜장',
-      description: '청양고추의 강한 매운맛을 더해, 짜장의 진한 맛과 화끈한 여운을 함께 즐기는 돌짜장.',
+      description: '청양고추의 매운맛을 더한 화끈한 돌짜장',
       image: cheongyangImage,
       imageScale: 1.00,
       imagePosition: 'center 51%',
@@ -48,7 +48,7 @@ export default function Menu() {
       subTitle: '전국 최초 묵은지 돌짜장. 그 개운함을 즐기고 싶다면.',
       photoTitle: '메뉴 사진 공간',
       photoGuide: '묵은지 쌈 돌짜장',
-      description: '푹 쪄낸 국내산 묵은지로 돌짜장을 감싸, 깊은 맛과 개운함을 함께 즐깁니다.',
+      description: '12시간 푹 쪄낸 뒤, 24시간 더 숙성한 깊고 개운한 국내산 묵은지로 감싸 먹는 돌짜장',
      image: mugeunjiImage,
       imageScale: 1.02,
       imagePosition: 'center 51%',
@@ -60,7 +60,7 @@ export default function Menu() {
       subTitle: '돌짜장과 함께 곁들이는 대표 메뉴.',
       photoTitle: '메뉴 사진 공간',
       photoGuide: '만인산 둥지 갈비찜',
-      description: '부드러운 갈빗살과 파채를 돌짜장과 함께 즐기는 대표 곁들임 요리.',
+      description: '부드러운 갈비살과 파채, 돌짜장과 함께 즐기는 매콤한 갈비찜',
       image: maninsanGalbiImage,
       imageScale: 1.00,
       imagePosition: 'center center',
@@ -71,11 +71,21 @@ export default function Menu() {
 
   const sideDescriptionEmphasis = {
     'side-rice': '뜨거운 돌판에 슥슥 비벼',
-    'side-cabbage': '칠리 비빔만두를 싸서',
-    'side-pancake': '테이블에서 직접 부쳐'
+    'side-cabbage': '칠리 비빔만두를 싸서'
   };
 
   const renderSideDescription = (side) => {
+    if (side.id === 'side-rice') {
+      const [firstLine, secondLine] = side.description.split('\n');
+      return <>{side.subTitle}<br />{firstLine}<br />{secondLine}</>;
+    }
+
+    if (side.id === 'side-cabbage') {
+      return side.description.split('\n').map((line, index) => (
+        <React.Fragment key={index}>{index > 0 && <br />}{line}</React.Fragment>
+      ));
+    }
+
     const phrase = sideDescriptionEmphasis[side.id];
     const phraseIndex = side.description.indexOf(phrase);
     if (phraseIndex < 0) return side.description;
@@ -93,38 +103,37 @@ export default function Menu() {
     {
       id: 'set-mugeunji',
       name: '묵은지 쌈 돌짜장 세트',
-      subTitle: '개운한 조합을 좋아한다면.',
+      subTitle: '시작은 개운하고, 마지막은 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '묵은지 쌈 세트',
-      description: '묵은지 쌈 돌짜장과 만인산 둥지 갈비찜을 함께 즐기는 산내돌짜장만의 세트.',
+      description: '묵은지의 개운함과 갈비찜의 매콤함이 만난, 세상에 없던 한상',
      image: '/묵은지 돌짜장 세트.png',
     },
     {
       id: 'set-chubu',
-      name: '추부깻잎 돌짜장 세트',
-      subTitle: '깔끔하고 참!고소한 조합을 좋아한다면.',
+      subTitle: '직접 부쳐 먹는 재미. SELF 김치부침개.',
       photoTitle: '세트 사진 공간',
       photoGuide: '추부깻잎 돌짜장 세트',
-      description: '추부깻잎 돌짜장과 만인산 둥지 갈비찜을 함께 즐기는 세트.',
+      description: '추부깻잎과 통들깨의 깔끔하고 꼬소한 맛에 매콤한 둥지갈비찜이 더해진 꼬소하고 매콤한 한상',
       image: '/추부깻잎 돌짜장 세트.png',
 
     },
     {
       id: 'set-aged',
       name: '192시간 숙성 돌짜장 세트',
-      subTitle: '처음 방문이라면 가장 먼저.',
+      subTitle: '시작은 담백하게, 마지막은 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '192시간 숙성 돌짜장 세트',
-      description: '192시간 숙성 돌짜장과 만인산 둥지 갈비찜을 함께 즐기는 산내돌짜장만의 세트.',
+      description: '192시간 숙성 돌짜장의 담백함과 둥지갈비찜의 매콤함을 함께 즐기는 담백하고 매콤한 한상',
       image: '/192숙성 돌짜장 세트-가로.png',
     },
     {
       id: 'set-cheongyang',
       name: '청양고추 돌짜장 세트',
-      subTitle: '칼칼한 맛을 좋아한다면.',
+      subTitle: '화끈한 매운맛을 좋아한다면',
       photoTitle: '세트 사진 공간',
       photoGuide: '청양고추 돌짜장 세트',
-      description: '청양고추 돌짜장과 만인산 둥지 갈비찜을 함께 즐기는 산내돌짜장만의 세트.',
+      description: '화끈한 청양고추 돌짜장과 매콤한 둥지갈비찜이 만난 화끈한 한상',
       image: '/청양고추 돌짜장 세트.png',
     }
   ];
@@ -134,9 +143,10 @@ export default function Menu() {
     {
       id: 'side-rice',
       name: '날치알 돌판 비빔밥',
+      subTitle: '톡톡 씹히는 날치알, 고소한 김가루, 남은 짜장 양념.',
       photoTitle: '사이드 사진 공간',
       photoGuide: '날치알 돌판 비빔밥',
-      description: '남은 짜장에 날치알밥을 넣고, 뜨거운 돌판에 슥슥 비벼 드세요.',
+      description: '돌판에 비벼 먹는 완벽한 마무리.',
     image: '/side-rice.png'
     },
     {
@@ -144,30 +154,38 @@ export default function Menu() {
       name: '아삭 양배추 칠리 비빔만두',
       photoTitle: '사이드 사진 공간',
       photoGuide: '아삭 양배추 칠리',
-      description: '아삭한 양배추에 칠리 비빔만두를 싸서 함께 즐겨보세요.',
+      description: '새콤달콤한 양배추 샐러드에\n바삭한 튀김만두를 감싸 먹는 메뉴.\n입안이 산뜻하고 개운해지는 칠리 비빔만두.',
     image: '/side-cabbage.png'
     },
     {
       id: 'side-pancake',
       name: '김치부침개',
+      subTitle: '직접 부쳐 먹는 재미. SELF 김치부침개.',
       photoTitle: '사이드 사진 공간',
       photoGuide: '김치부침개',
-      description: '테이블에서 직접 부쳐, 따끈할 때 바로 즐기는 김치부침개.',
+      description: '돌짜장이 나오는 동안 따끈하게 즐겨보세요.',
       image: '/side-pancake.png'
     }
   ];
 
   const signatureDescriptionEmphasis = {
-    'aged-zzajang': '기본 맛',
-    'chubu-perilla': '참 꼬소하게',
-    'cheongyang-zzajang': '강한 매운맛',
-    'mugeunji-zzajang': '묵은지로 돌짜장을 감싸',
-    'maninsan-galbi': '부드러운 갈빗살과 파채'
+    'aged-zzajang': '담백하고 깊은 맛',
+    'chubu-perilla': '꼬소하고 깔끔하게',
+    'cheongyang-zzajang': '화끈한 돌짜장',
+    'mugeunji-zzajang': '24시간 더 숙성한 깊고 개운한 국내산 묵은지',
+    'maninsan-galbi': '매콤한 갈비찜'
   };
 
   const renderSignatureDescription = (item) => {
     const phrase = signatureDescriptionEmphasis[item.id];
     const phraseIndex = item.description.indexOf(phrase);
+    const desktopDescription = ['mugeunji-zzajang', 'maninsan-galbi'].includes(item.id) && phraseIndex >= 0
+      ? <>
+          {item.description.slice(0, phraseIndex)}
+          <span className="signature-desc-emphasis">{phrase}</span>
+          {item.description.slice(phraseIndex + phrase.length)}
+        </>
+      : item.description;
     const mobileDescription = phraseIndex < 0
       ? item.description
       : <>
@@ -178,27 +196,39 @@ export default function Menu() {
 
     return (
       <>
-        <span className="signature-description-desktop">{item.description}</span>
+        <span className="signature-description-desktop">{desktopDescription}</span>
         <span className="signature-description-mobile">{mobileDescription}</span>
       </>
     );
   };
 
   const renderSetDescription = (set) => {
-    const phrase = '함께 즐기는';
-    const phraseIndex = set.description.indexOf(phrase);
-    const mobileDescription = phraseIndex < 0
-      ? set.description
-      : <>
-          {set.description.slice(0, phraseIndex)}
-          <span className="set-desc-emphasis">{phrase}</span>
-          {set.description.slice(phraseIndex + phrase.length)}
-        </>;
+    const emphasizedPhrases = {
+      'set-aged': ['담백하고 매콤한 한상'],
+      'set-mugeunji': ['세상에 없던 한상'],
+      'set-chubu': ['꼬소하고 매콤한 한상'],
+      'set-cheongyang': ['화끈한 한상']
+    }[set.id] || [];
+    const matches = emphasizedPhrases
+      .map((phrase) => ({ phrase, index: set.description.indexOf(phrase) }))
+      .filter(({ index }) => index >= 0)
+      .sort((first, second) => first.index - second.index);
+    const emphasizedDescription = [];
+    let cursor = 0;
+
+    matches.forEach(({ phrase, index }, matchIndex) => {
+      if (index > cursor) emphasizedDescription.push(set.description.slice(cursor, index));
+      emphasizedDescription.push(
+        <span className="set-desc-emphasis" key={`${set.id}-${matchIndex}`}>{phrase}</span>
+      );
+      cursor = index + phrase.length;
+    });
+    emphasizedDescription.push(set.description.slice(cursor));
 
     return (
       <>
-        <span className="set-description-desktop">{set.description}</span>
-        <span className="set-description-mobile">{mobileDescription}</span>
+        <span className="set-description-desktop">{emphasizedDescription}</span>
+        <span className="set-description-mobile">{emphasizedDescription}</span>
       </>
     );
   };
@@ -209,7 +239,7 @@ export default function Menu() {
   const bottomSignatureRow = bottomSignatureIds.map((id) => signatureItems.find((item) => item.id === id));
 
   const renderSignatureCard = (item) => (
-    <div key={item.id} className={`signature-card ${item.id === 'chubu-perilla' ? 'signature-card-chubu' : ''}`}>
+    <div key={item.id} className={`signature-card ${item.id === 'chubu-perilla' ? 'signature-card-chubu' : ''} ${item.id === 'mugeunji-zzajang' ? 'signature-card-mugeunji' : ''} ${item.id === 'maninsan-galbi' ? 'signature-card-galbi' : ''}`}>
       <div className="sig-photo-box">
         <img
           src={item.image}
@@ -228,8 +258,26 @@ export default function Menu() {
       </div>
       <div className="sig-card-body">
         <h3 className="sig-item-name">{item.name}</h3>
-        <p className="sig-item-subtitle">{item.subTitle}</p>
-        <p className="sig-item-desc">{renderSignatureDescription(item)}</p>
+        <p className="sig-item-subtitle">
+         {item.subTitle}
+        </p>
+        {item.id === 'mugeunji-zzajang' && (
+          <div className="mugeunji-mobile-heading">
+            <span>개운한 묵은지에 싸 먹는</span>
+            <strong>묵은지 쌈 돌짜장</strong>
+          </div>
+        )}
+        {item.id === 'maninsan-galbi' && (
+          <div className="galbi-mobile-intro">
+            <p className="galbi-mobile-heading">돌짜장과 <span>찰떡궁합</span></p>
+            <p className="galbi-mobile-description">
+              부드러운 갈비살과 파채, 돌짜장과 함께 즐기는 <strong>매콤한 갈비찜</strong>
+            </p>
+          </div>
+        )}
+        <p className={`sig-item-desc ${item.id === 'maninsan-galbi' ? 'galbi-desktop-description' : ''}`}>
+          {renderSignatureDescription(item)}
+        </p>
       </div>
     </div>
   );
@@ -239,10 +287,10 @@ export default function Menu() {
       <div className="container">
         <div className="menu-header-row animate-fade-in-up">
           <div className="menu-header-left">
-            <span className="menu-label">대표 메뉴</span>
-            <h2 className="menu-headline">
-              처음 오셨다면,<br />
-              <span className="signature-heading-emphasis">이렇게 고르세요</span>.
+            <span className="menu-label signature-menu-label">단품 요리</span>
+            <h2 className="menu-headline signature-intro-headline">
+              가볍게 즐기는{' '}
+              <span className="signature-heading-emphasis">단품 요리</span>
             </h2>
           </div>
         </div>
@@ -257,35 +305,32 @@ export default function Menu() {
         </div>
 
         <div className="menu-closing-statement text-center animate-fade-in-up">
-          <p className="closing-line-1">
-            <span className="closing-line-desktop">입은 즐겁게,</span>
-          </p>
-          <p className="closing-line-2">
-            <span className="closing-line-desktop highlight-brown">속은 편하게.</span>
-          </p>
-          <div className="closing-mobile-stack">
-            <p className="closing-mobile-line">
+          <div className="closing-row">
+            <span className="closing-emoji" aria-hidden="true">😊</span>
+            <span className="closing-phrase closing-phrase-first">
               <span className="closing-line-plain">입은</span>{' '}
-              <span className="closing-line-warm">즐겁게</span>
-            </p>
-            <span className="closing-mobile-emoji" aria-hidden="true">😊</span>
-            <p className="closing-mobile-line">
+              <span className="closing-line-warm">즐겁게,</span>
+            </span>
+            <span className="closing-phrase closing-phrase-second">
               <span className="closing-line-plain">속은</span>{' '}
               <span className="closing-line-red">편하게</span>
-            </p>
+            </span>
+            <span className="closing-emoji closing-emoji-right" aria-hidden="true">😊</span>
           </div>
         </div>
 
         <div id="set-menu" className="set-menu-block">
           <div className="menu-header-row animate-fade-in-up">
             <div className="menu-header-left">
-              <span className="menu-label">세트 메뉴</span>
+              <span className="menu-label">색다른 한상 요리</span>
               <h2 className="menu-headline">
                 함께 오셨다면,<br />
-                세트로 <span className="set-menu-heading-emphasis">더 풍성하게</span> 즐겨보세요.
+                <span className="set-menu-heading-emphasis">색다른 한상 요리</span>로 더욱 풍성하게 즐겨보세요.
               </h2>
             </div>
           </div>
+
+          <p className="set-menu-intro">돌짜장과 매콤한 둥지갈비찜을 함께 즐기는 <span className="set-menu-intro-emphasis">색다른 한상 요리</span></p>
 
           <div className="set-cards-grid animate-fade-in">
             {setMenuItems.map((set) => (
@@ -321,10 +366,9 @@ export default function Menu() {
         <div id="side-menu" className="side-menu-block">
           <div className="menu-header-row animate-fade-in-up">
             <div className="menu-header-left">
-              <span className="menu-label">곁들임 메뉴</span>
-              <h2 className="menu-headline">
-                한 끼를 <span className="side-menu-heading-emphasis">더 맛있게 채우는</span><br />
-                곁들임 메뉴
+              <h2 className="menu-headline side-menu-title">
+                함께하면 더 좋은{' '}
+                <span className="side-menu-title-emphasis">사이드 메뉴</span>
               </h2>
             </div>
           </div>
@@ -342,7 +386,14 @@ export default function Menu() {
                 </div>
                 <div className="side-card-body">
                   <h3 className="side-item-name">{side.name}</h3>
-                  <p className="side-item-desc">{renderSideDescription(side)}</p>
+                  {side.id === 'side-pancake' && (
+                    <p className="side-pancake-subtitle">
+                      직접 부쳐 먹는 재미. <span>SELF</span> 김치부침개.
+                    </p>
+                  )}
+                  <p className={`side-item-desc ${side.id === 'side-pancake' ? 'side-pancake-desc' : ''} ${side.id === 'side-rice' ? 'side-rice-desc' : ''} ${side.id === 'side-cabbage' ? 'side-cabbage-desc' : ''}`}>
+                    {renderSideDescription(side)}
+                  </p>
                 </div>
               </div>
             ))}
@@ -383,6 +434,22 @@ export default function Menu() {
           margin: 0;
           word-break: keep-all;
         }
+
+        .side-menu-title {
+          width: 100%;
+          font-size: clamp(17px, calc(7.04vw - 2.8px), 46px);
+          font-weight: 700;
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        .side-menu-title-emphasis {
+          color: #9B3A2E;
+          font-size: 1.15em;
+          font-weight: 700;
+        }
+
+        .signature-intro-headline { white-space: nowrap; }
 
         .menu-guide-text {
           font-size: 14px;
@@ -577,6 +644,8 @@ export default function Menu() {
 
         .signature-description-mobile { display: none; }
         .set-description-mobile { display: none; }
+        .galbi-mobile-intro { display: none; }
+        .mugeunji-mobile-heading { display: none; }
 
         .signature-card-chubu .sig-card-body {
           flex: 1;
@@ -618,6 +687,8 @@ export default function Menu() {
           letter-spacing: -0.3px;
         }
 
+        .aged-subtitle-emphasis { font-weight: 800; }
+
         .sig-item-desc {
           font-size: 13px;
           color: var(--brand-card-body);
@@ -625,6 +696,8 @@ export default function Menu() {
           margin-bottom: 0;
           letter-spacing: -0.2px;
         }
+
+        .galbi-desktop-description .signature-desc-emphasis { font-weight: 700; }
 
         .set-item-desc {
           font-size: 13px;
@@ -635,6 +708,11 @@ export default function Menu() {
           flex: 1;
         }
 
+        .set-desc-emphasis {
+          color: var(--brand-card-body);
+          font-weight: 600;
+        }
+
         .side-item-desc {
           font-size: 13.5px;
           color: var(--brand-card-body);
@@ -642,6 +720,11 @@ export default function Menu() {
           margin: 0;
           letter-spacing: -0.2px;
         }
+
+        .side-pancake-subtitle,
+        .side-pancake-subtitle span { display: none; }
+        .side-pancake-desc { white-space: nowrap; }
+        .side-cabbage-desc { word-break: keep-all; }
 
         .set-price-badge {
           display: flex;
@@ -672,20 +755,40 @@ export default function Menu() {
           padding-top: 10px;
         }
 
-        .closing-line-1, .closing-line-2 {
-          font-size: 34px;
-          font-weight: 900;
-          color: var(--brand-card-title);
+        .closing-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          white-space: nowrap;
+        }
+
+        .closing-emoji {
+          flex: 0 0 auto;
+          margin-right: clamp(6px, 2vw, 8px);
+          font-size: clamp(24px, calc(2.5vw + 15px), 32px);
+          line-height: 1;
+          color: #6B5143;
+        }
+
+        .closing-emoji-right {
+          margin-right: 0;
+          margin-left: clamp(6px, 2vw, 8px);
+        }
+
+        .closing-phrase {
+          flex: 0 0 auto;
+          font-size: clamp(22px, calc(2.5vw + 13px), 34px);
+          font-weight: 400;
+          font-family: var(--font-base);
           line-height: 1.35;
-          margin: 0;
-          letter-spacing: -1px;
+          letter-spacing: 0;
         }
 
-        .highlight-brown {
-          color: var(--brand-card-accent);
-        }
-
-        .closing-mobile-stack { display: none; }
+        .closing-phrase-second { margin-left: clamp(14px, calc(1.43vw + 8.85px), 20px); }
+        .closing-line-plain { color: #382B23; font-weight: 400; }
+        .closing-line-warm { color: #6B5143; font-weight: 700; }
+        .closing-line-red { color: #9B3A2E; font-weight: 700; }
 
         /* Set & Side Menu Blocks */
         .set-menu-block {
@@ -693,6 +796,19 @@ export default function Menu() {
           margin-bottom: 85px;
           border-top: 1px dashed var(--brand-section-divider);
         }
+
+        .set-menu-intro {
+          margin: -28px 0 28px;
+          color: var(--brand-card-body);
+          font-family: inherit;
+          font-size: clamp(17.5px, calc(1.4vw + 12.46px), 20px);
+          font-weight: 400;
+          line-height: 1.6;
+          text-align: center;
+          word-break: keep-all;
+        }
+
+        .set-menu-intro-emphasis { font-weight: 600; }
 
         .side-menu-block {
           padding-top: 20px;
@@ -749,23 +865,55 @@ export default function Menu() {
           .signature-cards-grid-second .signature-card:last-child {
             grid-column: 1 / span 2;
           }
-          .closing-line-1, .closing-line-2 {
-            font-size: 26px;
-          }
         }
 
         @media (max-width: 767px) {
           .menu-draft-section { padding: 24px 0; }
-          .closing-line-1,
-          .closing-line-2 { display: none; }
-          .closing-mobile-stack {
+          .signature-cards-layout { margin-bottom: 0; }
+          .signature-card-mugeunji .sig-item-name,
+          .signature-card-mugeunji .sig-item-subtitle { display: none; }
+          .signature-card-galbi .sig-item-subtitle,
+          .signature-card-galbi .galbi-desktop-description { display: none; }
+          .signature-card-galbi .galbi-mobile-intro { display: block; }
+          .galbi-mobile-heading {
+            margin: 0 0 8px;
+            color: var(--brand-card-body);
+            font-size: 14.5px;
+            font-weight: 700;
+            line-height: 1.45;
+            letter-spacing: 0;
+          }
+          .galbi-mobile-heading span { color: var(--brand-card-accent); }
+          .galbi-mobile-description {
+            margin: 0 0 12px;
+            color: var(--brand-card-body);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0;
+            word-break: keep-all;
+          }
+          .galbi-mobile-description strong { font-weight: 700; }
+          .mugeunji-mobile-heading {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 8px;
+            gap: 4px;
+            margin-bottom: 12px;
           }
-          .signature-cards-layout { margin-bottom: 0; }
+          .mugeunji-mobile-heading span {
+            color: var(--brand-card-accent);
+            font-size: 14.5px;
+            font-weight: 600;
+            line-height: 1.45;
+            letter-spacing: 0;
+          }
+          .mugeunji-mobile-heading strong {
+            color: var(--brand-card-title);
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.35;
+            letter-spacing: -0.4px;
+          }
           .menu-closing-statement {
             margin: 0;
             padding: 32px 0;
@@ -774,7 +922,37 @@ export default function Menu() {
             padding-top: 22px;
             margin-bottom: 32px;
           }
+          .set-menu-block .menu-header-left,
+          .set-menu-block .set-menu-intro {
+            width: 87%;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+            text-align: left;
+          }
+          .set-menu-intro {
+            margin-top: -8px;
+            margin-bottom: 24px;
+            padding: 0;
+          }
           .side-menu-block { padding-top: 22px; }
+
+          .side-pancake-subtitle {
+            display: block;
+            margin: 0 0 8px;
+            color: var(--brand-card-body);
+            font-size: 14.5px;
+            font-weight: 600;
+            line-height: 1.45;
+            letter-spacing: -0.3px;
+            white-space: nowrap;
+          }
+          .side-pancake-subtitle span {
+            display: inline;
+            color: var(--brand-card-accent);
+            font-weight: 700;
+          }
 
           .menu-label {
             font-size: 14px;
@@ -784,6 +962,12 @@ export default function Menu() {
           }
 
           .set-menu-block .menu-label {
+            color: var(--brand-card-accent);
+            font-size: 20px;
+            font-weight: 600;
+          }
+
+          .signature-menu-label {
             color: var(--brand-card-accent);
             font-size: 20px;
             font-weight: 600;
@@ -803,6 +987,15 @@ export default function Menu() {
             overflow-wrap: normal;
             word-break: keep-all;
           }
+
+          .side-menu-title {
+            font-size: clamp(17px, calc(7.04vw - 2.8px), 46px);
+            font-weight: 700;
+            line-height: 1.35;
+            text-align: center;
+          }
+
+          .signature-intro-headline { font-size: clamp(18px, 7vw, 28px); }
 
           .signature-heading-emphasis { color: #9B3A2E; }
           .set-menu-heading-emphasis { color: #9B3A2E; }
@@ -830,6 +1023,11 @@ export default function Menu() {
             gap: 20px;
           }
 
+          .set-card-body .set-item-desc {
+            font-size: 13.5px;
+            line-height: 1.6;
+          }
+
           .sig-card-body,
           .set-card-body,
           .side-card-body {
@@ -854,43 +1052,56 @@ export default function Menu() {
           .signature-desc-emphasis { font-weight: 700; }
           .set-description-desktop { display: none; }
           .set-description-mobile { display: inline; }
-          .set-desc-emphasis { font-weight: 700; }
           .side-desc-emphasis { font-weight: 700; }
+          .side-cabbage-desc {
+            font-size: clamp(13px, calc(5vw - 3px), 15px);
+          }
+          .side-rice-desc {
+            word-break: keep-all;
+            overflow-wrap: normal;
+            font-size: clamp(11px, calc(4.8077vw - 4.3788px), 15px);
+          }
 
           .sig-item-subtitle,
           .set-item-subtitle {
             font-size: 14.5px;
           }
 
-          .closing-line-1,
-          .closing-line-2 {
-            font-family: 'Noto Serif KR', 'Nanum Myeongjo', Batang, serif;
-            font-size: 28px;
-            font-weight: 400;
-            line-height: 1.35;
-            letter-spacing: 0;
+          .closing-row {
+            width: calc(100% + 40px);
+            margin-left: -20px;
+            padding-inline: clamp(4px, 1.5vw, 8px);
+            box-sizing: border-box;
+            gap: 0;
           }
 
-          .closing-mobile-line {
-            margin: 0;
+          .closing-phrase {
             font-family: 'Noto Serif KR', 'Nanum Myeongjo', Batang, serif;
-            font-size: 28px;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 1.35;
             letter-spacing: 0;
             white-space: nowrap;
           }
 
-          .menu-closing-statement .closing-line-plain { color: #382B23; font-weight: 400; }
-          .menu-closing-statement .closing-line-warm { color: #6B5143; font-weight: 700; }
-          .menu-closing-statement .closing-line-red { color: #9B3A2E; font-weight: 700; }
-          .closing-mobile-emoji {
-            display: block;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 32px;
-            line-height: 1;
-            color: #6B5143;
+          .menu-closing-statement .closing-line-warm,
+          .menu-closing-statement .closing-line-red {
+            color: #9B3A2E;
+            font-weight: 700;
           }
+        }
+
+        @media (max-width: 340px) {
+          .closing-row { padding-inline: 0; }
+          .closing-emoji {
+            margin-right: 4px;
+            font-size: 20px;
+          }
+          .closing-emoji-right {
+            margin-right: 0;
+            margin-left: 4px;
+          }
+          .closing-phrase { font-size: 20px; }
+          .closing-phrase-second { margin-left: 4px; }
         }
       `}</style>
     </section>
