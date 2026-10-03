@@ -882,6 +882,8 @@ export default function Menu() {
             font-weight: 700;
             line-height: 1.45;
             letter-spacing: 0;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .galbi-mobile-heading span { color: var(--brand-card-accent); }
           .galbi-mobile-description {
@@ -906,6 +908,8 @@ export default function Menu() {
             font-weight: 600;
             line-height: 1.45;
             letter-spacing: 0;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .mugeunji-mobile-heading strong {
             color: var(--brand-card-title);
@@ -913,6 +917,8 @@ export default function Menu() {
             font-weight: 800;
             line-height: 1.35;
             letter-spacing: -0.4px;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
           .menu-closing-statement {
             margin: 0;
