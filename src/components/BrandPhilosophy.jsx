@@ -4,7 +4,17 @@ export default function BrandPhilosophy() {
   return (
     <section className="brand-philosophy-section" aria-label="산내돌짜장의 브랜드 철학">
       <div className="brand-philosophy-content container">
-        <h2 className="brand-philosophy-hanja">千時一道 · 名傳萬里</h2>
+       <img
+  src="/brand-frame.png"
+  alt="천시일도·명전만리"
+  style={{
+    display: 'block',
+    width: '100%',
+    maxWidth: '900px',
+    height: 'auto',
+    margin: '0 auto 16px',
+  }}
+/>
         <p className="brand-philosophy-korean">천시일도 · 명전만리</p>
         <p className="brand-philosophy-meaning">
           시간을 들여 한 길을 만들면,<br />
@@ -66,13 +76,22 @@ export default function BrandPhilosophy() {
           }
 
           .brand-philosophy-korean {
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin: 4px 0 8px;
+            color: #3b2c25;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: 0;
           }
 
           .brand-philosophy-meaning {
-            font-size: 15px;
-            line-height: 1.65;
+            color: #6B6259;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0;
+            text-align: center;
+            word-break: keep-all;
           }
         }
       `}</style>
