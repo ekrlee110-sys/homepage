@@ -111,7 +111,7 @@ export default function Menu() {
     },
     {
       id: 'set-chubu',
-      subTitle: '직접 부쳐 먹는 재미. SELF 김치부침개.',
+      subTitle: '추부깻잎 돌짜장 한상',
       photoTitle: '세트 사진 공간',
       photoGuide: '추부깻잎 돌짜장 세트',
       description: '추부깻잎과 통들깨의 깔끔하고 꼬소한 맛에 매콤한 둥지갈비찜이 더해진 꼬소하고 매콤한 한상',
@@ -1038,6 +1038,8 @@ export default function Menu() {
           .set-item-name,
           .side-item-name {
             font-size: 18px;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
 
           .sig-item-desc,
@@ -1045,6 +1047,8 @@ export default function Menu() {
           .side-item-desc {
             font-size: 15px;
             line-height: 1.65;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
 
           .signature-description-desktop { display: none; }
@@ -1065,6 +1069,8 @@ export default function Menu() {
           .sig-item-subtitle,
           .set-item-subtitle {
             font-size: 14.5px;
+            word-break: keep-all;
+            overflow-wrap: normal;
           }
 
           .closing-row {
