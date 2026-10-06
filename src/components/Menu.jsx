@@ -102,7 +102,7 @@ export default function Menu() {
   const setMenuItems = [
     {
       id: 'set-mugeunji',
-      name: '묵은지 쌈 돌짜장 세트',
+      name: '묵은지 쌈 돌짜장 한상',
       subTitle: '시작은 개운하고, 마지막은 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '묵은지 쌈 세트',
@@ -111,7 +111,7 @@ export default function Menu() {
     },
     {
       id: 'set-chubu',
-      subTitle: '추부깻잎 돌짜장 한상',
+      name: '추부깻잎 돌짜장 한상',
       photoTitle: '세트 사진 공간',
       photoGuide: '추부깻잎 돌짜장 세트',
       description: '추부깻잎과 통들깨의 깔끔하고 꼬소한 맛에 매콤한 둥지갈비찜이 더해진 꼬소하고 매콤한 한상',
@@ -120,7 +120,7 @@ export default function Menu() {
     },
     {
       id: 'set-aged',
-      name: '192시간 숙성 돌짜장 세트',
+      name: '192시간 숙성 돌짜장 한상',
       subTitle: '시작은 담백하게, 마지막은 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '192시간 숙성 돌짜장 세트',
@@ -129,7 +129,7 @@ export default function Menu() {
     },
     {
       id: 'set-cheongyang',
-      name: '청양고추 돌짜장 세트',
+      name: '청양고추 돌짜장 한상',
       subTitle: '화끈한 매운맛을 좋아한다면',
       photoTitle: '세트 사진 공간',
       photoGuide: '청양고추 돌짜장 세트',
