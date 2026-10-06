@@ -354,7 +354,7 @@ export default function Menu() {
                   />
                 </div>
                 <div className="set-card-body">
-                  <h3 className="set-item-name">{set.name}</h3>
+                  <h3 className="set-item-name" style={set.id === 'set-mugeunji' ? { color: '#000000' } : undefined}>{set.name}</h3>
                   <p className="set-item-subtitle">{set.subTitle}</p>
                   <p className="set-item-desc">{renderSetDescription(set)}</p>
                 </div>
