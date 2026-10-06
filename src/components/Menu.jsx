@@ -103,7 +103,7 @@ export default function Menu() {
     {
       id: 'set-mugeunji',
       name: '묵은지 쌈 돌짜장 한상',
-      subTitle: '시작은 개운하고, 마지막은 매콤하게',
+      subTitle: '개운하고 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '묵은지 쌈 세트',
       description: '묵은지의 개운함과 갈비찜의 매콤함이 만난, 세상에 없던 한상',
@@ -112,6 +112,7 @@ export default function Menu() {
     {
       id: 'set-chubu',
       name: '추부깻잎 돌짜장 한상',
+      subTitle: '깔끔하고 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '추부깻잎 돌짜장 세트',
       description: '추부깻잎과 통들깨의 깔끔하고 꼬소한 맛에 매콤한 둥지갈비찜이 더해진 꼬소하고 매콤한 한상',
@@ -121,7 +122,7 @@ export default function Menu() {
     {
       id: 'set-aged',
       name: '192시간 숙성 돌짜장 한상',
-      subTitle: '시작은 담백하게, 마지막은 매콤하게',
+      subTitle: '담백하고 매콤하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '192시간 숙성 돌짜장 세트',
       description: '192시간 숙성 돌짜장의 담백함과 둥지갈비찜의 매콤함을 함께 즐기는 담백하고 매콤한 한상',
@@ -130,7 +131,7 @@ export default function Menu() {
     {
       id: 'set-cheongyang',
       name: '청양고추 돌짜장 한상',
-      subTitle: '화끈한 매운맛을 좋아한다면',
+      subTitle: '끝까지 화끈하게',
       photoTitle: '세트 사진 공간',
       photoGuide: '청양고추 돌짜장 세트',
       description: '화끈한 청양고추 돌짜장과 매콤한 둥지갈비찜이 만난 화끈한 한상',
