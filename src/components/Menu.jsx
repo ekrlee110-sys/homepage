@@ -216,7 +216,11 @@ export default function Menu() {
     matches.forEach(({ phrase, index }, matchIndex) => {
       if (index > cursor) emphasizedDescription.push(set.description.slice(cursor, index));
       emphasizedDescription.push(
-        <span className="set-desc-emphasis" key={`${set.id}-${matchIndex}`}>{phrase}</span>
+        <span
+          className="set-desc-emphasis"
+          key={`${set.id}-${matchIndex}`}
+          style={['set-mugeunji', 'set-chubu'].includes(set.id) ? { display: 'block', whiteSpace: 'nowrap' } : undefined}
+        >{phrase}</span>
       );
       cursor = index + phrase.length;
     });
