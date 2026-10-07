@@ -4,9 +4,9 @@ export default function WhySannae() {
   const reasons = [
     {
       id: 1,
-      image: '/ChatGPT 이미지 2026년 9월 29일 오후 05_43_01.png',
-      imageAlt: '산내돌짜장 한옥 공간 이미지',
-      imagePosition: 'center top',
+      image: '/20220901_123551.jpg',
+      imageAlt: '산내돌짜장 카운터 앞에서 함께 엄지를 든 할아버지와 손녀',
+      imagePosition: 'center 30%',
       title: '한옥에서 즐기는 가족 외식',
       desc: '부모님과 아이가 함께하기 좋은 공간.'
     },
